@@ -6,7 +6,7 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/13 13:49:54 by cjulienn          #+#    #+#              #
-#    Updated: 2022/01/15 19:05:11 by cjulienn         ###   ########.fr        #
+#    Updated: 2022/07/01 12:24:18 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS = ./main.cpp \
 OBJS = $(SRCS:.c=.o)
 
 CC = clang++
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -I. 
 
 RM = rm -f
 

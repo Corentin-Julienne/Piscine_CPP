@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 12:28:58 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/01/13 13:35:21 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/07/01 12:17:22 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 		{
 			while (argv[i][j])
 			{
-				putchar(toupper(argv[i][j]));
+				std::putchar(std::toupper(argv[i][j]));
 				j++;
 			}
 			i++;

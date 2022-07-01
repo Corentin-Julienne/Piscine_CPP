@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:23:26 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/01/16 17:05:00 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/07/01 15:51:29 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(void)
 	user_input = "ADD";
 	while (user_input.compare("EXIT"))
 	{
-		// phonebook.display_state();
 		std::cout << "Enter ADD to add a contact ";
 		std::cout << "SEARCH to retrieve contact data ";
 		std::cout << "or EXIT to exit the programm" << std::endl;
@@ -32,8 +31,10 @@ int	main(void)
 			return (0);
 		else if (!user_input.compare("ADD"))
 			phonebook.add_ctct_to_db();
-		else
+		else if (!user_input.compare("SEARCH"))
 			phonebook.display_phonebook();
+		else
+			std::cout << "Please enter a valid command !" <<std::endl;
 	}
 	std::cout << "exiting programm ! Bye !" << std::endl;
 	return (0);

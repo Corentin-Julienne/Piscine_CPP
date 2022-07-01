@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:36:03 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/01/21 18:27:56 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/01/23 12:50:01 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ Fixed::Fixed(void) : _fixed_point(0)
 	std::cout << "Default constructor called" << std::endl;	
 }
 
-Fixed::Fixed(int num) : _fixed_point(num)
+Fixed::Fixed(int num)
 {
+	this->_fixed_point = num << _frac_bits;
 	std::cout << "Int constructor called" << std::endl;
 }
 

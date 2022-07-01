@@ -6,7 +6,7 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/13 12:28:56 by cjulienn          #+#    #+#              #
-#    Updated: 2022/01/13 12:36:07 by cjulienn         ###   ########.fr        #
+#    Updated: 2022/07/01 12:13:23 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS = ./megaphone.cpp
 OBJS = $(SRCS:.c=.o)
 
 CC = clang++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -f
 
@@ -29,8 +29,8 @@ all:
 	$(NAME)
 
 clean:
-	$(RM) $(OBJS)
-	
+	$(RM) ./megaphone.o
+
 fclean:	clean
 	$(RM) $(NAME)
 
