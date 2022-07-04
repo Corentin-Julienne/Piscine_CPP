@@ -6,7 +6,7 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 11:43:59 by cjulienn          #+#    #+#              #
-#    Updated: 2022/01/17 11:44:37 by cjulienn         ###   ########.fr        #
+#    Updated: 2022/07/04 17:52:53 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJS = $(SRCS:.c=.o)
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -I.
 
-RM = rm -f
+RM = rm
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
@@ -27,13 +27,10 @@ $(NAME): $(OBJS)
 
 all: 
 	$(NAME)
-
-clean:
-	$(RM) $(OBJS)
 	
-fclean:	clean
+fclean:
 	$(RM) $(NAME)
 
 re:	fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all fclean re
