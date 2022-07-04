@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 18:33:48 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/01/16 19:02:31 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/07/04 16:49:09 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,14 @@ class Zombie
 
 	Zombie(std::string name);
 	~Zombie();
-
-	Zombie*			newZombie(std::string name);
-	void 			randomChump(std::string name);
-
 	void			announce(void);
-	
+
 	private:
 
 	std::string		_z_name;
 };
+
+void 		randomChump(std::string name);
+Zombie* 	newZombie(std::string name);
 
 #endif
