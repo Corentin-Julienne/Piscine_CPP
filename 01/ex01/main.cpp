@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:16:50 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/01/17 11:38:26 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/07/04 17:05:42 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(void)
 	Zombie		*the_walking_dead;
 	int			i;
 
-	the_walking_dead = NULL;
 	the_walking_dead = zombieHorde(12, "Rick");
 	i = 0;
 	while (i < 12)
@@ -26,6 +25,6 @@ int	main(void)
 		i++;
 	}
 	i = 0;
-	delete the_walking_dead;
+	delete [] the_walking_dead;
 	return (0);
 }
