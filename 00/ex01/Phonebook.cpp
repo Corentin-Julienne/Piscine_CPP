@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:05:26 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/01 18:09:44 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:56:45 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "Contact.hpp"
 #include <iomanip>
 #include <iostream>
+#include <sstream>
 
 // basic constructor
 
@@ -27,21 +28,11 @@ Phonebook::~Phonebook(void) {
 	
 }
 
-// getters and setters
-
-int	Phonebook::get_entry_num(void)
-{
-	return (m_entry_num);
-}
+// setters
 
 void	Phonebook::set_entry_num(int i)
 {
 	m_entry_num = i;
-}
-
-int	Phonebook::get_current_entry(void)
-{
-	return (m_current_entry);
 }
 
 void	Phonebook::set_current_entry(int i)
@@ -59,20 +50,18 @@ void	Phonebook::set_current_entry(int i)
 void	Phonebook::add_ctct_to_db(void)
 {
 	Contact		ctct;
-	int			num_of_ctcts;
 
 	ctct.display_prompt();
-	num_of_ctcts = this->get_entry_num();
-	if (num_of_ctcts <= 7)
+	if (this->m_entry_num <= 7)
 	{
-		this->m_contacts[m_entry_num] = ctct;
-		this->set_entry_num(num_of_ctcts + 1);
+		this->m_contacts[this->m_entry_num] = ctct;
+		this->set_entry_num(this->m_entry_num + 1);
 	}
 	else
 	{
-		this->m_contacts[get_current_entry()] = ctct;
-		this->set_current_entry(get_current_entry() + 1);
-		if (this->get_current_entry() > 7)
+		this->m_contacts[this->m_current_entry] = ctct;
+		this->set_current_entry(this->m_current_entry + 1);
+		if (this->m_current_entry > 7)
 			this->set_current_entry(0);
 	}
 }
@@ -111,7 +100,7 @@ void	Phonebook::display_ctct(int index)
 	i = 0;
 	while (i < 3)
 	{
-		Contact ctct = this->contacts[index];
+		Contact ctct = this->m_contacts[index];
 		contact_info.assign(ctct.get_item(i));
 		if (contact_info.size() > 10)
 		{
@@ -128,22 +117,27 @@ void	Phonebook::display_ctct(int index)
 
 void	Phonebook::ask_for_index(void)
 {
-	int				index;
-	int				i;
-	std::string		item;
+	int					index;
+	int					i;
+	std::string			item;
+	std::string			category;
+	std::stringstream	ss;
 
 	std::cout << "Please ENTER the index of the contact you want to consult" << std::endl;
-	std::cin >> index;
-	do {
-		std::cout << index << " is not a valid index. Please ENTER a valid one" << std::endl;
-		std::cin >> index;
-	} while (index < 0 || index > m_entry_num - 1);
-	std::cout << index << std::endl;
+	std::getline(std::cin, item);
+	while (item.size() != 1 || item[0] < '0' || item[0] > ((m_entry_num - 1) + '0'))
+	{
+		std::cout << item << " is not a valid index. Please ENTER a valid one" << std::endl;
+		std::getline(std::cin, item);
+	}
+	ss << item;
+	ss >> index;
 	i = 0;
 	while (i < 5)
 	{
+		category = this->m_contacts[index].get_contact_category(i);
 		item = this->m_contacts[index].get_item(i);
-		std::cout << item << std::endl;
+		std::cout << category << " : " << item << std::endl;
  		i++;
 	}
 }
@@ -164,20 +158,4 @@ void	Phonebook::display_phonebook(void)
 		i++;
 	}
 	this->ask_for_index();
-}
-
-void	Phonebook::display_state(void)
-{
-	int		i = 0;
-	
-	std::cout << "Entry num : " << this->m_entry_num << std::endl;
-	while (i < this->m_entry_num)
-	{
-		std::cout << "f_n : " << this->m_contacts[i].get_item(0) << std::endl;
-		std::cout << "l_n : " << this->m_contacts[i].get_item(1) << std::endl;
-		std::cout << "n_n : " << this->m_contacts[i].get_item(2) << std::endl;
-		std::cout << "p_n : " << this->m_contacts[i].get_item(3) << std::endl;
-		std::cout << "d_s : " << this->m_contacts[i].get_item(4) << std::endl;
-		i++;
-	}
 }
