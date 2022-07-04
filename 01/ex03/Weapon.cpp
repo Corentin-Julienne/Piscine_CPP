@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:19:29 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/01/18 15:08:04 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/07/04 20:13:12 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ Weapon::~Weapon()
 
 const std::string&	Weapon::getType(void)
 {
-	const std::string& ref = _type;
+	const std::string& ref = this->_type;
 	return (ref);
 }
 
 void	Weapon::setType(std::string type)
 {
-	_type = type;
+	this->_type = type;
 }

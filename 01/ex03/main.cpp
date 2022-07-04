@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:19:24 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/01/18 16:26:21 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/07/04 19:12:31 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	verify_2(void)
 
 int	main(void)
 {
-	verify_1();
 	verify_2();
+	verify_1();
 	return (0);
 }
