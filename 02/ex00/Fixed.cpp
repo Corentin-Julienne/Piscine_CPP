@@ -5,28 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/19 18:36:03 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/01/20 13:36:13 by cjulienn         ###   ########.fr       */
+/*   Created: 2022/07/12 16:14:59 by cjulienn          #+#    #+#             */
+/*   Updated: 2022/07/12 17:00:41 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed(void) : _fixed_point(0) 
+// basic constructor
+
+Fixed::Fixed(void) : _fixed_point(0)
 {
-	std::cout << "Default constructor called" << std::endl;	
+	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::~Fixed() 
+// destructor
+
+Fixed::~Fixed(void) 
 {
-	std::cout << "Destructor called" << std::endl;	
+	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& ref)
+// constructor by copy
+
+Fixed::Fixed(const Fixed& original)
 {
-	*this = ref;
+	_fixed_point = original._fixed_point;
 	std::cout << "Copy constructor called" << std::endl;
 }
+
+// overloading assignement operator
+
+Fixed&	Fixed::operator=(const Fixed& original)
+{
+	_fixed_point = original._fixed_point;
+	std::cout << "Copy assignment operator called" << std::endl;
+	return *this;
+}
+
+// getters and setters
 
 int	Fixed::getRawBits(void) const
 {
@@ -38,14 +55,4 @@ void	Fixed::setRawBits(int raw)
 {
 	this->_fixed_point = raw;
 	std::cout << "setRawBits member function called" << std::endl;
-}
-
-// overloading operator = 
-
-Fixed&	Fixed::operator=(const Fixed& ref)
-{
-	if (this != &ref)
-		this->_fixed_point = ref.getRawBits();
-	std::cout << "Assignation operator called" << std::endl;
-	return (*this);
 }

@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:19:21 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/04 20:22:39 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/07/04 20:27:42 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,8 @@ void	HumanB::setWeapon(Weapon& weapon)
 void	HumanB::attack(void)
 {
 	std::cout << this->_name << " attacks with his ";
-	std::cout << this->_weapon->getType() << std::endl;
+	if (this->_weapon != NULL)
+		std::cout << this->_weapon->getType() << std::endl;
+	else
+		std::cout << "super middle kick (aiming at the balls !!!)" << std::endl;
 }
