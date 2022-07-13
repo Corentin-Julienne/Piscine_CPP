@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:36:05 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/01/21 18:06:29 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/07/13 15:17:22 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ class Fixed
 
 	Fixed(void);
 	~Fixed(void);
-	Fixed(const Fixed& ref);
+	Fixed(const Fixed& original);
 	Fixed(int num);
 	Fixed(float num);
 	
 	int 			getRawBits(void) const;
 	void 			setRawBits(int const raw);
-	Fixed&			operator=(const Fixed& ref);
+	Fixed&			operator=(const Fixed& original);
 	int 			toInt(void) const;
 	float 			toFloat(void) const;
 	
