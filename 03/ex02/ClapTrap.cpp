@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 14:50:22 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/13 16:54:55 by cjulienn         ###   ########.fr       */
+/*   Created: 2022/07/14 12:22:39 by cjulienn          #+#    #+#             */
+/*   Updated: 2022/07/14 12:23:08 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,46 @@
 
 // basic constructor
 
-ClapTrap::ClapTrap(void) : _hit_pts(10), _energy_pts(10), _attack_dmgs(0)
+ClapTrap::ClapTrap(void)
 {
-	std::cout << "Constructor has been called !" << std::endl;
+	std::cout << "ClapTrap Constructor has been called !" << std::endl;
 }
 
 // constructor with name
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hit_pts(10), _energy_pts(10), _attack_dmgs(0)
 {
-	std::cout << "Constructor has been called !" << std::endl;
+	std::cout << "ClapTrap Constructor has been called !" << std::endl;
 }
 
 // destructor
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Destructor has been called !" << std::endl;
+	std::cout << "ClapTrap Destructor has been called !" << std::endl;
 }
 
 // copy constructor
 
 ClapTrap::ClapTrap(const ClapTrap& original)
 {
-	_name = original._name;
-	_hit_pts = original._hit_pts;
-	_energy_pts = original._energy_pts;
-	_attack_dmgs = original._attack_dmgs;
+	this->_name = original._name;
+	this->_hit_pts = original._hit_pts;
+	this->_energy_pts = original._energy_pts;
+	this->_attack_dmgs = original._attack_dmgs;
+	std::cout << "ClapTrap Constructor (by copy) has been called !" << std::endl;
 }
 
-// overloading asssignation operator
+// overloading assignation operator
 
 ClapTrap&	ClapTrap::operator=(const ClapTrap& original)
 {
 	if (this != &original)
 	{
-		_name = original._name;
-		_hit_pts = original._hit_pts;
-		_energy_pts = original._energy_pts;
-		_attack_dmgs = original._attack_dmgs;
+		this->_name = original._name;
+		this->_hit_pts = original._hit_pts;
+		this->_energy_pts = original._energy_pts;
+		this->_attack_dmgs = original._attack_dmgs;
 	}
 	return *this;
 }

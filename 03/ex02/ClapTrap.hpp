@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 14:50:24 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/13 16:54:45 by cjulienn         ###   ########.fr       */
+/*   Created: 2022/07/14 12:22:41 by cjulienn          #+#    #+#             */
+/*   Updated: 2022/07/14 12:23:16 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class ClapTrap
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 
-	private:
+	protected:
 		std::string		_name;
 		unsigned int 	_hit_pts;
 		unsigned int	_energy_pts;
