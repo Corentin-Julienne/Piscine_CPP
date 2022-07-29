@@ -6,7 +6,17 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 15:57:35 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/28 15:57:36 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/07/29 15:27:49 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "easyfind.hpp"
+
+// testing procedure
+
+int main(void)
+{
+	// implement tests
+	
+	return (0);
+}
