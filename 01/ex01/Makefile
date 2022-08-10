@@ -6,7 +6,7 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 19:22:08 by cjulienn          #+#    #+#              #
-#    Updated: 2022/07/04 16:52:41 by cjulienn         ###   ########.fr        #
+#    Updated: 2022/08/10 16:06:26 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ SRCS = ./main.cpp \
 	   ./Zombie.cpp \
 	   ./ZombieHorde.cpp
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.cpp=.o)
+
+RM = rm -f
 
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -I.
@@ -28,9 +30,12 @@ $(NAME): $(OBJS)
 all: 
 	$(NAME)
 	
-fclean:
-	rm $(NAME)
+clean:
+	$(RM) $(OBJS)
+
+fclean: clean
+	$(RM) $(NAME)
 
 re:	fclean all
 
-.PHONY: all fclean re
+.PHONY: all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 18:33:55 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/04 16:49:50 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/10 16:20:59 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void randomChump(std::string name)
 {
 	Zombie	zombie(name);
-	zombie.announce();	
+	zombie.announce();
 }

@@ -6,7 +6,7 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 12:19:26 by cjulienn          #+#    #+#              #
-#    Updated: 2022/07/04 17:57:30 by cjulienn         ###   ########.fr        #
+#    Updated: 2022/08/10 16:07:39 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,12 @@ SRCS = ./main.cpp \
 	   ./HumanB.cpp \
 	   ./Weapon.cpp
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.cpp=.o)
 
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -I.
 
-RM = rm
+RM = rm -f
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
@@ -31,7 +31,10 @@ $(NAME): $(OBJS)
 all: 
 	$(NAME)
 
-fclean:
+clean:
+	$(RM) $(OBJS)
+
+fclean: clean
 	$(RM) $(NAME)
 
 re:	fclean all

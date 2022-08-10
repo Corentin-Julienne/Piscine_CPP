@@ -6,7 +6,7 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 18:32:18 by cjulienn          #+#    #+#              #
-#    Updated: 2022/07/04 16:45:45 by cjulienn         ###   ########.fr        #
+#    Updated: 2022/08/10 16:05:52 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ SRCS = ./main.cpp \
 	   ./newZombie.cpp \
 	   ./randomChump.cpp
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.cpp=.o)
+
+RM = rm -f
 
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -I.
@@ -29,8 +31,11 @@ $(NAME): $(OBJS)
 all: 
 	$(NAME)
 
-fclean:
-	rm $(NAME)
+clean:
+	$(RM) $(OBJS)
+
+fclean: clean
+	$(RM) $(NAME)
 
 re:	fclean all
 

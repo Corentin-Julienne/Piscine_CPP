@@ -6,7 +6,7 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 11:43:59 by cjulienn          #+#    #+#              #
-#    Updated: 2022/07/04 17:52:53 by cjulienn         ###   ########.fr        #
+#    Updated: 2022/08/10 16:03:28 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,12 @@ NAME = HI_THIS_IS_BRAIN
 
 SRCS = ./main.cpp
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.cpp=.o)
 
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -I.
 
-RM = rm
+RM = rm -f
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
@@ -27,10 +27,13 @@ $(NAME): $(OBJS)
 
 all: 
 	$(NAME)
+
+clean:
+	$(RM) $(NAME)
 	
-fclean:
+fclean: clean
 	$(RM) $(NAME)
 
 re:	fclean all
 
-.PHONY: all fclean re
+.PHONY: all clean fclean re
