@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 12:58:53 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/04 12:14:59 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/10 13:56:25 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ class Contact
 	
 	private:
 
-	std::string		m_contact_category[5];
-	std::string		m_contact_info[5];
+	std::string		_contact_category[5];
+	std::string		_contact_info[5];
 };
 
 #endif

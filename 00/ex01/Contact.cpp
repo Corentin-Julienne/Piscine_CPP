@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 12:58:56 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/04 15:56:23 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:45:57 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 Contact::Contact(void) 
 {
-	this->m_contact_category[0] = "first name";
-	this->m_contact_category[1] = "last name";
-	this->m_contact_category[2] = "nickname";
-	this->m_contact_category[3] = "phone number";
-	this->m_contact_category[4] = "darkest secret";
+	this->_contact_category[0] = "first name";
+	this->_contact_category[1] = "last name";
+	this->_contact_category[2] = "nickname";
+	this->_contact_category[3] = "phone number";
+	this->_contact_category[4] = "darkest secret";
 }
 
 // basic destructor
@@ -34,17 +34,17 @@ Contact::~Contact(void)
 
 std::string	Contact::get_item(int index)
 {
-	return (m_contact_info[index]);
+	return (_contact_info[index]);
 }
 
 void	Contact::set_item(std::string value, int index)
 {
-	m_contact_info[index] = value;
+	_contact_info[index] = value;
 }
 
 std::string	Contact::get_contact_category(int index)
 {
-	return (m_contact_category[index]);
+	return (_contact_category[index]);
 }
 
 // utils
@@ -59,13 +59,13 @@ void	Contact::display_prompt(void)
 	i = 0;
 	while (i < 5)
 	{
-		std::cout << "please add the " << this->m_contact_category[i]
+		std::cout << "please add the " << this->_contact_category[i]
 		<< " of the contact, then press ENTER" << std::endl;
 		std::getline(std::cin, buf);
 		while (buf.empty() == true || buf.find_first_not_of(" \t\n\v\f\r") == std::string::npos)
 		{
 			std::cout << "Contact info cannot be empty, please use a valid information format" << std::endl;
-			std::cout << "please add the " << this->m_contact_category[i]
+			std::cout << "please add the " << this->_contact_category[i]
 			<< " of the contact, then press ENTER" << std::endl;
 			std::getline(std::cin, buf);
 		}

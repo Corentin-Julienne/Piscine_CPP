@@ -6,11 +6,11 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:05:26 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/04 15:56:45 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:45:07 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Phonebook.hpp"
+#include "PhoneBook.hpp"
 #include "Contact.hpp"
 #include <iomanip>
 #include <iostream>
@@ -18,26 +18,24 @@
 
 // basic constructor
 
-Phonebook::Phonebook(void) : m_entry_num(0), m_current_entry(0){
-	
-}
+PhoneBook::PhoneBook(void) : _entry_num(0), _current_entry(0) {}
 
 // basic destructor
 
-Phonebook::~Phonebook(void) {
+PhoneBook::~PhoneBook(void) {
 	
 }
 
 // setters
 
-void	Phonebook::set_entry_num(int i)
+void	PhoneBook::set_entry_num(int i)
 {
-	m_entry_num = i;
+	_entry_num = i;
 }
 
-void	Phonebook::set_current_entry(int i)
+void	PhoneBook::set_current_entry(int i)
 {
-	m_current_entry = i;
+	_current_entry = i;
 }
 
 // utils top add contact
@@ -47,21 +45,21 @@ void	Phonebook::set_current_entry(int i)
 // if the num of entries is sup to 8, then entry 1 (AKA the oldest)
 // is replaced by the new entry
 
-void	Phonebook::add_ctct_to_db(void)
+void	PhoneBook::add_ctct_to_db(void)
 {
 	Contact		ctct;
 
 	ctct.display_prompt();
-	if (this->m_entry_num <= 7)
+	if (this->_entry_num <= 7)
 	{
-		this->m_contacts[this->m_entry_num] = ctct;
-		this->set_entry_num(this->m_entry_num + 1);
+		this->_contacts[this->_entry_num] = ctct;
+		this->set_entry_num(this->_entry_num + 1);
 	}
 	else
 	{
-		this->m_contacts[this->m_current_entry] = ctct;
-		this->set_current_entry(this->m_current_entry + 1);
-		if (this->m_current_entry > 7)
+		this->_contacts[this->_current_entry] = ctct;
+		this->set_current_entry(this->_current_entry + 1);
+		if (this->_current_entry > 7)
 			this->set_current_entry(0);
 	}
 }
@@ -70,7 +68,7 @@ void	Phonebook::add_ctct_to_db(void)
 
 // display a contact with a max width of 10
 
-void	Phonebook::display_columns(void)
+void	PhoneBook::display_columns(void)
 {
 	Contact	ctct;
 	int		i;
@@ -89,7 +87,7 @@ void	Phonebook::display_columns(void)
 	std::cout << std::endl;
 }
 
-void	Phonebook::display_ctct(int index)
+void	PhoneBook::display_ctct(int index)
 {	
 	int			i;
 	std::string	contact_info;
@@ -100,7 +98,7 @@ void	Phonebook::display_ctct(int index)
 	i = 0;
 	while (i < 3)
 	{
-		Contact ctct = this->m_contacts[index];
+		Contact ctct = this->_contacts[index];
 		contact_info.assign(ctct.get_item(i));
 		if (contact_info.size() > 10)
 		{
@@ -115,7 +113,7 @@ void	Phonebook::display_ctct(int index)
 	std::cout << std::endl;
 }
 
-void	Phonebook::ask_for_index(void)
+void	PhoneBook::ask_for_index(void)
 {
 	int					index;
 	int					i;
@@ -125,7 +123,7 @@ void	Phonebook::ask_for_index(void)
 
 	std::cout << "Please ENTER the index of the contact you want to consult" << std::endl;
 	std::getline(std::cin, item);
-	while (item.size() != 1 || item[0] < '0' || item[0] > ((m_entry_num - 1) + '0'))
+	while (item.size() != 1 || item[0] < '0' || item[0] > ((_entry_num - 1) + '0'))
 	{
 		std::cout << item << " is not a valid index. Please ENTER a valid one" << std::endl;
 		std::getline(std::cin, item);
@@ -135,24 +133,24 @@ void	Phonebook::ask_for_index(void)
 	i = 0;
 	while (i < 5)
 	{
-		category = this->m_contacts[index].get_contact_category(i);
-		item = this->m_contacts[index].get_item(i);
+		category = this->_contacts[index].get_contact_category(i);
+		item = this->_contacts[index].get_item(i);
 		std::cout << category << " : " << item << std::endl;
  		i++;
 	}
 }
 
-void	Phonebook::display_phonebook(void)
+void	PhoneBook::display_phonebook(void)
 {
 	int		i = 0;
 	
-	if (this->m_entry_num == 0)
+	if (this->_entry_num == 0)
 	{
-		std::cout << "No contact in the phonebook" <<std::endl;
+		std::cout << "No contact in the PhoneBook" <<std::endl;
 		return ;
 	}
 	this->display_columns();
-	while (i < m_entry_num)
+	while (i < _entry_num)
 	{
 		this->display_ctct(i);
 		i++;

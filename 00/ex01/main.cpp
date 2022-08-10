@@ -6,16 +6,16 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:23:26 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/04 15:57:50 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:45:26 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Phonebook.hpp"
+#include "PhoneBook.hpp"
 
 int	main(void)
 {
 	std::string		user_input;
-	Phonebook		phonebook;
+	PhoneBook		phonebook;
 	
 	std::cout << "Welcome to a nice 80's style crappy notebook!" << std::endl;
 	std::cout << std::endl << std::endl;

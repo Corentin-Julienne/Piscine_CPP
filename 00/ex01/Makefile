@@ -6,15 +6,15 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/13 13:49:54 by cjulienn          #+#    #+#              #
-#    Updated: 2022/07/01 12:24:18 by cjulienn         ###   ########.fr        #
+#    Updated: 2022/08/10 13:48:36 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = heighties_phonebook
+NAME = heighties_PhoneBook
 
 SRCS = ./main.cpp \
 	   ./Contact.cpp \
-	   ./Phonebook.cpp
+	   ./PhoneBook.cpp
 
 OBJS = $(SRCS:.c=.o)
 
