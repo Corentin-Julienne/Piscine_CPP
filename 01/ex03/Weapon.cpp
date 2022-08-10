@@ -6,21 +6,21 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:19:29 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/04 20:13:12 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/10 17:10:38 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Weapon.hpp"
 
-Weapon::Weapon(std::string type) : _type(type)
-{
-	
-}
+// constructor
 
-Weapon::~Weapon()
-{
-	
-}
+Weapon::Weapon(std::string type) : _type(type) {}
+
+// destructor
+
+Weapon::~Weapon() {}
+
+// getter and setter
 
 const std::string&	Weapon::getType(void)
 {

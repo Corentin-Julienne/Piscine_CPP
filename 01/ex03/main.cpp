@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:19:24 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/04 20:30:34 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/10 17:25:31 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,14 @@
 #include "HumanB.hpp"
 #include "Weapon.hpp"
 
-int main()
+// void	leaks_tracker(void)
+// {
+// 	system("leaks Unnecessary_violence");
+// }
+
+int main(void)
 {
+	// atexit(leaks_tracker);
 	{
 		Weapon club = Weapon("crude spiked club");
 		HumanA bob("Bob", club);
