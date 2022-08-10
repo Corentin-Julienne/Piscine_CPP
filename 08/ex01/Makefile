@@ -5,22 +5,22 @@
 #                                                     +:+ +:+         +:+      #
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/16 18:07:59 by cjulienn          #+#    #+#              #
-#    Updated: 2022/01/16 18:09:17 by cjulienn         ###   ########.fr        #
+#    Created: 2022/07/29 15:30:16 by cjulienn          #+#    #+#              #
+#    Updated: 2022/07/29 15:30:46 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = GBU_tests
+NAME = Span
 
-SRCS = ./tests.cpp \
-	   ./Account.cpp
+SRCS = ./main.cpp \
+	   ./Span.cpp
 
 OBJS = $(SRCS:.c=.o)
 
 CC = clang++
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror -I. -std=c++98
 
-RM = rm -f
+RM = rm
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
@@ -28,13 +28,10 @@ $(NAME): $(OBJS)
 
 all: 
 	$(NAME)
-
-clean:
-	$(RM) $(OBJS)
 	
-fclean:	clean
+fclean:
 	$(RM) $(NAME)
 
 re:	fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all fclean re

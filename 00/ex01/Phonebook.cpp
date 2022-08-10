@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:05:26 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/10 15:45:07 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:50:54 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ PhoneBook::PhoneBook(void) : _entry_num(0), _current_entry(0) {}
 
 // basic destructor
 
-PhoneBook::~PhoneBook(void) {
-	
-}
+PhoneBook::~PhoneBook(void) {}
 
 // setters
 

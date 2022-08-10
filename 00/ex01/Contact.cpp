@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 12:58:56 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/10 15:45:57 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:51:28 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ Contact::Contact(void)
 
 // basic destructor
 
-Contact::~Contact(void) 
-{
-	
-}
+Contact::~Contact(void) {}
 
 // setters and getters
 

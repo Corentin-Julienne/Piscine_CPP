@@ -6,7 +6,7 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/28 15:57:38 by cjulienn          #+#    #+#              #
-#    Updated: 2022/07/28 15:58:00 by cjulienn         ###   ########.fr        #
+#    Updated: 2022/08/10 15:50:45 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = Easy_find
 
 SRCS = ./main.cpp
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.cpp=.o)
 
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98

@@ -6,7 +6,7 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/13 13:49:54 by cjulienn          #+#    #+#              #
-#    Updated: 2022/08/10 13:48:36 by cjulienn         ###   ########.fr        #
+#    Updated: 2022/08/10 15:49:37 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = ./main.cpp \
 	   ./Contact.cpp \
 	   ./PhoneBook.cpp
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.cpp=.o)
 
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -I. 
