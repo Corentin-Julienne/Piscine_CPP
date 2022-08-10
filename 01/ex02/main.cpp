@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:43:57 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/04 17:56:25 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/10 16:54:18 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	main(void)
 
 	// give the address operand to the string itself
 	std::cout << &string << std::endl;
-	// give the address operand to the reference
-	std::cout << &stringPTN <<std::endl;
-	// give only the pointer without dereferencing it
-	std::cout << stringREF <<std::endl;
+	// give the pointer only (point to the address of the str)
+	std::cout << stringPTN <<std::endl;
+	// give the address of the reference (which is an alias for the variable itself)
+	std::cout << &stringREF <<std::endl;
 	
 	/* print string itself */
 
@@ -34,7 +34,7 @@ int	main(void)
 	std::cout << string << std::endl;
 	// have to dereference the pointer to print the string
 	std::cout << *stringPTN << std::endl;
-	// the reference is an alias to the var of type string
+	// the reference is an alias to the variable of type string (no modifs are necessary)
 	std::cout << stringREF << std::endl;
 	
 	return (0);

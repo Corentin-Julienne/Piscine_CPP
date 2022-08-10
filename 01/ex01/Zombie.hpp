@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 19:23:38 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/04 17:04:19 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/10 16:42:40 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ class Zombie
 	~Zombie();
 
 	void			announce(void);
+
+	// setter
+	void	setZombieName(std::string);
 	
 	private:
 
-	std::string		_z_name;
+	std::string		_name;
 };
 
 Zombie* zombieHorde(int N, std::string name);
