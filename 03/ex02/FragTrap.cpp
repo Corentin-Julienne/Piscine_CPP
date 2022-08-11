@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 12:22:44 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/14 12:50:45 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/11 15:50:32 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ FragTrap::FragTrap(void) : ClapTrap()
 	this->_hit_pts = 100;
 	this->_energy_pts = 100;
 	this->_attack_dmgs = 30;
-	std::cout << "FragTrap Constructor called !" << std::endl;
+	std::cout << "FragTrap Constructor called on " << this->_name << std::endl;
 }
 
 // advanced constructor
@@ -29,14 +29,14 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 	this->_hit_pts = 100;
 	this->_energy_pts = 100;
 	this->_attack_dmgs = 30;
-	std::cout << "FragTrap Constructor called !" << std::endl;
+	std::cout << "FragTrap Constructor called on " << this->_name << std::endl;
 }
 
 // basic destructor
 
 FragTrap::~FragTrap()
 {
-	std::cout << "FragTrap Destructor called !" << std::endl;
+	std::cout << "FragTrap Destructor called on " << this->_name << std::endl;
 }
 
 // constructor by copy
@@ -47,7 +47,7 @@ FragTrap::FragTrap(const FragTrap& original)
 	this->_hit_pts = original._hit_pts;
 	this->_energy_pts = original._energy_pts;
 	this->_attack_dmgs = original._attack_dmgs;
-	std::cout << "FragTrap Constructor by copy called !" << std::endl;
+	std::cout << "FragTrap Constructor by copy called on " << this->_name << std::endl;
 }
 
 // overloading assignement operator
@@ -77,13 +77,13 @@ void	FragTrap::attack(const std::string& target)
 {
 	if (this->_hit_pts == 0)
 	{
-		std::cout << "FragTrap " << this->_name << " cannot attack !" << std::endl;
+		std::cout << "FragTrap " << this->_name << " cannot attack ! ";
 		std::cout << "Indeed, it has already been destroyed (hit points equal to 0)" << std::endl;
 		return ;
 	}
 	else if (this->_energy_pts == 0)
 	{
-		std::cout << "FragTrap " << this->_name << " cannot attack !" << std::endl;
+		std::cout << "FragTrap " << this->_name << " cannot attack ! ";
 		std::cout << "Indeed, it has no energy points" << std::endl;
 		return ;
 	}
@@ -97,7 +97,7 @@ void	FragTrap::takeDamage(unsigned int amount)
 	// case ClapTrap already detroyed
 	if (this->_hit_pts == 0)
 	{
-		std::cout << "FragTrap " << this->_name << " cannot be attacked !" << std::endl;
+		std::cout << "FragTrap " << this->_name << " cannot be attacked ! ";
 		std::cout << "Indeed, it has been already destroyed (hit points equal to 0) " << std::endl;	
 		return ;
 	}
@@ -118,13 +118,13 @@ void	FragTrap::beRepaired(unsigned int amount)
 {
 	if (this->_hit_pts == 0)
 	{
-		std::cout << "FragTrap " << this->_name << " cannot repair itself !" << std::endl;
+		std::cout << "FragTrap " << this->_name << " cannot repair itself ! ";
 		std::cout << "Indeed, it has already been destroyed (hit points equal to 0)" << std::endl;
 		return ;
 	}
 	else if (this->_energy_pts == 0)
 	{
-		std::cout << "FragTrap " << this->_name << " cannot repair itself !" << std::endl;
+		std::cout << "FragTrap " << this->_name << " cannot repair itself ! ";
 		std::cout << "Indeed, it has no energy points" << std::endl;
 		return ;
 	}
@@ -134,5 +134,5 @@ void	FragTrap::beRepaired(unsigned int amount)
 	std::cout << "FragTrap " << this->_name << " has used its reparaing ability to restore "
 	<< amount << "hit points" << std::endl;
 	std::cout << "FragTrap " << this->_name << " has now " << this->_hit_pts << " hit points, and "
-	<< this->_energy_pts << std::endl;
+	<< this->_energy_pts << " energy points" << std::endl;
 }

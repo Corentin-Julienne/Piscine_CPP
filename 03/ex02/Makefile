@@ -6,7 +6,7 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/14 12:22:51 by cjulienn          #+#    #+#              #
-#    Updated: 2022/07/14 12:23:58 by cjulienn         ###   ########.fr        #
+#    Updated: 2022/08/11 15:37:44 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,12 @@ SRCS = ./main.cpp \
 	   ./ScavTrap.cpp \
 	   ./FragTrap.cpp
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.cpp=.o)
 
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98
 
-RM = rm
+RM = rm -f
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
@@ -30,10 +30,13 @@ $(NAME): $(OBJS)
 
 all: 
 	$(NAME)
+
+clean:
+	$(RM) $(OBJS)
 	
-fclean:
+fclean: clean
 	$(RM) $(NAME)
 
 re:	fclean all
 
-.PHONY: all fclean re
+.PHONY: all clean fclean re
