@@ -6,11 +6,11 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 12:19:26 by cjulienn          #+#    #+#              #
-#    Updated: 2022/08/10 16:08:28 by cjulienn         ###   ########.fr        #
+#    Updated: 2022/08/11 11:26:13 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = replace_cpp
+NAME = sed_is_for_losers
 
 SRCS = ./main.cpp
 
