@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:28:47 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/14 16:25:15 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/11 17:16:29 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Cat : public Animal
 
 		Cat& operator=(const Cat& original);
 
-		void makeSound(void);
+		void makeSound(void) const;
 };
 
 #endif

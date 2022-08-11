@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:28:41 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/14 16:33:16 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/11 17:22:18 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Animal::Animal(void)
 
 // constructor with type
 
-Animal::Animal(std::string animal_type) : type(animal_type) 
+Animal::Animal(std::string animal_type) : _type(animal_type) 
 {
 	std::cout << "Animal Constructor has been called !" << std::endl;
 }
@@ -35,9 +35,8 @@ Animal::~Animal()
 
 // constructor by copy
 
-Animal::Animal(const Animal& original)
+Animal::Animal(const Animal& original) : _type(original._type)
 {
-	this->type = original.type;
 	std::cout << "Animal Copy Constructor has been called !" << std::endl;
 }
 
@@ -46,20 +45,20 @@ Animal::Animal(const Animal& original)
 Animal&	Animal::operator=(const Animal& original)
 {
 	if (this != &original)
-		this->type = original.type;
+		this->_type = original._type;
 	return *this;
 }
 
 // getters and setters
 
-std::string	getType(void)
+std::string	Animal::getType(void)const
 {
-	return (this->type);
+	return (this->_type);
 }
 
 // class functions
 
-void	makeSound(void)
+void	Animal::makeSound(void) const
 {
-	std::cout << "Animal as a concept does not produce any sound !!!" << std::endl;
+	std::cout << "Animal as a concept does not produce any sound you dumb f***!!!" << std::endl;
 }

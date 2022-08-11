@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:28:49 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/14 16:25:43 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/11 17:16:02 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ Dog::~Dog()
 
 Dog::Dog(const Dog& original)
 {
-	this->type = original.type;
+	this->_type = original._type;
 	std::cout << "Dog Copy Constructor has been called !" << std::endl;
 }
 
 Dog&	Dog::operator=(const Dog& original)
 {
 	if (this != &original)
-		this->type = original.type;
+		this->_type = original._type;
 	return *this;
 }
 
-void	Dog::makeSound(void)
+void	Dog::makeSound(void) const
 {
-	std::cout << "Waf Waf !" << std::endl;
+	std::cout << "Wouf Wouf !" << std::endl;
 }
