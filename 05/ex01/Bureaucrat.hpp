@@ -6,12 +6,15 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:13:17 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/15 16:17:25 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/12 18:23:04 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
+
+#include "Form.hpp"
 
 #include <string>
 #include <iostream>
@@ -30,8 +33,9 @@ class Bureaucrat
 		unsigned int	getGrade(void) const;
 		std::string		getName(void) const;
 		// methods
-		void		decrementGrade(Bureaucrat& target);
-		void		incrementGrade(Bureaucrat& target);
+		void		decrementGrade(void);
+		void		incrementGrade(void);
+		void		signForm(const Form& form);
 		// inside classes for exception handling
 		class GradeTooLowException : public std::exception
 		{
@@ -52,6 +56,6 @@ class Bureaucrat
 		unsigned int		_grade;
 };
 
-std::ostream&	operator<<(const std::ostream& stream, const Bureaucrat& bureaucrat);
+std::ostream&	operator<<(std::ostream& stream, const Bureaucrat& bureaucrat);
 
 #endif

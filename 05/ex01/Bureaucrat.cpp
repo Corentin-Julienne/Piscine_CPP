@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:13:15 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/15 16:50:20 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/12 18:36:05 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Bureaucrat::Bureaucrat(void) : _name("Agent 47"), _grade(1) {}
 
 Bureaucrat::Bureaucrat(std::string const name, unsigned int grade) : _name(name)
 {
-	if (grade <= 1)
+	if (grade < 1)
 		throw Bureaucrat::GradeTooLowException();
 	else if (grade > 150)
 		throw Bureaucrat::GradeTooHighException();
@@ -62,20 +62,33 @@ unsigned int Bureaucrat::getGrade(void) const
 
 // methods
 
-void	Bureaucrat::decrementGrade(Bureaucrat& target)
+void	Bureaucrat::decrementGrade(void)
 {
-	if (target._grade >= 150)
+	if (this->_grade >= 150)
 		throw Bureaucrat::GradeTooLowException();
 	else
-		target._grade++;
+		this->_grade++;
 }
 
-void	Bureaucrat::incrementGrade(Bureaucrat& target)
+void	Bureaucrat::incrementGrade(void)
 {
-	if (target._grade <= 1)
+	if (this->_grade <= 1)
 		throw Bureaucrat::GradeTooHighException();
 	else
-		target._grade--;
+		this->_grade--;
+}
+
+void	Bureaucrat::signForm(const Form& form)
+{
+	if (form.getSigned() == true)
+	{
+		std::cout << this->_name << " signed " << form.getName() << std::endl;
+	}
+	else
+	{
+		std::cout << this->_name << " could not sign " << form.getGradeExec() << " because required grade is "
+		<< form.getGradeSign() << " and " << this->_name << " got a grade of " << this->_grade  << std::endl;
+	}
 }
 
 // methods for exception handling for inside classes
@@ -92,7 +105,8 @@ const char* Bureaucrat::GradeTooHighException::what() const throw()
 
 // overloading operator <<
 
-std::ostream&	operator<<(const std::ostream& stream, const Bureaucrat& bureaucrat)
+std::ostream&	operator<<(std::ostream& stream, const Bureaucrat& bureaucrat)
 {
-	std::cout << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << std::endl;
+	stream << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << std::endl;
+	return (stream);
 }

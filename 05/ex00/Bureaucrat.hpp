@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 12:19:00 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/15 15:54:14 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:22:51 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ class Bureaucrat
 		unsigned int	getGrade(void) const;
 		std::string		getName(void) const;
 		// methods
-		void		decrementGrade(Bureaucrat& target);
-		void		incrementGrade(Bureaucrat& target);
+		void		decrementGrade(void);
+		void		incrementGrade(void);
 		// inside classes for exception handling
 		class GradeTooLowException : public std::exception
 		{
@@ -52,6 +52,6 @@ class Bureaucrat
 		unsigned int		_grade;
 };
 
-std::ostream&	operator<<(const std::ostream& stream, const Bureaucrat& bureaucrat);
+std::ostream&	operator<<(std::ostream& stream, const Bureaucrat& bureaucrat);
 
 #endif
