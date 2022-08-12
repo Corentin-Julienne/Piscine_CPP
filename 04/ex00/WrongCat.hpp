@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:29:03 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/14 15:41:11 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/12 12:16:57 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,14 @@
 class WrongCat : public WrongAnimal
 {
 	public:
-		WrongCat(/* args */);
+		WrongCat(void);
 		~WrongCat();
-	
+		WrongCat(const WrongCat& original);
+
+		WrongCat& operator=(const WrongCat& original);
+
+		void makeSound(void) const;
+		
 	private:
 		/* data */
 };

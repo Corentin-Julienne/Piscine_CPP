@@ -1,43 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.cpp                                       :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 13:29:01 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/12 12:16:00 by cjulienn         ###   ########.fr       */
+/*   Created: 2022/08/12 12:35:04 by cjulienn          #+#    #+#             */
+/*   Updated: 2022/08/12 15:21:25 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "WrongCat.hpp"
+#include "Cat.hpp"
 
-WrongCat::WrongCat(void) : WrongAnimal("WrongCat")
+Cat::Cat(void) : Animal("Cat")
 {
-	std::cout << "WrongCat Constructor has been called !" << std::endl;
+	this->_brain = new Brain();
+	std::cout << "Cat Constructor has been called !" << std::endl;
 }
 
-WrongCat::~WrongCat()
+Cat::~Cat()
 {
-	std::cout << "WrongCat Destructor has been called !" << std::endl;
+	delete this->_brain;
+	std::cout << "Cat Destructor has been called !" << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat& original)
+Cat::Cat(const Cat& original)
 {
 	this->_type = original._type;
-	std::cout << "WrongCat Copy Constructor has been called !" << std::endl;
+	this->_brain = new Brain();
+	std::cout << "Cat Copy Constructor has been called !" << std::endl;
 }
 
-WrongCat&	WrongCat::operator=(const WrongCat& original)
+Cat&	Cat::operator=(const Cat& original)
 {
 	if (this != &original)
+	{
 		this->_type = original._type;
+		this->_brain = new Brain();
+	}
 	return *this;
 }
 
 // class functions (using masking)
 
-void	WrongCat::makeSound(void) const
+void	Cat::makeSound(void) const
 {
-	std::cout << "WrongMiaou !" << std::endl;
+	std::cout << "Miaou !" << std::endl;
 }

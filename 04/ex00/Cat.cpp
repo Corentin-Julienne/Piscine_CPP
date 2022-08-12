@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:28:45 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/11 17:16:19 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/12 12:20:39 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 Cat::Cat(void) : Animal("Cat")
 {
-	std::cout << "Cat Constructor has been called !" << std::endl;
+	std::cout << "Cat Constructor has been called on " << this->_type << std::endl;
 }
 
 Cat::~Cat()
 {
-	std::cout << "Cat Destructor has been called !" << std::endl;
+	std::cout << "Cat Destructor has been called on " << this->_type << std::endl;
 }
 
 Cat::Cat(const Cat& original)
 {
 	this->_type = original._type;
-	std::cout << "Cat Copy Constructor has been called !" << std::endl;
+	std::cout << "Cat Copy Constructor has been called on " << this->_type << std::endl;
 }
 
 Cat&	Cat::operator=(const Cat& original)
