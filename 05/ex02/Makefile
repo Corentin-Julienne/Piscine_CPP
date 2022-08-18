@@ -5,16 +5,20 @@
 #                                                     +:+ +:+         +:+      #
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/07/15 16:13:21 by cjulienn          #+#    #+#              #
-#    Updated: 2022/08/12 18:42:54 by cjulienn         ###   ########.fr        #
+#    Created: 2022/08/12 18:41:55 by cjulienn          #+#    #+#              #
+#    Updated: 2022/08/12 18:49:12 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Forms
+
+NAME = MultiForms
 
 SRCS = ./main.cpp \
 	   ./Bureaucrat.cpp \
-	   ./Form.cpp
+	   ./Form.cpp \
+	   ./PresidentialPardonForm.cpp \
+	   ./RobotomyRequestForm.cpp \
+	   ./ShrubberyCreationForm.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

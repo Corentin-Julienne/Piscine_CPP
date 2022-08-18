@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 16:13:17 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/12 18:43:28 by cjulienn         ###   ########.fr       */
+/*   Created: 2022/08/12 18:41:45 by cjulienn          #+#    #+#             */
+/*   Updated: 2022/08/14 14:51:12 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ class Bureaucrat
 		void		decrementGrade(void);
 		void		incrementGrade(void);
 		void		signForm(const Form& form);
+		void		executeForm(const Form& form);
 		// inside classes for exception handling
 		class GradeTooLowException : public std::exception
 		{

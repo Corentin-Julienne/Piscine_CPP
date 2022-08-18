@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 16:18:02 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/13 14:30:59 by cjulienn         ###   ########.fr       */
+/*   Created: 2022/08/12 18:41:47 by cjulienn          #+#    #+#             */
+/*   Updated: 2022/08/14 15:12:22 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "Form.hpp"
 
@@ -82,6 +83,11 @@ void	Form::beSigned(const Bureaucrat& bureaucrat)
 		this->_signed = true;
 	else
 		throw Form::GradeTooLowException();
+}
+
+void	Form::execute(const Bureaucrat& executor) const
+{
+	
 }
 
 // methods for exception handling for inside classes

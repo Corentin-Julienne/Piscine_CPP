@@ -6,148 +6,231 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 12:38:46 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/27 15:48:40 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/18 16:37:53 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Converter.hpp"
 
-Converter::Converter(void) {}
+Converter::Converter(void) : _input("Test")
+{
+	// check the type of string litteral stored in this->_input
+	if (this->_input.empty())
+		; // raise a type of error
+	else if (this->_input.size() == 1)
+		this->oneChar(); // check when only a char
+	else
+		this->severalChar(); // check type when str is more than one char
+	// then assign and convert
+	switch (this->_type)
+	{
+		case charType:
+			this->convertChar();
+			break;
+		
+		case intType:
+			this->convertInt();
+			break;
 
-Converter::Converter(std::string input) : _input(input) {}
+		case floatType:
+			this->convertFloat();
+			break;
+		
+		case doubleType:
+			this->convertDouble();
+			break;
+		
+		default:
+			break;
+	}
+}
+
+Converter::Converter(std::string input) : _input(input)
+{
+	// check the type of string litteral stored in this->_input
+	if (this->_input.empty())
+		; // raise a type of error
+	else if (this->_input.size() == 1)
+		this->oneChar(); // check when only a char
+	else
+		this->severalChar(); // check type when str is more than one char
+	// then assign and convert
+	switch (this->_type)
+	{
+		case charType:
+			this->convertChar();
+			break;
+		
+		case intType:
+			this->convertInt();
+			break;
+
+		case floatType:
+			this->convertFloat();
+			break;
+		
+		case doubleType:
+			this->convertDouble();
+			break;
+		
+		default:
+			break;
+	}
+}
 
 Converter::~Converter() {}
 
-Converter::Converter(const Converter& original) : _input(original._input) {}
+Converter::Converter(const Converter& original) : _input(original._input), _char(original._char),
+_int(original._int), _float(original._float), _double(original._double), _type(original._type)
+{}
 
 Converter&	Converter::operator=(const Converter& original)
 {
 	if (this != &original)
+	{
 		_input = original._input;
+		_char = original._char;
+		_int = original._int;
+		_float = original._float;
+		_double = original._double;
+		_type = original._type;
+	}
 	return *this;
 }
 
-// check types
+// check type functions
 
-int	Converter::is_char(void)
-{	
-	if (this->_input.size() != 1)
-		return (0);
-	
-	int n = (int)this->_input[0];
-
-	if (n >= 32 && n <= 126)
-		return (1);
-	return (0);
-}
-
-int	Converter::is_int(void)
+void	Converter::oneChar(void)
 {
-	if (this->_input[0] != '-' && (this->_input[0] < '0' || this->_input[0] > '9'))
-		return (1);
-	for (int i = 1; i < this->_input.size(); i++)
-	{
-		if (this->_input[0] < '0' || this->_input[0] > '9')
-			return (1);
-	}
-	return (0);
-}
-
-int	Converter::is_float(void)
-{
-	// check if there is the 'f' at the end of the string
-	if (this->_input[this->_input.size() - 1] != 'f')
-		return (1);
-	// check for the presence of a single dot in the string and all other char are numbers
-	// (excluding the last one and the first in case it is the - sign)
-	if (this->_input[0] != '-' && ((this->_input[0] < '0' || this->_input[0] > '9')))
-		return (1);
-	int		num_of_dots = 0;
-	for (int i = 1; i < this->_input.size() - 1; i++)
-	{
-		if ((this->_input[i] < '0' || this->_input[i] > '9') && this->_input[i] != '.')
-			return (1);
-		if (this->_input[i] == '.')
-			num_of_dots++;
-	}
-	if (num_of_dots != 1 || this->_input[this->_input.size() - 2] == '.')
-		return (1);
-	return (0);
-}
-
-int	Converter::is_double(void)
-{
-	// check for the presence of a single dot in the string and all other char are numbers
-	// (excluding the last one and the first in case it is the - sign)
-	if (this->_input[0] != '-' && ((this->_input[0] < '0' || this->_input[0] > '9')))
-		return (1);
-	int		num_of_dots = 0;
-	for (int i = 1; i < this->_input.size(); i++)
-	{
-		if ((this->_input[i] < '0' || this->_input[i] > '9') && this->_input[i] != '.')
-			return (1);
-		if (this->_input[i] == '.')
-			num_of_dots++;
-	}
-	if (num_of_dots != 1 || this->_input[this->_input.size() - 1] == '.')
-		return (1);
-	return (0);
-}
-
-int	Converter::is_specval(void)
-{
-	if (!this->_input.compare("nan") || !this->_input.compare("nanf") || !this->_input.compare("+inf")
-	|| !this->_input.compare("-inf") || !this->_input.compare("+inff") || !this->_input.compare("-inff"))
-		return (1);
-	return (0);
-}
-
-// print functions 
-
-void	Converter::char_printer(void)
-{
-	
-}
-
-void	Converter::int_printer(void)
-{
-
-}
-
-void	Converter::float_printer(void)
-{
-	
-}
-
-void	Converter::double_printer(void)
-{
-
-}
-
-void	Converter::specval_printer(void)
-{
-
-}
-
-void	Converter::inval_printer(void)
-{
-	
-}
-
-// check if string is convertible in char, double, float or int
-
-void	Converter::check_type(void)
-{
-	if (this->is_char() == 1)
-		this->char_printer();
-	else if (this->is_int() == 1)
-		this->int_printer();
-	else if (this->is_float() == 1)
-		this->float_printer();
-	else if (this->is_double() == 1)
-		this->double_printer();
-	else if (this->is_specval() == 1)
-		this->specval_printer();
+	if (this->_input.front() >= 48 && this->_input.front() <= 58)
+		this->_type = intType;
 	else
-		this->inval_printer();
+		this->_type = charType;	
+}
+
+void	Converter::severalChar(void)
+{
+	// check for pseudo floats litterals
+	if (!this->_input.compare("-inff") || !this->_input.compare("+inff") || !this->_input.compare("nanf"))
+		this->_type = floatType;
+	// check for pseudo double litterals
+	else if (!this->_input.compare("-inf") || !this->_input.compare("+inf") || !this->_input.compare("nan"))
+		this->_type = doubleType;
+	else
+	{
+		// to implement
+	}
+}
+
+// conversion functions
+
+void	Converter::convertChar(void)
+{
+	this->_char = this->_input.front();
+	this->_int = static_cast<int>(this->_char);
+	this->_float = static_cast<float>(this->_char);
+	this->_double = static_cast<double>(this->_char);
+}
+
+void	Converter::convertInt(void)
+{
+	char	*p_end;
+	
+	this->_int = strtol(this->_input.c_str(), &p_end, 10); // pb there ?
+	this->_char = static_cast<char>(this->_int);
+	this->_float = static_cast<float>(this->_int);
+	this->_double = static_cast<double>(this->_int);
+}
+
+void	Converter::convertFloat(void)
+{
+	char	*p_end;
+
+	this->_float = strtof(this->_input.c_str(), &p_end);
+	this->_char = static_cast<char>(this->_float);
+	this->_int = static_cast<int>(this->_float);
+	this->_double = static_cast<float>(this->_float);
+}
+
+void	Converter::convertDouble(void)
+{
+	char	*p_end;
+
+	this->_double = strtod(this->_input.c_str(), &p_end);
+	this->_char = static_cast<char>(this->_double);
+	this->_int = static_cast<int>(this->_double);
+	this->_float = static_cast<float>(this->_double);
+}
+
+// check if printable
+
+char	Converter::printChar(void) const
+{
+	if (!isprint(this->_char))
+		; // throw exception
+	else
+		return (this->_char);
+}
+
+int		Converter::printInt(void) const
+{
+	return (this->_int);
+}
+
+float	Converter::printFloat(void) const
+{
+	return (this->_float);
+}
+
+double	Converter::printDouble(void) const
+{
+	return (this->_double);	
+}
+
+// exceptions handling
+
+const char* Converter::NonDisplayableException::what() const throw()
+{
+	return ("Non displayable");
+}
+
+const char* Converter::WrongInputException::what() const throw()
+{
+	return ("Wrong input");
+}
+
+const char* Converter::ImpossibleException::what() const throw()
+{
+	return ("impossible");
+}
+
+// overloading operator <<
+
+std::ostream&	operator<<(std::ostream& stream, const Converter& converter)
+{
+	stream << "char: ";
+	try {
+		stream << converter.printChar() << std::endl;
+	} catch (std::exception & e) {
+		stream << e.what() << std::endl;
+	}
+	stream << "int: ";
+	try {
+		stream << converter.printInt() << std::endl;
+	} catch (std::exception & e) {
+		stream << e.what() << std::endl;		
+	}
+	stream << "float: ";
+	try {
+		stream << converter.printFloat() << std::endl;
+	} catch (std::exception & e) {
+		stream << e.what() << std::endl;
+	}
+	stream << "double: ";
+	try {
+		stream << converter.printDouble() << std::endl;
+	} catch (std::exception & e) {
+		stream << e.what() << std::endl;
+	}
+	return (stream);
 }
