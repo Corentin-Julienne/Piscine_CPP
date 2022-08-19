@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:41:59 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/14 15:36:57 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/19 12:46:59 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class PresidentialPardonForm : public Form
 		PresidentialPardonForm&	operator=(const PresidentialPardonForm& original);
 		// getters and setters
 		
-		void	action(Bureaucrat const &executor) const;
+		void	action(void) const;
 		
 	private:
 

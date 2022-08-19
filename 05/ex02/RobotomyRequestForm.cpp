@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:42:01 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/14 15:47:02 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/19 15:20:25 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,11 @@
 
 // constructor
 
-RobotomyRequestForm::RobotomyRequestForm(void)
-{
-}
+RobotomyRequestForm::RobotomyRequestForm(void) : Form("Robotomy Request", 72, 45) {}
 
 // destructor
 
-RobotomyRequestForm::~RobotomyRequestForm()
-{
-}
+RobotomyRequestForm::~RobotomyRequestForm() {}
 
 // copy constructor
 
@@ -40,9 +36,16 @@ RobotomyRequestForm&	RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 
 // getters and setters
 
-// clasee methods
+// class methods
 
-void	RobotomyRequestForm::action(const Bureaucrat& executor) const
+void	RobotomyRequestForm::action(void) const
 {
+	int		randomizer;
 	
+	std::cout << "[LOUD DRILLING NOISE !!!]" << std::endl;
+	randomizer = rand() % 100;
+	if (randomizer < 50)
+		std::cout << "Sorry, but unfortunately the robotomy failed" << std::endl;
+	else
+		std::cout << "We inform you that the robotomy was performed succesfully on " << this->getTarget() << std::endl;
 }

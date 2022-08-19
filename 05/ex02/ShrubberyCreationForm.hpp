@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:42:08 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/14 15:44:36 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/19 12:45:57 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define SHRUBBERY_CREATION_FORM_HPP
 
 #include "Form.hpp"
+
+#include <fstream>
 
 class ShrubberyCreationForm : public Form
 {
@@ -25,11 +27,8 @@ class ShrubberyCreationForm : public Form
 
 		ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& original);
 
-		void	action(Bureaucrat const &executor) const;
+		void	action(void) const;
 	
-	private:
-	
-		/* data */
 };
 
 #endif

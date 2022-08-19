@@ -6,17 +6,19 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:13:17 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/12 18:43:28 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/19 16:49:53 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-#include "Form.hpp"
-
 #include <string>
 #include <iostream>
+
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
@@ -34,7 +36,7 @@ class Bureaucrat
 		// methods
 		void		decrementGrade(void);
 		void		incrementGrade(void);
-		void		signForm(const Form& form);
+		void		signForm(Form& form);
 		// inside classes for exception handling
 		class GradeTooLowException : public std::exception
 		{

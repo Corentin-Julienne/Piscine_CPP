@@ -6,11 +6,12 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:13:15 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/12 18:36:05 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/19 16:51:32 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 // basic constructor
 
@@ -78,16 +79,16 @@ void	Bureaucrat::incrementGrade(void)
 		this->_grade--;
 }
 
-void	Bureaucrat::signForm(const Form& form)
+void	Bureaucrat::signForm(Form& form) // change this
 {
-	if (form.getSigned() == true)
+	try 
 	{
-		std::cout << this->_name << " signed " << form.getName() << std::endl;
-	}
-	else
+		form.beSigned(*this);
+		std::cout << "" << std::endl;
+	} 
+	catch (std::exception & e)
 	{
-		std::cout << this->_name << " could not sign " << form.getGradeExec() << " because required grade is "
-		<< form.getGradeSign() << " and " << this->_name << " got a grade of " << this->_grade  << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 }
 
@@ -95,12 +96,12 @@ void	Bureaucrat::signForm(const Form& form)
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("Grade is too low [grade can vary between 1 and 150]");
+	return ("Grade is too low");
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Grade is too high [grade can vary between 1 and 150]");
+	return ("Grade is too high");
 }
 
 // overloading operator <<

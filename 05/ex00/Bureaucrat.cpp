@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 12:18:58 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/12 17:22:35 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/19 16:35:03 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,12 @@ void	Bureaucrat::incrementGrade(void)
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("Grade is too low [grade can vary between 1 and 150]");
+	return ("Grade is too low");
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Grade is too high [grade can vary between 1 and 150]");
+	return ("Grade is too high");
 }
 
 // overloading operator <<

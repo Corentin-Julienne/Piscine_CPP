@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:41:47 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/14 15:12:22 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/19 12:37:06 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ unsigned int const	Form::getGradeExec(void) const
 bool	Form::getSigned(void) const
 {
 	return this->_signed;
+}
+
+std::string const	Form::getTarget(void) const
+{
+	return this->_target;
 }
 
 // member function

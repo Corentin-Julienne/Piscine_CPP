@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:41:45 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/14 14:51:12 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/19 15:30:43 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 #include <string>
 #include <iostream>
+
+class Form;
 
 class Bureaucrat
 {
@@ -49,7 +51,13 @@ class Bureaucrat
 
 				const char* what() const throw(); 
 		};
+		class FormNotSignedException : public std::exception
+		{
+			public:
 
+				const char* what() const throw();
+		};
+		
 	private:
 	
 		std::string const 	_name;

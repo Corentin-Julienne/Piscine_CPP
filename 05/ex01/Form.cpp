@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:18:02 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/13 14:30:59 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/19 16:41:07 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,9 @@ bool	Form::getSigned(void) const
 
 void	Form::beSigned(const Bureaucrat& bureaucrat)
 {
-	if (bureaucrat.getGrade() <= this->_grade_sign)
+	if (this->getSigned() == true)
+		throw Form::AlreadySignedFormException();
+	else if (bureaucrat.getGrade() <= this->_grade_sign)
 		this->_signed = true;
 	else
 		throw Form::GradeTooLowException();
@@ -94,6 +96,11 @@ const char* Form::GradeTooLowException::what() const throw()
 const char* Form::GradeTooHighException::what() const throw()
 {
 	return ("Grade is too high");
+}
+
+const char* Form::AlreadySignedFormException::what() const throw()
+{
+	return ("Form has already be signed by a bureaucrat");
 }
 
 // overloading operator <<

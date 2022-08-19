@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:41:43 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/14 15:35:18 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/19 16:45:07 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,16 @@ void	Bureaucrat::signForm(const Form& form)
 
 void	Bureaucrat::executeForm(const Form& form)
 {
+	
+	
 	// to implement
-	if (this->_grade <= form.getGradeExec())
+	if (form.getSigned() == false)
+		throw Bureaucrat::FormNotSignedException();
+	else if (this->_grade <= form.getGradeExec())
 	{
 		// exec the form
-		
+		form.action();
+		// print feedback msg
 		std::cout << this->_name << " executed " << form.getName() << std::endl;
 	}
 	else
@@ -109,12 +114,17 @@ void	Bureaucrat::executeForm(const Form& form)
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("Grade is too low [grade can vary between 1 and 150]");
+	return ("Grade is too low");
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Grade is too high [grade can vary between 1 and 150]");
+	return ("Grade is too high");
+}
+
+const char* Bureaucrat::FormNotSignedException::what() const throw()
+{
+	return ("To be executed, a form must previously be signed");
 }
 
 // overloading operator <<

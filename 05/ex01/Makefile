@@ -6,15 +6,15 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/15 16:13:21 by cjulienn          #+#    #+#              #
-#    Updated: 2022/08/12 18:42:54 by cjulienn         ###   ########.fr        #
+#    Updated: 2022/08/18 18:18:13 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Forms
 
-SRCS = ./main.cpp \
-	   ./Bureaucrat.cpp \
-	   ./Form.cpp
+SRCS = ./Bureaucrat.cpp \
+	   ./Form.cpp \
+	   ./main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

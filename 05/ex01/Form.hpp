@@ -6,18 +6,20 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:18:04 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/12 18:05:23 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/19 16:39:08 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
 # define FORM_HPP
 
-#include "Bureaucrat.hpp"
-
 #include <string>
 #include <iostream>
 #include <exception>
+
+#include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {
@@ -50,7 +52,13 @@ class Form
 
 				const char* what() const throw();
 		};
+		class AlreadySignedFormException : public std::exception
+		{
+			public:
 
+				const char* what() const throw();	
+		};
+		
 	private:
 	
 		std::string const 	_name;

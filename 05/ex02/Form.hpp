@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:41:49 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/13 14:24:36 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/19 12:45:31 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <string>
 #include <iostream>
 #include <exception>
+
+class Bureaucrat;
 
 class Form
 {
@@ -35,10 +37,11 @@ class Form
 		bool				getSigned(void) const;
 		unsigned int const	getGradeSign(void) const;
 		unsigned int const	getGradeExec(void) const;
+		std::string const	getTarget(void) const;
 		// members functions
 		void				beSigned(const Bureaucrat& bureaucrat);
 		void				execute(Bureaucrat const &executor) const;
-		virtual void		action(Bureaucrat const &executor) const = 0;
+		virtual void		action(void) const = 0;
 		//  exceptions class
 		class GradeTooLowException : public std::exception
 		{
@@ -59,6 +62,7 @@ class Form
 		bool				_signed;
 		unsigned int const	_grade_sign;
 		unsigned int const	_grade_exec;
+		std::string	const	_target;
 };
 
 std::ostream&	operator<<(std::ostream& stream, const Form& form);
