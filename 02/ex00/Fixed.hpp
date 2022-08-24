@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FIXED_CLASS_HPP
+# define FIXED_CLASS_HPP
+
 #include <iostream>
 
 class Fixed
@@ -29,3 +32,5 @@ class Fixed
 	int					_fixed_point;
 	static const int	_frac_bits = 8;
 };
+
+#endif

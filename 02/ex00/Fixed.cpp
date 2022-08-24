@@ -28,9 +28,8 @@ Fixed::~Fixed(void)
 
 // constructor by copy
 
-Fixed::Fixed(const Fixed& original)
+Fixed::Fixed(const Fixed& original) : _fixed_point(original._fixed_point)
 {
-	_fixed_point = original._fixed_point;
 	std::cout << "Copy constructor called" << std::endl;
 }
 
@@ -38,7 +37,8 @@ Fixed::Fixed(const Fixed& original)
 
 Fixed&	Fixed::operator=(const Fixed& original)
 {
-	_fixed_point = original._fixed_point;
+	if (this != &original)
+		_fixed_point = original._fixed_point;
 	std::cout << "Copy assignment operator called" << std::endl;
 	return *this;
 }

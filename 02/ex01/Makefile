@@ -15,9 +15,9 @@ NAME = a.out
 SRCS = ./main.cpp \
 	   ./Fixed.cpp 
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.cpp=.o)
 
-CC = clang++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -I.
 
 RM = rm
@@ -28,10 +28,13 @@ $(NAME): $(OBJS)
 
 all: 
 	$(NAME)
+
+clean:
+	$(RM) $(OBJS)
 	
 fclean:
 	$(RM) $(NAME)
 
-re:	fclean all
+re:	fclean $(NAME)
 
-.PHONY: all fclean re
+.PHONY: all clean fclean re

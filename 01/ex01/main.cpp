@@ -19,18 +19,18 @@
 
 int	main(void)
 {
-	Zombie		*the_walking_dead;
+	Zombie		*theWalkingDead;
 	int			i;
 
 	// atexit(leaks_tracker); // debugging tool
-	the_walking_dead = zombieHorde(12, "Rick");
+	theWalkingDead = zombieHorde(12, "Rick");
 	i = 0;
 	while (i < 12)
 	{
-		the_walking_dead[i].announce();	
+		theWalkingDead[i].announce();	
 		i++;
 	}
 	i = 0;
-	delete [] the_walking_dead;
+	delete [] theWalkingDead;
 	return (0);
 }

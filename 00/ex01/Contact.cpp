@@ -16,11 +16,11 @@
 
 Contact::Contact(void) 
 {
-	this->_contact_category[0] = "first name";
-	this->_contact_category[1] = "last name";
-	this->_contact_category[2] = "nickname";
-	this->_contact_category[3] = "phone number";
-	this->_contact_category[4] = "darkest secret";
+	this->_contactCategory[0] = "first name";
+	this->_contactCategory[1] = "last name";
+	this->_contactCategory[2] = "nickname";
+	this->_contactCategory[3] = "phone number";
+	this->_contactCategory[4] = "darkest secret";
 }
 
 // basic destructor
@@ -29,24 +29,24 @@ Contact::~Contact(void) {}
 
 // setters and getters
 
-std::string	Contact::get_item(int index)
+std::string	Contact::getItem(int index)
 {
-	return (_contact_info[index]);
+	return (_contactInfo[index]);
 }
 
-void	Contact::set_item(std::string value, int index)
+void	Contact::setItem(std::string value, int index)
 {
-	_contact_info[index] = value;
+	_contactInfo[index] = value;
 }
 
-std::string	Contact::get_contact_category(int index)
+std::string	Contact::getContactCategory(int index)
 {
-	return (_contact_category[index]);
+	return (_contactCategory[index]);
 }
 
 // utils
 
-void	Contact::display_prompt(void)
+void	Contact::displayPrompt(void)
 {
 	int			i;
 	std::string	buf;
@@ -56,17 +56,17 @@ void	Contact::display_prompt(void)
 	i = 0;
 	while (i < 5)
 	{
-		std::cout << "please add the " << this->_contact_category[i]
+		std::cout << "please add the " << this->_contactCategory[i]
 		<< " of the contact, then press ENTER" << std::endl;
 		std::getline(std::cin, buf);
 		while (buf.empty() == true || buf.find_first_not_of(" \t\n\v\f\r") == std::string::npos)
 		{
 			std::cout << "Contact info cannot be empty, please use a valid information format" << std::endl;
-			std::cout << "please add the " << this->_contact_category[i]
+			std::cout << "please add the " << this->_contactCategory[i]
 			<< " of the contact, then press ENTER" << std::endl;
 			std::getline(std::cin, buf);
 		}
-		this->set_item(buf, i);
+		this->setItem(buf, i);
 		i++;
 	}
 	std::cout << "Contact has been added" << std::endl;

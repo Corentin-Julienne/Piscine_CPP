@@ -10,14 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = first_cannon
+NAME = FirstCannon
 
 SRCS = ./main.cpp \
 	   ./Fixed.cpp 
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.cpp=.o)
 
-CC = clang++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98
 
 RM = rm
@@ -29,9 +29,12 @@ $(NAME): $(OBJS)
 all: 
 	$(NAME)
 
-fclean:
+clean: 
+	$(RM) $(OBJS)
+
+fclean:	clean
 	$(RM) $(NAME)
 
-re:	fclean all
+re:	fclean $(NAME)
 
-.PHONY: all fclean re
+.PHONY: all clean fclean re

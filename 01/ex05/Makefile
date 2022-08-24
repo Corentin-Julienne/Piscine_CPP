@@ -17,7 +17,7 @@ SRCS = ./main.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
-CC = clang++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -I.
 
 RM = rm -f
