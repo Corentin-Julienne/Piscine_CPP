@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = sed_is_for_losers
+NAME = sedIsForLosers
 
 SRCS = ./main.cpp
 

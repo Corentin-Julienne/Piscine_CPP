@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Harl_simulator
+NAME = HarlSimulator
 
 SRCS = ./main.cpp \
 	   ./Harl.cpp
