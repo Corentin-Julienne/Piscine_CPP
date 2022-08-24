@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = heighties_PhoneBook
+NAME = heightiesPhoneBook
 
 SRCS = ./main.cpp \
 	   ./Contact.cpp \
@@ -36,6 +36,6 @@ clean:
 fclean:	clean
 	$(RM) $(NAME)
 
-re:	fclean all
+re:	fclean $(NAME)
 
 .PHONY: all clean fclean re

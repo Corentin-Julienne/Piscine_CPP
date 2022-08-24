@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Unnecessary_violence
+NAME = UnnecessaryViolence
 
 SRCS = ./main.cpp \
 	   ./HumanA.cpp \
@@ -37,6 +37,6 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re:	fclean all
+re:	fclean $(NAME)
 
 .PHONY: all clean fclean re

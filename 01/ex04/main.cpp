@@ -52,7 +52,7 @@ int	file_ops(char **argv)
 		file.close();
 		return (1);
 	}
-	
+
 	std::string			gnl;
 	std::string			name_file(argv[1]);
 	std::ofstream		new_file(name_file.append(".replace"));
@@ -75,6 +75,7 @@ int	main(int argc, char **argv)
 	if (argc != 4)
 	{
 		std::cout << "Error: Wrong number of arguments" << std::endl;
+		std::cout << "Usage: [target file] [target string] [replace by]" << std::endl;
 		return (1);
 	}
 	return (file_ops(argv));
