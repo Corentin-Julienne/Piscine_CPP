@@ -5,12 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/19 18:36:01 by cjulienn          #+#    #+#              #
-#    Updated: 2022/08/30 10:54:25 by cjulienn         ###   ########.fr        #
+#    Created: 2022/08/30 11:52:06 by cjulienn          #+#    #+#              #
+#    Updated: 2022/08/30 11:52:26 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = FixedPoint
+
+NAME = FixedPointEnhanced
 
 SRCS = ./main.cpp \
 	   ./Fixed.cpp 

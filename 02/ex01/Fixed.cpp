@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:36:03 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/12 18:07:00 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/30 11:44:12 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // basic constructor
 
-Fixed::Fixed(void) : _fixed_point(0)
+Fixed::Fixed(void) : _fixedPoint(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
@@ -23,18 +23,19 @@ Fixed::Fixed(void) : _fixed_point(0)
 
 Fixed::Fixed(int num)
 {
-	this->_fixed_point = num << _frac_bits;
 	std::cout << "Int constructor called" << std::endl;
+	this->_fixedPoint = num << this->_fracBits;
 }
 
 Fixed::Fixed(float num)
 {
 	std::cout << "Float constructor called" << std::endl;
+	this->_fixedPoint = (int)roundf(num * (1 << this->_fracBits));
 }
 
 // destructor
 
-Fixed::~Fixed(void) 
+Fixed::~Fixed(void)
 {
 	std::cout << "Destructor called" << std::endl;
 }
@@ -43,17 +44,17 @@ Fixed::~Fixed(void)
 
 Fixed::Fixed(const Fixed& original)
 {
-	_fixed_point = original._fixed_point;
 	std::cout << "Copy constructor called" << std::endl;
+	this->_fixedPoint = original.getRawBits();
 }
 
 // overloading assignement operator
 
 Fixed&	Fixed::operator=(const Fixed& original)
 {
-	if (this != &original)
-		_fixed_point = original._fixed_point;
 	std::cout << "Copy assignment operator called" << std::endl;
+	if (this != &original)
+		this->_fixedPoint = original.getRawBits();
 	return *this;
 }
 
@@ -62,13 +63,13 @@ Fixed&	Fixed::operator=(const Fixed& original)
 int	Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits member function called" << std::endl;
-	return (this->_fixed_point);
+	return (this->_fixedPoint);
 }
 
 void	Fixed::setRawBits(int raw)
 {
-	this->_fixed_point = raw;
 	std::cout << "setRawBits member function called" << std::endl;
+	this->_fixedPoint = raw;
 }
 
 // conversion functions
@@ -76,15 +77,16 @@ void	Fixed::setRawBits(int raw)
 int	Fixed::toInt(void) const
 {
 	int		res;
-	
+
+	res = this->_fixedPoint >> this->_fracBits;
+	return (res);
 }
 
 float	Fixed::toFloat(void) const
 {
 	float	res;
 
-	
-
+	res = (float)this->_fixedPoint / (1 << this->_fracBits);
 	return (res);
 }
 
