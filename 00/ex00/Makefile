@@ -16,7 +16,7 @@ SRCS = ./megaphone.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-CC = clang++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -f
@@ -34,6 +34,6 @@ clean:
 fclean:	clean
 	$(RM) $(NAME)
 
-re:	fclean all
+re:	fclean $(NAME)
 
 .PHONY: all clean fclean re

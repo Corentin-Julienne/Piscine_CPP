@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = heighties_PhoneBook
+NAME = heightiesPhoneBook
 
 SRCS = ./main.cpp \
 	   ./Contact.cpp \
@@ -18,7 +18,7 @@ SRCS = ./main.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
-CC = clang++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -I. 
 
 RM = rm -f
@@ -36,6 +36,6 @@ clean:
 fclean:	clean
 	$(RM) $(NAME)
 
-re:	fclean all
+re:	fclean $(NAME)
 
 .PHONY: all clean fclean re

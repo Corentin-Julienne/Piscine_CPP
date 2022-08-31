@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Moar_brainz
+NAME = MoarBrainz
 
 SRCS = ./main.cpp \
 	   ./Zombie.cpp \
@@ -20,7 +20,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 RM = rm -f
 
-CC = clang++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -I.
 
 $(NAME): $(OBJS)
@@ -36,6 +36,6 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re:	fclean all
+re:	fclean $(NAME)
 
 .PHONY: all clean fclean re

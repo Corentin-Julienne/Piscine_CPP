@@ -10,13 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = HI_THIS_IS_BRAIN
+NAME = HiThisIsBrain
 
 SRCS = ./main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-CC = clang++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -I.
 
 RM = rm -f
@@ -34,6 +34,6 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re:	fclean all
+re:	fclean $(NAME)
 
 .PHONY: all clean fclean re

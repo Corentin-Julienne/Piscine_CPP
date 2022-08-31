@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEF_PhoneBook
-# define DEF_PhoneBook
+#ifndef PHONEBOOK_CLASS_H
+# define PHONEBOOK_CLASS_H
 
 #include "Contact.hpp"
 
@@ -26,19 +26,19 @@ class PhoneBook
 	PhoneBook();
 	~PhoneBook();
 	// getters and setters
-	void		set_entry_num(int i);
-	void		set_current_entry(int i);
+	void		setEntryNum(int i);
+	void		setCurrentEntry(int i);
 	// utils
-	void		add_ctct_to_db(void);
-	void		ask_for_index(void);
-	void		display_columns(void);
-	void		display_ctct(int index);
-	void		display_phonebook(void);
+	void		addCtctToDb(void);
+	void		askForIndex(void);
+	void		displayColumns(void);
+	void		displayCtct(int index);
+	void		displayPhonebook(void);
 
 	private:
 
-	int 		_entry_num;
-	int			_current_entry;
+	int 		_entryNum;
+	int			_currentEntry;
 	Contact		_contacts[8];
 };
 

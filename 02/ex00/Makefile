@@ -6,11 +6,12 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 18:36:01 by cjulienn          #+#    #+#              #
-#    Updated: 2022/08/30 10:52:40 by cjulienn         ###   ########.fr        #
+#    Updated: 2022/08/31 10:51:01 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = firstCannon
+
 
 SRCS = ./main.cpp \
 	   ./Fixed.cpp
@@ -29,10 +30,10 @@ $(NAME): $(OBJS)
 all:
 	$(NAME)
 
-clean:
+clean: 
 	$(RM) $(OBJS)
 
-fclean: clean
+fclean:	clean
 	$(RM) $(NAME)
 
 re:	fclean $(NAME)
