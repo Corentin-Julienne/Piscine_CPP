@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:50:22 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/11 14:59:29 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/31 11:10:42 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& original)
 {
 	if (this != &original)
 	{
-		_name = original._name;
-		_hit_pts = original._hit_pts;
-		_energy_pts = original._energy_pts;
-		_attack_dmgs = original._attack_dmgs;
+		this->_name = original._name;
+		this->_hit_pts = original._hit_pts;
+		this->_energy_pts = original._energy_pts;
+		this->_attack_dmgs = original._attack_dmgs;
 	}
 	return *this;
 }
