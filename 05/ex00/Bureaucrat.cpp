@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 12:18:58 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/19 16:35:03 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:01:51 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ Bureaucrat::Bureaucrat(void) : _name("Agent 47"), _grade(1) {}
 Bureaucrat::Bureaucrat(std::string const name, unsigned int grade) : _name(name)
 {
 	if (grade < 1)
-		throw Bureaucrat::GradeTooLowException();
-	else if (grade > 150)
 		throw Bureaucrat::GradeTooHighException();
+	else if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
 	else
 		this->_grade = grade;
 }
@@ -34,10 +34,7 @@ Bureaucrat::~Bureaucrat(void) {}
 
 // constructor by copy
 
-Bureaucrat::Bureaucrat(const Bureaucrat& original) : _name(original._name), _grade(original._grade)
-{
-	this->_grade = original._grade;
-}
+Bureaucrat::Bureaucrat(const Bureaucrat& original) : _name(original._name), _grade(original._grade) {}
 
 // overloading assignement operator (unable to change const std::string _name)
 
@@ -50,12 +47,12 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& original)
 
 // getters
 
-std::string	Bureaucrat::getName(void) const
+const std::string	Bureaucrat::getName(void) const
 {
 	return this->_name;
 }
 
-unsigned int Bureaucrat::getGrade(void) const
+unsigned int 		Bureaucrat::getGrade(void) const
 {
 	return this->_grade;
 } 

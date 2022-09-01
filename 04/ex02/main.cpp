@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/12 12:35:12 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/31 14:53:30 by cjulienn         ###   ########.fr       */
+/*   Created: 2022/08/31 17:45:10 by cjulienn          #+#    #+#             */
+/*   Updated: 2022/08/31 17:47:31 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main(void)
 	delete j;//should not create a leak
 	delete i;
 	std::cout << std::endl << std::endl;
-	system("leaks Brain");
+	system("leaks VirtualAnimal");
 
 	// // ------------------------------------- //
 	// std::cout << std::endl << std::endl;
@@ -41,6 +41,6 @@ int main(void)
 	// 	else
 	// 		animal_arr[i] = new Cat();
 	// }
-	// system("leaks Brain"); // leak checker
+	// system("leaks VirtualAnimal"); // leak checker
 	return 0;
 }

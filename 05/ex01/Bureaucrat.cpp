@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:13:15 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/19 16:51:32 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:59:11 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& original)
 
 // getters
 
-std::string	Bureaucrat::getName(void) const
+const std::string	Bureaucrat::getName(void) const
 {
 	return this->_name;
 }
 
-unsigned int Bureaucrat::getGrade(void) const
+unsigned int 		Bureaucrat::getGrade(void) const
 {
 	return this->_grade;
 } 

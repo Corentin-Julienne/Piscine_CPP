@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:28:49 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/12 12:21:15 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:17:18 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ Dog::Dog(const Dog& original)
 
 Dog&	Dog::operator=(const Dog& original)
 {
+	std::cout << "Dog: Operator = has been called on " << this->_type << std::endl;
 	if (this != &original)
 		this->_type = original._type;
 	return *this;

@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 12:19:00 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/12 17:22:51 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:05:09 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 class Bureaucrat
 {
 	public:
-	
+
 		Bureaucrat();
 		Bureaucrat(const std::string name, unsigned int grade);
 		~Bureaucrat();
@@ -27,8 +27,8 @@ class Bureaucrat
 
 		Bureaucrat&	operator=(const Bureaucrat& original);
 		// getters
-		unsigned int	getGrade(void) const;
-		std::string		getName(void) const;
+		unsigned int		getGrade(void) const;
+		const std::string	getName(void) const;
 		// methods
 		void		decrementGrade(void);
 		void		incrementGrade(void);

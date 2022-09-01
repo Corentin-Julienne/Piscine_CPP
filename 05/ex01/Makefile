@@ -6,7 +6,7 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/15 16:13:21 by cjulienn          #+#    #+#              #
-#    Updated: 2022/08/18 18:18:13 by cjulienn         ###   ########.fr        #
+#    Updated: 2022/08/31 11:42:01 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS = ./Bureaucrat.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
-CC = clang++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98
 
 RM = rm -f
@@ -36,6 +36,6 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re:	fclean all
+re:	fclean $(NAME)
 
 .PHONY: all clean fclean re

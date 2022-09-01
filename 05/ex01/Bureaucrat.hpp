@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:13:17 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/19 16:49:53 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:58:46 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ class Bureaucrat
 
 		Bureaucrat&	operator=(const Bureaucrat& original);
 		// getters
-		unsigned int	getGrade(void) const;
-		std::string		getName(void) const;
+		unsigned int		getGrade(void) const;
+		const std::string	getName(void) const;
 		// methods
 		void		decrementGrade(void);
 		void		incrementGrade(void);

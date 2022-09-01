@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:28:51 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/11 17:28:21 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/31 11:57:48 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 class Dog : public Animal
 {
 	public:
+
 		Dog(void);
 		~Dog();
 		Dog(const Dog& original);

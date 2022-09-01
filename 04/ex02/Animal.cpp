@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 13:28:41 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/31 12:18:27 by cjulienn         ###   ########.fr       */
+/*   Created: 2022/08/31 15:10:51 by cjulienn          #+#    #+#             */
+/*   Updated: 2022/08/31 17:44:41 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "Animal.hpp"
 
@@ -56,11 +57,4 @@ Animal&	Animal::operator=(const Animal& original)
 std::string	Animal::getType(void) const
 {
 	return (this->_type);
-}
-
-// class functions
-
-void	Animal::makeSound(void) const
-{
-	std::cout << "Animal as a concept does not produce any sound you dumb f***!!!" << std::endl;
 }

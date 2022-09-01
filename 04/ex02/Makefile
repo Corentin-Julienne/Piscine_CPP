@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/08/12 12:35:15 by cjulienn          #+#    #+#              #
-#    Updated: 2022/08/31 11:32:03 by cjulienn         ###   ########.fr        #
+#    Created: 2022/08/31 15:11:10 by cjulienn          #+#    #+#              #
+#    Updated: 2022/08/31 15:13:44 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Brain
+NAME = VirtualAnimal
 
 SRCS = ./main.cpp \
 	   ./Animal.cpp \

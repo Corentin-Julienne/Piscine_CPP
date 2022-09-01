@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:29:03 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/12 12:16:57 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:01:27 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 class WrongCat : public WrongAnimal
 {
 	public:
+	
 		WrongCat(void);
 		~WrongCat();
 		WrongCat(const WrongCat& original);
@@ -25,9 +26,6 @@ class WrongCat : public WrongAnimal
 		WrongCat& operator=(const WrongCat& original);
 
 		void makeSound(void) const;
-		
-	private:
-		/* data */
 };
 
 #endif

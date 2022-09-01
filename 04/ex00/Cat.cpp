@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:28:45 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/12 12:20:39 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:16:26 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ Cat::Cat(const Cat& original)
 
 Cat&	Cat::operator=(const Cat& original)
 {
+	std::cout << "Cat: Operator = has been called on " << this->_type << std::endl;
 	if (this != &original)
 		this->_type = original._type;
 	return *this;

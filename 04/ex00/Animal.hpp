@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:28:43 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/11 17:28:48 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:01:48 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 class Animal
 {
 	public:
+	
 		Animal(void);
 		Animal(std::string type);
 		~Animal();

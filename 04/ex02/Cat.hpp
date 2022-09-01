@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 13:28:47 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/31 11:57:41 by cjulienn         ###   ########.fr       */
+/*   Created: 2022/08/31 15:11:03 by cjulienn          #+#    #+#             */
+/*   Updated: 2022/08/31 15:12:49 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 # define CAT_HPP
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat : public Animal
 {
 	public:
-	
+
 		Cat(void);
 		~Cat();
 		Cat(const Cat& original);
@@ -26,6 +27,10 @@ class Cat : public Animal
 		Cat& operator=(const Cat& original);
 
 		void makeSound(void) const;
+	
+	private:
+
+		Brain	*_brain;
 };
 
 #endif

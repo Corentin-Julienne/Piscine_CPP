@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:34:55 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/12 12:36:12 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:11:22 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 Animal::Animal(void)
 {
-	this->_type = "Unicorn";
+	this->_type = "Animal[concept]";
 	std::cout << "Animal Constructor has been called on " << this->_type << std::endl;
 }
 
@@ -45,6 +45,7 @@ Animal::Animal(const Animal& original) : _type(original._type)
 
 Animal&	Animal::operator=(const Animal& original)
 {
+	std::cout << "Animal: Operator = has been called on " << this->_type << std::endl;
 	if (this != &original)
 		this->_type = original._type;
 	return *this;
