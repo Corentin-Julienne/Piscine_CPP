@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:41:59 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/19 12:46:59 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/01 18:27:36 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class PresidentialPardonForm : public Form
 	public:
 	
 		PresidentialPardonForm(void);
-		PresidentialPardonForm();
+		PresidentialPardonForm(const std::string target);
 		~PresidentialPardonForm();
 		PresidentialPardonForm(const PresidentialPardonForm& original);
 
@@ -28,10 +28,6 @@ class PresidentialPardonForm : public Form
 		// getters and setters
 		
 		void	action(void) const;
-		
-	private:
-
-		/* data */
 };
 
 #endif

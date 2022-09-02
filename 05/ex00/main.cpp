@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 12:19:02 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/31 18:57:57 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:07:20 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,16 @@ int	main(void)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	
+	// try to decrement Comrade Stalin rank (should work fine)
+	try
+	{
+		stalin->decrementGrade();
+		std::cout << *stalin << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 	// COMRADE TROTSKY
 	try
 	{
@@ -60,6 +69,16 @@ int	main(void)
 	{
 		std::cerr << e.what() << std::endl;
 	}
+	// try to increment Comarade Trotsky rank (should works)
+	try
+	{
+		trotsky->incrementGrade();
+		std::cout << *trotsky << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 	// COMRADE GORBATCHEV [RIP]
 	try
 	{
@@ -73,7 +92,6 @@ int	main(void)
 	delete stalin;
 	delete trotsky;
 	delete gorbatchev;
-	system("leaks Bureaucrat");
-		
+	//system("leaks Bureaucrat");
 	return (0);
 }

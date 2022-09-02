@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 16:13:15 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/09/01 17:35:29 by cjulienn         ###   ########.fr       */
+/*   Created: 2022/09/01 21:02:06 by cjulienn          #+#    #+#             */
+/*   Updated: 2022/09/01 21:04:54 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
 
 // basic constructor
 
@@ -51,12 +50,12 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& original)
 
 // getters
 
-const std::string	Bureaucrat::getName(void) const
+std::string	Bureaucrat::getName(void) const
 {
 	return this->_name;
 }
 
-unsigned int 		Bureaucrat::getGrade(void) const
+unsigned int Bureaucrat::getGrade(void) const
 {
 	return this->_grade;
 } 
@@ -92,6 +91,19 @@ void	Bureaucrat::signForm(Form& form)
 	}
 }
 
+void	Bureaucrat::executeForm(const Form& form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+}
+
 // methods for exception handling for inside classes
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
@@ -102,6 +114,11 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return ("Grade is too high");
+}
+
+const char* Bureaucrat::FormNotSignedException::what() const throw()
+{
+	return ("To be executed, a form must previously be signed");
 }
 
 // overloading operator <<

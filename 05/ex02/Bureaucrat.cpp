@@ -6,10 +6,9 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:41:43 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/19 16:45:07 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/01 17:35:23 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "Bureaucrat.hpp"
 
@@ -22,9 +21,9 @@ Bureaucrat::Bureaucrat(void) : _name("Agent 47"), _grade(1) {}
 Bureaucrat::Bureaucrat(std::string const name, unsigned int grade) : _name(name)
 {
 	if (grade < 1)
-		throw Bureaucrat::GradeTooLowException();
-	else if (grade > 150)
 		throw Bureaucrat::GradeTooHighException();
+	else if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
 	else
 		this->_grade = grade;
 }
@@ -79,35 +78,30 @@ void	Bureaucrat::incrementGrade(void)
 		this->_grade--;
 }
 
-void	Bureaucrat::signForm(const Form& form)
+void	Bureaucrat::signForm(Form& form)
 {
-	if (form.getSigned() == true)
+	try
 	{
+		form.beSigned(*this);
 		std::cout << this->_name << " signed " << form.getName() << std::endl;
 	}
-	else
+	catch (std::exception & e)
 	{
-		std::cout << this->_name << " could not sign " << form.getGradeExec() << " because required grade is "
-		<< form.getGradeSign() << " and " << this->_name << " got a grade of " << this->_grade  << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 }
 
 void	Bureaucrat::executeForm(const Form& form)
 {
-	
-	
-	// to implement
-	if (form.getSigned() == false)
-		throw Bureaucrat::FormNotSignedException();
-	else if (this->_grade <= form.getGradeExec())
+	try
 	{
-		// exec the form
-		form.action();
-		// print feedback msg
+		form.execute(*this);
 		std::cout << this->_name << " executed " << form.getName() << std::endl;
 	}
-	else
-		throw Bureaucrat::GradeTooLowException();
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }
 
 // methods for exception handling for inside classes

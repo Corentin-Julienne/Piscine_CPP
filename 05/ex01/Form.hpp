@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:18:04 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/19 16:39:08 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:13:25 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Form
 	public:
 	
 		Form(void);
-		Form(std::string const name, unsigned int const grade_sign, unsigned int const grade_exec);
+		Form(std::string const name, unsigned int const gradeSign, unsigned int const gradeExec);
 		~Form();
 		Form(const Form& original);
 
@@ -63,8 +63,8 @@ class Form
 	
 		std::string const 	_name;
 		bool				_signed;
-		unsigned int const	_grade_sign;
-		unsigned int const	_grade_exec;
+		unsigned int const	_gradeSign;
+		unsigned int const	_gradeExec;
 };
 
 std::ostream&	operator<<(std::ostream& stream, const Form& form);

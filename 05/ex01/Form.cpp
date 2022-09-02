@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:18:02 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/19 16:41:07 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/01 12:08:54 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 // basic constructor
 
-Form::Form(void) : _name("autodestruction"), _grade_sign(32), _grade_exec(13)
+Form::Form(void) : _name("autodestruction"), _gradeSign(32), _gradeExec(13)
 {
 	this->_signed = false;
 }
 
 // constructor with params
 
-Form::Form(std::string const name, unsigned int const grade_sign, unsigned int const grade_exec)
-: _name(name), _grade_sign(grade_sign), _grade_exec(grade_exec)
+Form::Form(std::string const name, unsigned int const gradeSign, unsigned int const gradeExec)
+: _name(name), _gradeSign(gradeSign), _gradeExec(gradeExec)
 {
-	if (grade_sign <= 0 || grade_exec <= 0)
+	if (gradeSign <= 0 || gradeExec <= 0)
 		throw Form::GradeTooHighException();
-	else if (grade_sign > 150 || grade_exec > 150)
+	else if (gradeSign > 150 || gradeExec > 150)
 		throw Form::GradeTooLowException();
 	this->_signed = false;
 }
@@ -37,8 +37,8 @@ Form::~Form() {}
 
 // copy constructor
 
-Form::Form(const Form& original) : _name(original._name), _grade_sign(original._grade_sign),
-_grade_exec(original._grade_exec)
+Form::Form(const Form& original) : _name(original._name), _gradeSign(original._gradeSign),
+_gradeExec(original._gradeExec)
 {
 	this->_signed = original._signed;
 }
@@ -61,12 +61,12 @@ std::string const	Form::getName(void) const
 
 unsigned int const	Form::getGradeSign(void) const
 {
-	return this->_grade_sign;
+	return this->_gradeSign;
 }
 
 unsigned int const	Form::getGradeExec(void) const
 {
-	return this->_grade_exec;
+	return this->_gradeExec;
 }
 
 bool	Form::getSigned(void) const
@@ -80,7 +80,7 @@ void	Form::beSigned(const Bureaucrat& bureaucrat)
 {
 	if (this->getSigned() == true)
 		throw Form::AlreadySignedFormException();
-	else if (bureaucrat.getGrade() <= this->_grade_sign)
+	else if (bureaucrat.getGrade() <= this->_gradeSign)
 		this->_signed = true;
 	else
 		throw Form::GradeTooLowException();
@@ -113,7 +113,7 @@ std::ostream&	operator<<(std::ostream& stream, const Form& form)
 		sign_status = "is signed";
 	else
 		sign_status = "has not been signed";
-	stream << "Form " << form.getName() << " requires a Bureaucrat level " << form.getGradeSign() << " or higher to be signed"
+	stream << "The Form named " << form.getName() << " requires a Bureaucrat level " << form.getGradeSign() << " or higher to be signed"
 	<< " and a Bureaucrat level " << form.getGradeExec() << " to be executed. Currently, the form " << sign_status << std::endl;
 	return (stream);
 }

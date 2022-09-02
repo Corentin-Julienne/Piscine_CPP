@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/12 18:41:53 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/09/01 18:59:17 by cjulienn         ###   ########.fr       */
+/*   Created: 2022/09/01 21:02:19 by cjulienn          #+#    #+#             */
+/*   Updated: 2022/09/01 21:07:21 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
 int	main(void)
 {

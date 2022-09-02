@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/12 18:42:03 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/09/01 18:10:42 by cjulienn         ###   ########.fr       */
+/*   Created: 2022/09/01 21:02:34 by cjulienn          #+#    #+#             */
+/*   Updated: 2022/09/01 21:06:54 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMY_REQUEST_FORM_HPP
-# define ROBOTOMY_REQUEST_FORM_HPP
+#ifndef SHRUBBERY_CREATION_FORM_HPP
+# define SHRUBBERY_CREATION_FORM_HPP
 
 #include "Form.hpp"
 
-#include <cstdlib>
+#include <fstream>
 
-class RobotomyRequestForm : public Form
+class ShrubberyCreationForm : public Form
 {
 	public:
+	
+		ShrubberyCreationForm(void);
+		ShrubberyCreationForm(const std::string target);
+		~ShrubberyCreationForm();
+		ShrubberyCreationForm(const ShrubberyCreationForm& original);
 
-		RobotomyRequestForm(void);
-		RobotomyRequestForm(const std::string target);
-		~RobotomyRequestForm();
-		RobotomyRequestForm(const RobotomyRequestForm& original);
-
-		RobotomyRequestForm&	operator=(const RobotomyRequestForm& original);
+		ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& original);
 
 		void	action(void) const;
 };
