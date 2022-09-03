@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   lab.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/27 12:23:15 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/09/02 16:06:18 by cjulienn         ###   ########.fr       */
+/*   Created: 2022/09/02 12:45:31 by cjulienn          #+#    #+#             */
+/*   Updated: 2022/09/02 15:29:37 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include <stdlib.h>
 #include <string>
-#include "Converter.hpp"
+#include <iostream>
 
 int main(int argc, char **argv)
 {
-	std::string		input;
-
 	if (argc != 2)
-	{
-		std::cout << "Error : wrong number of arguments !" << std::endl;
 		return (1);
-	}
-	input = argv[1];
+	
+	std::string	arg(argv[1]);
+	
+	char* p;
+	long converted = strtol(arg.c_str(), &p, 10);
+	if (*p) {
+		// conversion failed because the input wasn't a number
+		std::cout << "seems that conversion failed" << std::endl;
 
-	Converter	*converter;
-
-	try
-	{
-		converter = new Converter(input);
-		std::cout << *converter << std::endl;
-		delete converter;
+		std::string		suffix(p);
+		std::cout << suffix << std::endl;
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
+	else {
+		std::cout << converted << std::endl;
 	}
 	return (0);
 }

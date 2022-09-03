@@ -6,14 +6,14 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 11:18:14 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/28 11:25:04 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/02 20:06:15 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "whatever.hpp"
 
-int main( void ) 
+int main( void )
 {
 	int a = 2;
 	int b = 3;

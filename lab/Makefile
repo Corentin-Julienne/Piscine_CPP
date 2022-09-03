@@ -5,15 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/07/27 12:48:41 by cjulienn          #+#    #+#              #
-#    Updated: 2022/09/02 12:10:25 by cjulienn         ###   ########.fr        #
+#    Created: 2022/09/02 12:55:02 by cjulienn          #+#    #+#              #
+#    Updated: 2022/09/02 13:26:40 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = convert
+NAME = Lab
 
-SRCS = ./main.cpp \
-	   ./Converter.cpp
+SRCS = ./lab.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

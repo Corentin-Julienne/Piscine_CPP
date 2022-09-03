@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:02:15 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/09/01 21:13:23 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/02 09:52:40 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ class Intern
 		Intern(const Intern& original);
 		
 		Intern&		operator=(const Intern& original);
-	
 		
 };
-
-
 
 #endif

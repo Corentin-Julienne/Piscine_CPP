@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 16:11:41 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/27 17:21:17 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/02 09:54:40 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int main(void)
 	
 	// giving values to example members
 	example->name = "John Doe" ;
-	example->random_char = 'c';
-	example->random_float = 42.42f;
-	example->random_num = 42;
+	example->randomChar = 'c';
+	example->randomFloat = 42.42f;
+	example->randomNum = 42;
 
 	// serialize
 	compression = serialize(example);
@@ -39,16 +39,16 @@ int main(void)
 	// verificating that the values are actually the same
 	std::cout << "Original values are : " << std::endl;
 	std::cout << "example->name = " << example->name << std::endl;
-	std::cout << "example->random_num = " << example->random_num << std::endl;
-	std::cout << "example->random_float = " << example->random_float << std::endl;
-	std::cout << "example->random_char = " << example->random_char << std::endl;
+	std::cout << "example->random_num = " << example->randomNum << std::endl;
+	std::cout << "example->random_float = " << example->randomFloat << std::endl;
+	std::cout << "example->random_char = " << example->randomChar << std::endl;
 
 	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "New values are : " << std::endl;
 	std::cout << "recovery->name = " << recovery->name << std::endl;
-	std::cout << "recovery->random_num = " << recovery->random_num << std::endl;
-	std::cout << "recovery->random_float = " << recovery->random_float << std::endl;
-	std::cout << "recovery->random_char = " << recovery->random_char << std::endl;
+	std::cout << "recovery->random_num = " << recovery->randomNum << std::endl;
+	std::cout << "recovery->random_float = " << recovery->randomFloat << std::endl;
+	std::cout << "recovery->random_char = " << recovery->randomChar << std::endl;
 
 	// verification of pointer values
 	std::cout << "---------------------------------------------" << std::endl;

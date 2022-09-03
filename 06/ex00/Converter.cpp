@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 12:38:46 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/18 16:37:53 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:24:02 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 Converter::Converter(void) : _input("Test")
 {
-	// check the type of string litteral stored in this->_input
 	if (this->_input.empty())
-		; // raise a type of error
+		throw EmptyStringException(); 
 	else if (this->_input.size() == 1)
-		this->oneChar(); // check when only a char
+		this->oneChar();
 	else
-		this->severalChar(); // check type when str is more than one char
-	// then assign and convert
+		this->severalChar();
 	switch (this->_type)
 	{
 		case charType:
@@ -47,14 +45,12 @@ Converter::Converter(void) : _input("Test")
 
 Converter::Converter(std::string input) : _input(input)
 {
-	// check the type of string litteral stored in this->_input
 	if (this->_input.empty())
-		; // raise a type of error
-	else if (this->_input.size() == 1)
-		this->oneChar(); // check when only a char
+		throw EmptyStringException(); 
+	if (this->_input.size() == 1)
+		this->oneChar();
 	else
-		this->severalChar(); // check type when str is more than one char
-	// then assign and convert
+		this->severalChar();
 	switch (this->_type)
 	{
 		case charType:
@@ -81,19 +77,18 @@ Converter::Converter(std::string input) : _input(input)
 Converter::~Converter() {}
 
 Converter::Converter(const Converter& original) : _input(original._input), _char(original._char),
-_int(original._int), _float(original._float), _double(original._double), _type(original._type)
-{}
+_int(original._int), _float(original._float), _double(original._double), _type(original._type) {}
 
 Converter&	Converter::operator=(const Converter& original)
 {
 	if (this != &original)
 	{
-		_input = original._input;
-		_char = original._char;
-		_int = original._int;
-		_float = original._float;
-		_double = original._double;
-		_type = original._type;
+		this->_input = original._input;
+		this->_char = original._char;
+		this->_int = original._int;
+		this->_float = original._float;
+		this->_double = original._double;
+		this->_type = original._type;
 	}
 	return *this;
 }
@@ -105,20 +100,55 @@ void	Converter::oneChar(void)
 	if (this->_input.front() >= 48 && this->_input.front() <= 58)
 		this->_type = intType;
 	else
-		this->_type = charType;	
+		this->_type = charType;
 }
 
 void	Converter::severalChar(void)
 {
-	// check for pseudo floats litterals
 	if (!this->_input.compare("-inff") || !this->_input.compare("+inff") || !this->_input.compare("nanf"))
 		this->_type = floatType;
-	// check for pseudo double litterals
 	else if (!this->_input.compare("-inf") || !this->_input.compare("+inf") || !this->_input.compare("nan"))
 		this->_type = doubleType;
 	else
 	{
-		// to implement
+		// check for int
+		char			*checker_int;
+		long long int	int_res = strtol(this->_input.c_str(), &checker_int, 10);
+		if (!*checker_int)
+		{
+			if (int_res < std::numeric_limits<int>::min() || int_res > std::numeric_limits<int>::max())
+				throw WrongInputException();
+			this->_type = intType;
+			return ;
+		}
+		// check for float and doubles
+		char				*checker_float;
+		double				float_res = strtod(this->_input.c_str(), &checker_float);
+		std::ostringstream	convert_to_str;
+		convert_to_str << float_res;
+	
+		if (!*checker_float)
+		{
+			if (float_res == std::numeric_limits<double>::min() && this->_input.compare(convert_to_str.str()))
+				throw WrongInputException();
+			if (float_res == std::numeric_limits<double>::max() && this->_input.compare(convert_to_str.str()))
+				throw WrongInputException();
+			this->_type = doubleType;
+			return ;
+		}
+		else if (*checker_float)
+		{
+			std::string		suffix(checker_float);
+			
+			if (float_res == std::numeric_limits<float>::min() && this->_input.compare(convert_to_str.str()))
+				throw WrongInputException();
+			if (float_res == std::numeric_limits<float>::max() && this->_input.compare(convert_to_str.str()))
+				throw WrongInputException();
+			if (suffix.size() == 1 && (suffix.back() == 'f' || suffix.back() == 'F'))	
+				this->_type = floatType;
+			else
+				throw WrongInputException();
+		}
 	}
 }
 
@@ -134,9 +164,7 @@ void	Converter::convertChar(void)
 
 void	Converter::convertInt(void)
 {
-	char	*p_end;
-	
-	this->_int = strtol(this->_input.c_str(), &p_end, 10); // pb there ?
+	this->_int = strtol(this->_input.c_str(), NULL, 10);
 	this->_char = static_cast<char>(this->_int);
 	this->_float = static_cast<float>(this->_int);
 	this->_double = static_cast<double>(this->_int);
@@ -144,9 +172,7 @@ void	Converter::convertInt(void)
 
 void	Converter::convertFloat(void)
 {
-	char	*p_end;
-
-	this->_float = strtof(this->_input.c_str(), &p_end);
+	this->_float = strtof(this->_input.c_str(), NULL);
 	this->_char = static_cast<char>(this->_float);
 	this->_int = static_cast<int>(this->_float);
 	this->_double = static_cast<float>(this->_float);
@@ -154,27 +180,23 @@ void	Converter::convertFloat(void)
 
 void	Converter::convertDouble(void)
 {
-	char	*p_end;
-
-	this->_double = strtod(this->_input.c_str(), &p_end);
+	this->_double = strtod(this->_input.c_str(), NULL);
 	this->_char = static_cast<char>(this->_double);
 	this->_int = static_cast<int>(this->_double);
 	this->_float = static_cast<float>(this->_double);
 }
 
-// check if printable
-
 char	Converter::printChar(void) const
 {
 	if (!isprint(this->_char))
-		; // throw exception
+		throw NonDisplayableException();
 	else
 		return (this->_char);
 }
 
 int		Converter::printInt(void) const
 {
-	return (this->_int);
+		return (this->_int);
 }
 
 float	Converter::printFloat(void) const
@@ -204,13 +226,19 @@ const char* Converter::ImpossibleException::what() const throw()
 	return ("impossible");
 }
 
+const char* Converter::EmptyStringException::what() const throw()
+{
+	return ("empty string");
+}
+
 // overloading operator <<
 
 std::ostream&	operator<<(std::ostream& stream, const Converter& converter)
 {
 	stream << "char: ";
 	try {
-		stream << converter.printChar() << std::endl;
+		stream << converter.printChar();
+		stream << "'" << std::endl;
 	} catch (std::exception & e) {
 		stream << e.what() << std::endl;
 	}

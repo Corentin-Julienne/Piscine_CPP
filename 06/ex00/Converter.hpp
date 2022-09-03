@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 12:38:48 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/18 16:36:15 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/02 11:59:20 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <string>
 #include <cctype>
 #include <exception>
+
+#include <stdlib.h>
 
 /* The Converter object/class first check what type of litteral is actually represented by the string :
 !!! 3 is considered ant int litteral, not a char litteral
@@ -79,18 +81,27 @@ class Converter
 				const char* what() const throw();
 		};
 
+		class EmptyStringException : public std::exception
+		{
+			public:
+
+				const char* what() const throw();	
+		};
+
 	private:
 		
 		std::string			_input;
 		char				_char;
-		int					_int;
+		long long int		_int;
 		float				_float;
 		double				_double;
+		
 		enum litteralType {
 			charType,
 			intType,
 			floatType,
-			doubleType
+			doubleType,
+			invalType
 		} 					_type;
 };
 
