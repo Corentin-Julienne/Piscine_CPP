@@ -6,7 +6,7 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/29 15:30:16 by cjulienn          #+#    #+#              #
-#    Updated: 2022/08/31 11:51:46 by cjulienn         ###   ########.fr        #
+#    Updated: 2022/09/04 11:04:57 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ all:
 clean:
 	$(RM) $(OBJS)
 
-fclean:
+fclean: clean
 	$(RM) $(NAME)
 
 re:	fclean $(NAME)

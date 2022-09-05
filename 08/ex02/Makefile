@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/07/28 15:57:38 by cjulienn          #+#    #+#              #
-#    Updated: 2022/09/03 19:45:35 by cjulienn         ###   ########.fr        #
+#    Created: 2022/09/04 15:49:25 by cjulienn          #+#    #+#              #
+#    Updated: 2022/09/04 17:05:45 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = EasyFind
+NAME = Mutation
 
 SRCS = ./main.cpp
 
@@ -25,12 +25,12 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo $(NAME) successfully made !!!
 
-all: 
+all:
 	$(NAME)
 
 clean:
 	$(RM) $(OBJS)
-	
+
 fclean: clean
 	$(RM) $(NAME)
 
