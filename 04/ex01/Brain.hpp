@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:35:02 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/12 14:58:28 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 20:32:58 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ class Brain
 		Brain(const Brain& original);
 		
 		Brain& operator=(const Brain &original);
+
+		std::string		getIdea(int index) const;
+		void			setIdea(int index);
 	
 	private:
 	

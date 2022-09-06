@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:35:08 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/09/06 15:04:07 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 20:35:22 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ Dog&	Dog::operator=(const Dog& original)
 	}
 	std::cout << "Dog: Operator = has been called on " << this->_type << std::endl;
 	return *this;
+}
+
+std::string		Dog::getIdeaInBrain(int index) const
+{
+	return (this->_brain->getIdea(index));
+}
+
+void			Dog::setIdeaInBrain(int index)
+{
+	this->_brain->setIdea(index);
 }
 
 void	Dog::makeSound(void) const

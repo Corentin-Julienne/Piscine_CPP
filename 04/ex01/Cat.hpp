@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:35:06 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/12 15:20:29 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 19:55:12 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ class Cat : public Animal
 		Cat(const Cat& original);
 
 		Cat& operator=(const Cat& original);
+
+		std::string		getIdeaInBrain(int index) const;
 
 		void makeSound(void) const;
 	

@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:35:10 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/31 12:29:02 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 20:34:14 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ class Dog : public Animal
 		Dog(const Dog& original);
 
 		Dog& operator=(const Dog& original);
+
+		std::string		getIdeaInBrain(int index) const;
+		void			setIdeaInBrain(int index);
 
 		void makeSound(void) const;
 	

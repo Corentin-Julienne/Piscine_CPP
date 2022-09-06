@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:35:12 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/09/06 15:33:30 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 20:56:55 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,30 @@ int main(void)
 			animal_arr[i] = new Cat();
 	}
 	
-	Cat	cpy(*(Cat*)animal_arr[2]); // deep copy of animal
-	
-	
-	
+	Dog	cpy(*(Dog *)animal_arr[3]); // deep copy of animal (should be a dog)
+
+	for (int i = 0; i < 100; i++) // know, ideas should be the same
+	{
+		if (cpy.getIdeaInBrain(i).compare(((Dog *)animal_arr[3])->getIdeaInBrain(i)))
+		{
+			std::cout << "-----------------------------------------------" << std::endl;
+			std::cout << "indea index " << i << " is " << cpy.getIdeaInBrain(i) << " for the copy"
+			<< " and " << ((Dog *)animal_arr[3])->getIdeaInBrain(i) << " for the original" << std::endl;
+			std::cout << "-----------------------------------------------" << std::endl;
+		} // should print nothing
+	}
+	// know we change an idea, for the sake of the exercize
+	cpy.setIdeaInBrain(0);
+	for (int i = 0; i < 100; i++) // know, ideas should be the same
+	{
+		if (cpy.getIdeaInBrain(i).compare(((Dog *)animal_arr[3])->getIdeaInBrain(i)))
+		{
+			std::cout << "-----------------------------------------------" << std::endl;
+			std::cout << "indea index " << i << " is " << cpy.getIdeaInBrain(i) << " for the copy"
+			<< " and " << ((Dog *)animal_arr[3])->getIdeaInBrain(i) << " for the original" << std::endl;
+			std::cout << "-----------------------------------------------" << std::endl;
+		} // should print somethinf for index 0
+	}	
 	for (int i = 0; i < 8; i++)
 	{
 		delete animal_arr[i];

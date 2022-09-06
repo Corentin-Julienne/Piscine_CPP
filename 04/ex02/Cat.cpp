@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:11:00 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/31 15:12:35 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 20:53:43 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ Cat&	Cat::operator=(const Cat& original)
 	}
 	std::cout << "Cat: Operator = has been called on " << this->_type << std::endl;
 	return *this;
+}
+
+std::string		Cat::getIdeaInBrain(int index) const
+{
+	return (this->_brain->getIdea(index));
 }
 
 // class functions (using masking)

@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:10:55 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/31 15:12:04 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 20:53:12 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,15 @@ Brain&	Brain::operator=(const Brain& original)
 			this->_ideas[i] = original._ideas[i];
 	}
 	return *this;
+}
+
+std::string		Brain::getIdea(int index) const
+{
+	std::string 	res = this->_ideas[index];
+	return (res);
+}
+
+void			Brain::setIdea(int index)
+{
+	this->_ideas[index] = "I Hate C++ Syntax !!!";
 }

@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:10:53 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/31 17:44:47 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 20:52:28 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ class Animal
 		std::string	getType(void) const;
 		
 		virtual void makeSound(void) const = 0;
+		virtual std::string getIdeaInBrain(int index) const = 0;
 	
 	protected:
 
