@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:28:57 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/12 12:17:22 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 14:47:07 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ std::string	WrongAnimal::getType(void) const
 
 void	WrongAnimal::makeSound(void) const
 {
-	std::cout << "WrongAnimal as a concept does not produce any sound you dumb f***!!!" << std::endl;
+	std::cout << "WrongAnimal as a concept does not produce any sound" << std::endl;
 }

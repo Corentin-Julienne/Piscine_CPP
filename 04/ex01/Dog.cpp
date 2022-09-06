@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:35:08 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/31 14:04:29 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:04:07 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ Dog::~Dog()
 	std::cout << "Dog Destructor has been called on " << this->_type << std::endl;
 }
 
-Dog::Dog(const Dog& original)
+Dog::Dog(const Dog& original) : Animal(original)
 {
-	this->_type = original._type;
 	this->_brain = new Brain(*original._brain);
 	std::cout << "Dog Copy Constructor has been called on " << this->_type << std::endl;
 }

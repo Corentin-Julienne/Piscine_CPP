@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:35:04 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/31 14:33:45 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:04:25 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ Cat::~Cat()
 	std::cout << "Cat Destructor has been called !" << std::endl;
 }
 
-Cat::Cat(const Cat& original)
+Cat::Cat(const Cat& original) : Animal(original)
 {
-	this->_type = original._type;
 	this->_brain = new Brain(*original._brain);
 	std::cout << "Cat Copy Constructor has been called !" << std::endl;
 }

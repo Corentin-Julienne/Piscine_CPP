@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:28:41 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/31 12:18:27 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 14:44:45 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ Animal&	Animal::operator=(const Animal& original)
 	return *this;
 }
 
-// getters and setters
+// getter
 
 std::string	Animal::getType(void) const
 {
@@ -62,5 +62,5 @@ std::string	Animal::getType(void) const
 
 void	Animal::makeSound(void) const
 {
-	std::cout << "Animal as a concept does not produce any sound you dumb f***!!!" << std::endl;
+	std::cout << "Animal as a concept does not produce any sound" << std::endl;
 }

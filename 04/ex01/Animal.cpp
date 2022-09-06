@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:34:55 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/31 15:11:22 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 14:40:51 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ std::string	Animal::getType(void) const
 
 void	Animal::makeSound(void) const
 {
-	std::cout << "Animal as a concept does not produce any sound you dumb f***!!!" << std::endl;
+	std::cout << "Animal as a concept does not produce any sound" << std::endl;
 }

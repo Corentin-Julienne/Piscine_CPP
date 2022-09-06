@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:28:53 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/12 12:25:43 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:03:23 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ int main(void)
 	delete wrong_meta;
 	delete wrong_j;
 	
+	//system("leaks Polymorphism");
 	return (0);
 }

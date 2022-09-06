@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:29:01 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/12 12:16:00 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 14:57:20 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ WrongCat::~WrongCat()
 	std::cout << "WrongCat Destructor has been called !" << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat& original)
+WrongCat::WrongCat(const WrongCat& original) : WrongAnimal(original)
 {
-	this->_type = original._type;
 	std::cout << "WrongCat Copy Constructor has been called !" << std::endl;
 }
 
