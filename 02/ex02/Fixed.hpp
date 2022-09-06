@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 11:52:09 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/08/30 16:51:46 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 10:51:29 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,24 @@ class Fixed
 		// constructors and destructors
 		
 		Fixed(void);
-		~Fixed(void);
+		~Fixed();
 		Fixed(const Fixed& original);
 		Fixed(int num);
 		Fixed(float num);
 
-		// utils
+		Fixed&			operator=(const Fixed& original);
+
+		// getters and setters
 		
 		int 			getRawBits(void) const;
 		void 			setRawBits(int const raw);
-		Fixed&			operator=(const Fixed& original);
+
+		// converters
+		
 		int 			toInt(void) const;
 		float 			toFloat(void) const;
 
-		// new methods for ex02 day 02
+		// static methods
 
 		static Fixed&		min(Fixed &a, Fixed &b);
 		static Fixed&		max(Fixed &a, Fixed &b);
