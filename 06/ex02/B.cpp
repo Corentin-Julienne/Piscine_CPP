@@ -6,8 +6,12 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:28:16 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/27 18:17:31 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/05 17:31:56 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "C.hpp"
+#include "B.hpp"
+
+B::B(void) {}
+
+B::~B() {}

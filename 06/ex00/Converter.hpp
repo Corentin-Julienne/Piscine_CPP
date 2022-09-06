@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 12:38:48 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/09/02 11:59:20 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/05 15:50:06 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <cmath>
 #include <cctype>
 #include <exception>
 
@@ -46,18 +47,11 @@ class Converter
 
 		// convert str to every type
 
-		void	convertChar(void);
-		void	convertInt(void);
-		void	convertFloat(void);
-		void	convertDouble(void);
-
-		// check if printable
-
-		char	printChar(void) const;
-		int		printInt(void) const;
-		float	printFloat(void) const;
-		double	printDouble(void) const;
-
+		char	convertToChar(void);
+		int		convertToInt(void);
+		float	convertToFloat(void);
+		double	convertToDouble(void);
+		
 		// exception classes
 
 		class NonDisplayableException : public std::exception 
@@ -92,7 +86,7 @@ class Converter
 		
 		std::string			_input;
 		char				_char;
-		long long int		_int;
+		int					_int;
 		float				_float;
 		double				_double;
 		
@@ -107,6 +101,6 @@ class Converter
 
 // overloadind operator <<
 
-std::ostream&	operator<<(std::ostream& stream, const Converter& converter);
+std::ostream&	operator<<(std::ostream& stream, Converter& converter);
 
 #endif

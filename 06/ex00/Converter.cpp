@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 12:38:46 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/09/02 16:24:02 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/05 17:12:03 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,6 @@ Converter::Converter(void) : _input("Test")
 		this->oneChar();
 	else
 		this->severalChar();
-	switch (this->_type)
-	{
-		case charType:
-			this->convertChar();
-			break;
-		
-		case intType:
-			this->convertInt();
-			break;
-
-		case floatType:
-			this->convertFloat();
-			break;
-		
-		case doubleType:
-			this->convertDouble();
-			break;
-		
-		default:
-			break;
-	}
 }
 
 Converter::Converter(std::string input) : _input(input)
@@ -51,27 +30,6 @@ Converter::Converter(std::string input) : _input(input)
 		this->oneChar();
 	else
 		this->severalChar();
-	switch (this->_type)
-	{
-		case charType:
-			this->convertChar();
-			break;
-		
-		case intType:
-			this->convertInt();
-			break;
-
-		case floatType:
-			this->convertFloat();
-			break;
-		
-		case doubleType:
-			this->convertDouble();
-			break;
-		
-		default:
-			break;
-	}
 }
 
 Converter::~Converter() {}
@@ -97,18 +55,34 @@ Converter&	Converter::operator=(const Converter& original)
 
 void	Converter::oneChar(void)
 {
-	if (this->_input.front() >= 48 && this->_input.front() <= 58)
+	if (isdigit(this->_input.front()))
+	{
 		this->_type = intType;
+		this->_int = static_cast<int>(atoi(this->_input.c_str()));
+	}
 	else
+	{
 		this->_type = charType;
+		this->_char = this->_input.front();
+	}
 }
 
 void	Converter::severalChar(void)
 {
 	if (!this->_input.compare("-inff") || !this->_input.compare("+inff") || !this->_input.compare("nanf"))
+	{
+		float		convert_f = strtof(this->_input.c_str(), NULL);
+		
 		this->_type = floatType;
+		this->_float = convert_f;
+	}
 	else if (!this->_input.compare("-inf") || !this->_input.compare("+inf") || !this->_input.compare("nan"))
+	{
+		double		convert_d = strtod(this->_input.c_str(), NULL);
+		
 		this->_type = doubleType;
+		this->_double = convert_d;
+	}
 	else
 	{
 		// check for int
@@ -119,6 +93,7 @@ void	Converter::severalChar(void)
 			if (int_res < std::numeric_limits<int>::min() || int_res > std::numeric_limits<int>::max())
 				throw WrongInputException();
 			this->_type = intType;
+			this->_int = static_cast<int>(int_res);
 			return ;
 		}
 		// check for float and doubles
@@ -134,6 +109,7 @@ void	Converter::severalChar(void)
 			if (float_res == std::numeric_limits<double>::max() && this->_input.compare(convert_to_str.str()))
 				throw WrongInputException();
 			this->_type = doubleType;
+			this->_double = static_cast<double>(float_res);
 			return ;
 		}
 		else if (*checker_float)
@@ -144,8 +120,11 @@ void	Converter::severalChar(void)
 				throw WrongInputException();
 			if (float_res == std::numeric_limits<float>::max() && this->_input.compare(convert_to_str.str()))
 				throw WrongInputException();
-			if (suffix.size() == 1 && (suffix.back() == 'f' || suffix.back() == 'F'))	
+			if (suffix.size() == 1 && (suffix.back() == 'f' || suffix.back() == 'F'))
+			{
 				this->_type = floatType;
+				this->_float = static_cast<float>(float_res);
+			}
 			else
 				throw WrongInputException();
 		}
@@ -154,59 +133,91 @@ void	Converter::severalChar(void)
 
 // conversion functions
 
-void	Converter::convertChar(void)
+char	Converter::convertToChar(void)
 {
-	this->_char = this->_input.front();
-	this->_int = static_cast<int>(this->_char);
-	this->_float = static_cast<float>(this->_char);
-	this->_double = static_cast<double>(this->_char);
+	switch (this->_type)
+	{
+		case intType:
+			if (!isprint(static_cast<char>(this->_int)))
+				throw NonDisplayableException();
+			else
+				return (static_cast<char>(this->_int));
+		case floatType:
+			if (isinf(this->_float) || isnan(this->_float)
+				|| this->_float > std::numeric_limits<char>::max()
+				|| this->_float < std::numeric_limits<char>::min())
+				throw ImpossibleException();
+			else if (!isprint(this->_float))
+				throw NonDisplayableException();			
+			else 
+				return (static_cast<char>(this->_float));
+		case doubleType:
+			if (isinf(this->_double) || isnan(this->_double)
+				|| this->_double > std::numeric_limits<char>::max()
+				|| this->_double < std::numeric_limits<char>::min())
+				throw ImpossibleException();
+			else if (!isprint(this->_double))
+				throw NonDisplayableException();
+			else
+				return (static_cast<char>(this->_double));
+		default:
+			return (this->_char);
+	}
 }
 
-void	Converter::convertInt(void)
+int		Converter::convertToInt(void)
 {
-	this->_int = strtol(this->_input.c_str(), NULL, 10);
-	this->_char = static_cast<char>(this->_int);
-	this->_float = static_cast<float>(this->_int);
-	this->_double = static_cast<double>(this->_int);
+	switch (this->_type)
+	{
+		case charType:
+			return (static_cast<int>(this->_char));
+		case floatType:
+			if (isinf(this->_float) || isnan(this->_float)
+			|| this->_float > std::numeric_limits<int>::max()
+			|| this->_float < std::numeric_limits<int>::min())
+				throw ImpossibleException();
+			else
+				return (static_cast<int>(this->_float));
+		case doubleType:
+			if (isinf(this->_double) || isnan(this->_double)
+				|| this->_double > std::numeric_limits<int>::max()
+				|| this->_double < std::numeric_limits<int>::min())
+				throw ImpossibleException();
+			else
+				return (static_cast<int>(this->_double));
+		default:
+			return (this->_int);
+	}
 }
 
-void	Converter::convertFloat(void)
+float	Converter::convertToFloat(void)
 {
-	this->_float = strtof(this->_input.c_str(), NULL);
-	this->_char = static_cast<char>(this->_float);
-	this->_int = static_cast<int>(this->_float);
-	this->_double = static_cast<float>(this->_float);
+	switch (this->_type)
+	{
+		case charType:
+			return (static_cast<float>(this->_char));
+		case intType:
+			return (static_cast<float>(this->_int));
+		case doubleType:
+			return (static_cast<float>(this->_double));
+		default:
+			return (this->_float);
+	}
 }
 
-void	Converter::convertDouble(void)
+double	Converter::convertToDouble(void)
 {
-	this->_double = strtod(this->_input.c_str(), NULL);
-	this->_char = static_cast<char>(this->_double);
-	this->_int = static_cast<int>(this->_double);
-	this->_float = static_cast<float>(this->_double);
-}
-
-char	Converter::printChar(void) const
-{
-	if (!isprint(this->_char))
-		throw NonDisplayableException();
-	else
-		return (this->_char);
-}
-
-int		Converter::printInt(void) const
-{
-		return (this->_int);
-}
-
-float	Converter::printFloat(void) const
-{
-	return (this->_float);
-}
-
-double	Converter::printDouble(void) const
-{
-	return (this->_double);	
+	switch (this->_type)
+	{
+		case charType:
+			return (static_cast<double>(this->_char));
+		case intType:
+			return (static_cast<double>(this->_int));
+		case floatType:
+			return (static_cast<double>(this->_float));
+		default:
+			return (this->_double);
+	}
 }
 
 // exceptions handling
@@ -233,31 +244,54 @@ const char* Converter::EmptyStringException::what() const throw()
 
 // overloading operator <<
 
-std::ostream&	operator<<(std::ostream& stream, const Converter& converter)
+std::ostream&	operator<<(std::ostream& stream, Converter& converter)
 {
 	stream << "char: ";
-	try {
-		stream << converter.printChar();
-		stream << "'" << std::endl;
-	} catch (std::exception & e) {
+	try 
+	{
+		char c = converter.convertToChar();
+		stream << "'" << c << "'" << std::endl;
+	} 
+	catch (std::exception & e) 
+	{
 		stream << e.what() << std::endl;
 	}
 	stream << "int: ";
-	try {
-		stream << converter.printInt() << std::endl;
-	} catch (std::exception & e) {
-		stream << e.what() << std::endl;		
+	try 
+	{
+		stream << converter.convertToInt() << std::endl;
+	}
+	catch (std::exception & e) 
+	{
+		stream << e.what() << std::endl;
 	}
 	stream << "float: ";
-	try {
-		stream << converter.printFloat() << std::endl;
-	} catch (std::exception & e) {
+	try
+	{
+		int		checker = static_cast<int>(converter.convertToFloat());
+		float	cpy		= converter.convertToFloat();
+		
+		stream << converter.convertToFloat();
+		if (cpy - checker == 0)
+			stream << ".0";
+		stream << "f" << std::endl;
+	}
+	catch (std::exception & e) 
+	{
 		stream << e.what() << std::endl;
 	}
 	stream << "double: ";
-	try {
-		stream << converter.printDouble() << std::endl;
-	} catch (std::exception & e) {
+	try 
+	{
+		int		checker = static_cast<int>(converter.convertToFloat());
+		double	cpy		= converter.convertToFloat();
+
+		stream << converter.convertToDouble();
+		if (cpy - checker == 0)
+			stream << ".0" << std::endl;
+	} 
+	catch (std::exception & e) 
+	{
 		stream << e.what() << std::endl;
 	}
 	return (stream);

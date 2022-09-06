@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:28:21 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/27 18:22:46 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/05 17:33:11 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 class Base
 {
 	public:
-		Base(/* args */);
+		Base(void);
 		~Base();
 
 	private:

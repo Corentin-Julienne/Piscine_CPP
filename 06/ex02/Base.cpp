@@ -6,16 +6,12 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:28:20 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/27 18:22:50 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/05 17:35:29 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
 
-Base::Base(/* args */)
-{
-}
+Base::Base(void) {}
 
-Base::~Base()
-{
-}
+Base::~Base() {}
