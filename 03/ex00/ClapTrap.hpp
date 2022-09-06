@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:50:24 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/07/13 16:54:45 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/09/06 14:29:47 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ class ClapTrap
 
 	private:
 		std::string		_name;
-		unsigned int 	_hit_pts;
-		unsigned int	_energy_pts;
-		unsigned int  	_attack_dmgs;
+		unsigned int 	_hitPts;
+		unsigned int	_energyPts;
+		unsigned int  	_attackDmgs;
 };
 
 #endif
