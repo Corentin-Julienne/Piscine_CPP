@@ -35,8 +35,8 @@ class Form
 		// getters
 		std::string const	getName(void) const;
 		bool				getSigned(void) const;
-		unsigned int const	getGradeSign(void) const;
-		unsigned int const	getGradeExec(void) const;
+		unsigned int		getGradeSign(void) const;
+		unsigned int		getGradeExec(void) const;
 		std::string const	getTarget(void) const;
 		// members functions
 		void				beSigned(const Bureaucrat& bureaucrat);
@@ -71,10 +71,10 @@ class Form
 	private:
 	
 		std::string const 	_name;
+		std::string	const	_target;
 		bool				_signed;
 		unsigned int const	_gradeSign;
 		unsigned int const	_gradeExec;
-		std::string	const	_target;
 };
 
 std::ostream&	operator<<(std::ostream& stream, const Form& form);

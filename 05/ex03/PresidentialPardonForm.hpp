@@ -25,7 +25,6 @@ class PresidentialPardonForm : public Form
 		PresidentialPardonForm(const PresidentialPardonForm& original);
 
 		PresidentialPardonForm&	operator=(const PresidentialPardonForm& original);
-		// getters and setters
 		
 		void	action(void) const;
 };

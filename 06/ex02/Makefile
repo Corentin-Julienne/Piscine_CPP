@@ -18,10 +18,13 @@ SRCS = ./main.cpp \
 	   ./C.cpp \
 	   ./Base.cpp
 
-OBJS = $(SRCS:.cpp=.o)
-
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98
+
+.cpp.o: 
+	$(CC) $(CFLAGS) -c $<
+
+OBJS = $(SRCS:.cpp=.o)
 
 RM = rm -f
 

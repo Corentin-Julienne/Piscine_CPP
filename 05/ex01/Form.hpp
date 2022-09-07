@@ -35,8 +35,8 @@ class Form
 		// getters
 		std::string const	getName(void) const;
 		bool				getSigned(void) const;
-		unsigned int const	getGradeSign(void) const;
-		unsigned int const	getGradeExec(void) const;
+		unsigned int			getGradeSign(void) const;
+		unsigned int 		getGradeExec(void) const;
 		// members functions
 		void	beSigned(const Bureaucrat& bureaucrat);
 		//  exceptions class

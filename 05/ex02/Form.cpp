@@ -14,7 +14,7 @@
 
 // basic constructor
 
-Form::Form(void) : _name("autodestruction"), _gradeSign(32), _gradeExec(13)
+Form::Form(void) : _name("autodestruction"), _target("every human within a 100m radius"), _gradeSign(32), _gradeExec(13)
 {
 	this->_signed = false;
 }
@@ -22,7 +22,7 @@ Form::Form(void) : _name("autodestruction"), _gradeSign(32), _gradeExec(13)
 // constructor with params
 
 Form::Form(std::string const name, std::string const target, unsigned int const gradeSign, unsigned int const gradeExec)
-: _name(name), _gradeSign(gradeSign), _gradeExec(gradeExec)
+: _name(name), _target(target), _gradeSign(gradeSign), _gradeExec(gradeExec)
 {
 	if (gradeSign <= 0 || gradeExec <= 0)
 		throw Form::GradeTooHighException();
@@ -37,7 +37,7 @@ Form::~Form() {}
 
 // copy constructor
 
-Form::Form(const Form& original) : _name(original._name), _gradeSign(original._gradeSign),
+Form::Form(const Form& original) : _name(original._name), _target(original._target), _gradeSign(original._gradeSign),
 _gradeExec(original._gradeExec)
 {
 	this->_signed = original._signed;
@@ -59,12 +59,12 @@ std::string const	Form::getName(void) const
 	return this->_name;
 }
 
-unsigned int const	Form::getGradeSign(void) const
+unsigned int	Form::getGradeSign(void) const
 {
 	return this->_gradeSign;
 }
 
-unsigned int const	Form::getGradeExec(void) const
+unsigned int	Form::getGradeExec(void) const
 {
 	return this->_gradeExec;
 }

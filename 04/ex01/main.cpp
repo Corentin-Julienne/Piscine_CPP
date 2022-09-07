@@ -55,7 +55,7 @@ int main(void)
 			std::cout << "-----------------------------------------------" << std::endl;
 		} // should print nothing
 	}
-	// know we change an idea, for the sake of the exercize
+	// know we change an idea, for the sake of the exercise
 	cpy.setIdeaInBrain(0);
 	for (int i = 0; i < 100; i++) // know, ideas should be the same
 	{

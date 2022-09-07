@@ -18,16 +18,21 @@ SRCS = ./main.cpp \
 	   ./Dog.cpp \
 	   ./Brain.cpp
 
-OBJS = $(SRCS:.cpp=.o)
-
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98
+
+.cpp.o: 
+	$(CC) $(CFLAGS) -c $<
+
+OBJS = $(SRCS:.cpp=.o)
 
 RM = rm -f
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo $(NAME) successfully made !!!
+
+.c.o: $(CC) $(CFLAGS) -c $<
 
 all: 
 	$(NAME)

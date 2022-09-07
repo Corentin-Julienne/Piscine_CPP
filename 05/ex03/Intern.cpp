@@ -20,17 +20,6 @@ Intern::Intern(void) {}
 
 Intern::~Intern() {}
 
-//copy constructor
-
-Intern::Intern(const Intern& original) {}
-
-// overloading operator =
-
-Intern&      Intern::operator=(const Intern& original)
-{
-    return *this;
-}
-
 // methods
 
 Form*       Intern::makeForm(std::string formName, std::string formTarget)
@@ -44,7 +33,6 @@ Form*       Intern::makeForm(std::string formName, std::string formTarget)
 		"presidential pardon",
 		"shrubbery creation"
 	};
-
     while (i < 3 && formName.compare(options[i]) != 0)
         i++;
     switch (i)
