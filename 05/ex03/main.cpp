@@ -19,88 +19,63 @@
 
 int	main(void)
 {
-	Bureaucrat		*stalin = NULL;
-	Bureaucrat		*trotsky = NULL;
 
-	// initializing Comrade Stalin
+	// TESTS OF EX03
+
+	std::cout << "-------------------EX03 : TESTS------------------------" << std::endl << std::endl;
+
+	Intern		Gulag_Prisoner;
+
+	Form		*paper1 = NULL;
+	Form		*paper2 = NULL;
+	Form		*paper3 = NULL;
+	Form		*paper4 = NULL;
+
+	// try to create forms (those should work)
+
 	try
 	{
-		stalin = new Bureaucrat("Comrade Stalin", 1);
-		std::cout << *stalin << std::endl;
+		paper1 = Gulag_Prisoner.makeForm("presidential pardon", "a lucky dude");
+		std::cout << *paper1 << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	// initializing Comrade Trotsky
 	try
 	{
-		trotsky = new Bureaucrat("Comrade Trotsky", 150);
-		std::cout << *trotsky << std::endl;
+		paper2 = Gulag_Prisoner.makeForm("shrubbery creation", "an ASCII botanist");
+		std::cout << *paper2 << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-
-	PresidentialPardonForm	*pardon = NULL;
-	RobotomyRequestForm		*robot = NULL;
-	ShrubberyCreationForm	*shrubbery = NULL;
-
-	// initialize PresidentialPardonForm pardon
 	try
 	{
-		pardon = new PresidentialPardonForm("Comrade Putin");
-		std::cout << *pardon << std::endl;
+		paper3 = Gulag_Prisoner.makeForm("robotomy request", "a communist robot");
+		std::cout << *paper3 << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	
-	// initialize RobotomyRequestForm robot
+	// try to create an invalid form (should trigger exception)
 	try
 	{
-		robot = new RobotomyRequestForm("Comrade Molotov");
-		std::cout << *robot << std::endl;
+		paper4 = Gulag_Prisoner.makeForm("Excommunicado", "John Wick");
+		std::cout << *paper4 << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	
-	// initialize ShrubberyCreationForm shrubbery
-	try
-	{
-		shrubbery = new ShrubberyCreationForm("red_shrubbery");
-		std::cout << *shrubbery << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-
-	// CORE OF THE TEST PHASE
-	
-	stalin->executeForm(*pardon); 	  // should fail
-	stalin->signForm(*pardon); 		  // should be a success
- 	stalin->executeForm(*pardon); 	  // should be a success
-
-	stalin->signForm(*robot); 		  // should be a sucess
-	stalin->signForm(*shrubbery); 	  // should be a success
-
-	trotsky->executeForm(*shrubbery); // should fail
-	stalin->executeForm(*robot);      // should be a success
-	stalin->executeForm(*shrubbery);  // should be a success
 	
 	// leaks killing
 	
-	delete stalin;
-	delete trotsky;
-
-	delete pardon;
-	delete robot;
-	delete shrubbery;
-	//system("leaks MultiForms"); // debug only
+	delete paper1;
+	delete paper2;
+	delete paper3;
+	//system("leaks Interns"); // debug only
 	return (0);
 }

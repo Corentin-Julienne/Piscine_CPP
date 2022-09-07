@@ -26,19 +26,16 @@ RobotomyRequestForm::~RobotomyRequestForm() {}
 
 // copy constructor
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& original)
-{
-	
-}
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& original) : Form(original) {}
 
 // overloading operator =
 
 RobotomyRequestForm&	RobotomyRequestForm::operator=(const RobotomyRequestForm& original)
 {
-	
+	if (this != &original)
+		this->Form::operator=(original);
+	return *this;
 }
-
-// getters and setters
 
 // class methods
 

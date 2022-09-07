@@ -13,18 +13,35 @@
 #ifndef INTERN_CLASS_HPP
 # define INTERN_CLASS_HPP
 
+#include "Form.hpp"
+
+#include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+
+#include <iostream>
+#include <string>
+#include <exception>
+
 class Intern
 {
 
 	public:
 
 		Intern(void);
-		Intern();
 		~Intern();
 		Intern(const Intern& original);
 		
 		Intern&		operator=(const Intern& original);
-		
+
+		Form*		makeForm(std::string formName, std::string formTarget);
+
+		class	InvalidNameException : public std::exception
+		{
+			public:
+			
+				const char * what() const throw();
+		};
 };
 
 #endif

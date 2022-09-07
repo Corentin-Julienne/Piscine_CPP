@@ -22,16 +22,15 @@ PresidentialPardonForm::~PresidentialPardonForm(void) {}
 
 // constructor by copy
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& original)
-{
-	
-}
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& original) : Form(original) {}
 
 // overloading operator =
 
 PresidentialPardonForm&	PresidentialPardonForm::operator=(const PresidentialPardonForm& original)
 {
-	
+	if (this != &original)
+		this->Form::operator=(original);
+	return *this;
 }
 
 // member functions

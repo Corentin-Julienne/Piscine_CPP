@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ShrubberyCreationForm.hpp"
 
+#include "ShrubberyCreationForm.hpp"
 
 // basic constructor
 
@@ -27,16 +27,15 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void) {}
 
 // copy constructor
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& original)
-{
-	
-}
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& original) : Form(original) {}
 
 // overloading operator =
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& original)
 {
-	
+	if (this != &original)
+		this->Form::operator=(original);
+	return *this;
 }
 
 // getters and setters

@@ -12,12 +12,62 @@
 
 #include "Intern.hpp"
 
-// basic constructor
+// constructor
 
-Intern::Intern(void)
+Intern::Intern(void) {}
+
+// destructor
+
+Intern::~Intern() {}
+
+//copy constructor
+
+Intern::Intern(const Intern& original) {}
+
+// overloading operator =
+
+Intern&      Intern::operator=(const Intern& original)
 {
+    return *this;
 }
 
-Intern::~Intern()
+// methods
+
+Form*       Intern::makeForm(std::string formName, std::string formTarget)
 {
+    int     i = 0;
+    Form*   res = NULL;
+    
+    std::string	options[3] =
+	{
+		"robotomy request",
+		"presidential pardon",
+		"shrubbery creation"
+	};
+
+    while (i < 3 && formName.compare(options[i]) != 0)
+        i++;
+    switch (i)
+    {
+        case 0:
+            res = new RobotomyRequestForm(formTarget);
+            break;
+        case 1:
+            res = new PresidentialPardonForm(formTarget);
+            break;
+        case 2:
+            res = new ShrubberyCreationForm(formTarget);
+            break;
+        default:
+            throw Intern::InvalidNameException();
+    }
+    std::cout << "intern creates " << formName << std::endl;
+    return (res);
+}
+
+// exception handling
+
+const char * Intern::InvalidNameException::what() const throw()
+{
+    return ("invalid form creation request");
 }

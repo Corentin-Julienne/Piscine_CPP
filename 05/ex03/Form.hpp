@@ -27,7 +27,7 @@ class Form
 	
 		Form(void);
 		Form(std::string const name, std::string const target, unsigned int const gradeSign, unsigned int const gradeExec);
-		~Form();
+		virtual ~Form();
 		Form(const Form& original);
 
 		Form&	operator=(const Form& original);
