@@ -31,6 +31,12 @@ class Span
 
 		Span&		operator=(const Span& original);
 
+		// getter
+
+		int 			getByIndex(size_t index) const;
+
+		// methods
+
 		void			addNumber(int num);
 		void			addSeveralNumbers(const std::vector<int>::iterator &begin,
 						 const std::vector<int>::iterator &end);
@@ -59,6 +65,13 @@ class Span
 			public:
 
 				const char * what() const throw();	
+		};
+
+		class InvalidIndexException : public std::exception
+		{
+			public :
+
+				const char* what() const throw();
 		};
 	
 	private:

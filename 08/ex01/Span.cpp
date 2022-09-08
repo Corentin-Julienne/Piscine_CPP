@@ -30,6 +30,13 @@ Span&	Span::operator=(const Span& original)
 	return *this;
 }
 
+int				Span::getByIndex(size_t index) const
+{
+	if (index >= this->_vect.size())
+		throw InvalidIndexException();
+	return (this->_vect[index]);
+}
+
 unsigned int	Span::shortestSpan(void)
 {
 	std::vector<int>	tmp;
@@ -58,7 +65,7 @@ unsigned int	Span::longestSpan(void)
 
 void	Span::addNumber(int num)
 {
-	if (this->_vect.size() <= 7)
+	if (this->_vect.size() <= this->_N)
 		this->_vect.push_back(num);
 	else
 		throw ContainerIsFullException();
@@ -96,4 +103,9 @@ const char * Span::ContainerCannotAddSoManyIntegersException::what(void) const t
 const char * Span::ContainerFulfillmentNotSufficientException::what(void) const throw()
 {
 	return ("Container is empty or have only one integer stored");
+}
+
+const char * Span::InvalidIndexException::what(void) const throw() 
+{
+	return ("Error: invalid index");	
 }

@@ -23,7 +23,6 @@
 int main(void)
 {
 	int					random_num;
-	int					random_index;
 	int					choose_a_num;
 	int					mirror[10];
 	std::vector<int>	vec_test;
