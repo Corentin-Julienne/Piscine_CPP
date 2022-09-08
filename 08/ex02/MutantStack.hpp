@@ -15,22 +15,45 @@
 
 #include <stack>
 #include <deque>
+#include <iterator>
 
-template <typename T>
-class MutantStack : public std::stack<T>
+template <typename T, typename Container = std::deque<T> >
+class MutantStack : public std::stack<T, Container>
 {
 	public:
 	
-		MutantStack(void) : std::stack<T>() {}
+		MutantStack(void) : std::stack<T, Container>() {}
 		virtual ~MutantStack();
-		
+		MutantStack(const MutantStack<T, Container>& original) : MutantStack<T, Container>::stack(original) {}
 
+		MutantStack<T, Container>& operator=(const MutantStack<T, Container>& rhs)
+		{
+			if (this != &rhs)
+				this->MutantStack<T, Container>::stack::operator=(rhs);
+			return *this;
+		}
+		
 		// add some iterators
 
-		typedef	typename std::stack<T>::container_type::iterator iterator;
+		typedef	typename Container::iterator 			iterator;
+		typedef typename Container::reverse_iterator	reverse_iterator;
 
-		iterator begin(void) {return std::stack<T>::c);}
-		iterator end(void) {return std::stack<T>::c);}
+		iterator 			begin() 
+		{
+			return this->c. ;
+		}
+		iterator 			end()
+		{
+			return this->c.end();
+		}
+		reverse_iterator	rbegin()
+		{
+			return this->c.rbegin();
+		}
+		reverse_iterator	rend()
+		{
+			return this->c.rend();
+		}
 };
 
 #endif

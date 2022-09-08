@@ -116,7 +116,7 @@ int main(void)
 
 	for (int i = 0; i < 10500; i++)
 		huge_vect.push_back(rand() % 100);
-	std::cout << "check if add several numbers at one trigger an exception" << std::endl;
+	std::cout << "check if add several numbers at once trigger an exception" << std::endl;
 	try
 	{
 		huge_span.addSeveralNumbers(huge_vect.begin(), huge_vect.end());
@@ -141,8 +141,75 @@ int main(void)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	std::cout << "sorting longuest and shortest span for the huge Spa" << std::endl;
-	std::cout << "Longest span is " << huge_span.longestSpan() << std::endl;
-	std::cout << "Shortest span is " << huge_span.shortestSpan() << std::endl;
+	std::cout << "--------------------------------------------------------------------------" << std::endl;
+	std::cout << "Testing longest and shortest Span" << std::endl;
+
+	Span	spa(5);
+
+	std::cout << "Trying longest span without values in it" << std::endl;
+	try
+	{
+		spa.longestSpan();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	std::cout << "Trying longest span without values in it" << std::endl;
+	try
+	{
+		spa.shortestSpan();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	// then add some values
+	try
+	{
+		spa.addNumber(rand() % 100);
+		std::cout << spa.getByIndex(0) << std::endl;
+
+		spa.addNumber(rand() % 100);
+		std::cout << spa.getByIndex(1) << std::endl;
+
+		spa.addNumber(rand() % 100);
+		std::cout << spa.getByIndex(2) << std::endl;
+
+		spa.addNumber(rand() % 100);
+		std::cout << spa.getByIndex(3) << std::endl;
+
+		spa.addNumber(rand() % 100);
+		std::cout << spa.getByIndex(4) << std::endl;
+
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	
+	std::cout << "--------------------------------------------------------------------------" << std::endl;
+	// the try with span with values in it
+	std::cout << "try longuest span with values in span" << std::endl;
+	try
+	{
+		std::cout << "longest span = " << spa.longestSpan() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	std::cout << "try shortest span with values in span" << std::endl;
+	try
+	{
+		std::cout << "shortest span = " << spa.shortestSpan() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	
+
+	//system("leaks Span"); // debug
 	return (0);
 }
