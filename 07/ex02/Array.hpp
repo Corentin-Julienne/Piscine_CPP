@@ -60,7 +60,7 @@ class Array
 				return this->_arrType[index];
 		}
 		// getter (size function)
-		const unsigned int	size(void) const
+		unsigned int	size(void) const
 		{
 			return (this->_arrSize);
 		}
