@@ -268,12 +268,12 @@ std::ostream&	operator<<(std::ostream& stream, Converter& converter)
 	stream << "float: ";
 	try
 	{
-		int		checker = static_cast<int>(converter.convertToFloat());
 		float	cpy		= converter.convertToFloat();
+		double	intPart;
 		
-		stream << converter.convertToFloat();
-		if (cpy - checker == 0)
-			stream << ".0";
+		if (modf(cpy, &intPart) == 0)
+			stream.precision(1);
+		stream << std::fixed << converter.convertToFloat();
 		stream << "f" << std::endl;
 	}
 	catch (std::exception & e) 
@@ -283,12 +283,12 @@ std::ostream&	operator<<(std::ostream& stream, Converter& converter)
 	stream << "double: ";
 	try 
 	{
-		int		checker = static_cast<int>(converter.convertToFloat());
 		double	cpy		= converter.convertToFloat();
+		double	intPart;
 
-		stream << converter.convertToDouble();
-		if (cpy - checker == 0)
-			stream << ".0" << std::endl;
+		if (modf(cpy, &intPart) == 0)
+			stream.precision(1);
+		stream << std::fixed << converter.convertToDouble();
 	} 
 	catch (std::exception & e) 
 	{

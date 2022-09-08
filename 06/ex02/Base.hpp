@@ -17,10 +17,7 @@ class Base
 {
 	public:
 		Base(void);
-		~Base();
-
-	private:
-		/* data */
+		virtual ~Base();
 };
 
 #endif

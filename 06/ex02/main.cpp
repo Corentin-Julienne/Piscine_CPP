@@ -50,21 +50,75 @@ Base * generate(void)
 
 void identify(Base* p)
 {
-	A	*res_a;
-	
-	p = dynamic_cast<A*>(res_a);
-	if (p == NULL)
-		std::cout << "not a type A" << std::endl;
+	if (dynamic_cast<A*>(p))
+		std::cout << "Is type A" << std::endl;
+	else if (dynamic_cast<B*>(p))
+		std::cout << "Is type B" << std::endl;
+	else if (dynamic_cast<C*>(p))
+		std::cout << "Is type C" << std::endl;
+	else
+		std::cerr << "Error" << std::endl;
 }
 
-/*void identify(Base& p)
+void identify(Base& p)
 {
-	
-}*/
+	try
+	{
+		A	*ptn_1 = NULL;
+		
+		*ptn_1 = dynamic_cast<A&>(p);
+		std::cout << "Is type A" << std::endl;
+		return ;
+	}
+	catch(const std::exception& e) {}
+	try
+	{
+		B	*ptn_2 = NULL;
+		
+		*ptn_2 = dynamic_cast<B&>(p);
+		std::cout << "Is type B" << std::endl;
+		return ;
+	}
+	catch(const std::exception& e) {}
+	try
+	{
+		C	*ptn_3 = NULL;
+
+		*ptn_3 = dynamic_cast<C&>(p);
+		std::cout << "Is type C" << std::endl;
+		return ;
+	}
+	catch(const std::exception& e) {}
+	std::cerr << "Error" << std::endl;
+}
 
 // main file [tests]
 
 int main(void)
 {
+	std::cout << "Tests with pointers" << std::endl;
+
+	Base *ptn_example_1 = generate();
+	Base *ptn_example_2 = generate();
+
+	identify(ptn_example_1);
+	identify(ptn_example_2);
+
+	std::cout << "Tests with references" << std::endl;
+
+	Base *ptn_example_3 = generate();
+	Base *ptn_example_4 = generate();
+
+	identify(*ptn_example_3);
+	identify(*ptn_example_4);
+
+	// delete stuff
+
+	delete	ptn_example_1;
+	delete	ptn_example_2;
+	delete	ptn_example_3;
+	delete	ptn_example_4;
+
+	//system("leaks Identifier"); // debug only
 	return (0);
 }

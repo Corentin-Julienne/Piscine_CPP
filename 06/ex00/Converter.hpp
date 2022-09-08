@@ -19,6 +19,9 @@
 #include <cmath>
 #include <cctype>
 #include <exception>
+#include <iomanip>
+#include <math.h>
+
 
 #include <stdlib.h>
 

@@ -37,5 +37,6 @@ int main(int argc, char **argv)
 	{
 		std::cerr << e.what() << std::endl;
 	}
+	//system("leaks convert"); // debug
 	return (0);
 }
