@@ -37,30 +37,42 @@ int				Span::getByIndex(size_t index) const
 	return (this->_vect[index]);
 }
 
-unsigned int	Span::shortestSpan(void)
+unsigned long	Span::shortestSpan(void)
 {
-	std::vector<int>	tmp;
-	std::vector<int>	result;
-	
 	if (this->isSpanPossible() == false)
 		throw ContainerFulfillmentNotSufficientException();
+	
+	long	minispan = LONG_MAX;
+	long	current_diff;
+	
+	std::vector<int>	tmp;
 	tmp = this->_vect;
 	std::sort(tmp.begin(), tmp.end());
-	std::adjacent_difference(tmp.begin(), tmp.end(), std::back_inserter(result));
-	return (*std::min_element(result.begin(), result.end()));
+
+	
+	std::vector<int>::iterator	current = tmp.begin();
+	for (std::vector<int>::iterator	next = tmp.begin() + 1; next != tmp.end(); next++)
+	{
+		current_diff = std::abs(static_cast<long>(*current) - static_cast<long>(*next));
+		if (current_diff < minispan)
+			minispan = current_diff;
+		current = next;
+	}
+	return (static_cast<unsigned long>(minispan));
 }
 
-unsigned int	Span::longestSpan(void)
+unsigned long	Span::longestSpan(void)
 {
 	std::vector<int>	tmp;
-	std::vector<int>	result;
 	
 	if (this->isSpanPossible() == false)
 		throw ContainerFulfillmentNotSufficientException();
+	
 	tmp = this->_vect;
-	std::sort(tmp.begin(), tmp.end());
-	std::adjacent_difference(tmp.begin(), tmp.end(), std::back_inserter(result));
-	return (*std::max_element(result.begin(), result.end()));
+	long		min = static_cast<long>(*std::min_element(tmp.begin(), tmp.end()));
+	long		max = static_cast<long>(*std::max_element(tmp.begin(), tmp.end()));
+		
+	return (static_cast<unsigned long>(max - min));
 }
 
 void	Span::addNumber(int num)

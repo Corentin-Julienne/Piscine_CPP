@@ -19,6 +19,7 @@
 #include <iostream>
 #include <vector>
 #include <numeric>
+#include <cmath>
 
 class Span
 {
@@ -40,8 +41,8 @@ class Span
 		void			addNumber(int num);
 		void			addSeveralNumbers(const std::vector<int>::iterator &begin,
 						 const std::vector<int>::iterator &end);
-		unsigned int	shortestSpan(void);
-		unsigned int	longestSpan(void);
+		unsigned long	shortestSpan(void);
+		unsigned long	longestSpan(void);
 
 		// utils
 

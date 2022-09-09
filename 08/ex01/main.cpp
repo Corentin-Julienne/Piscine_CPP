@@ -176,10 +176,10 @@ int main(void)
 		spa.addNumber(rand() % 100);
 		std::cout << spa.getByIndex(2) << std::endl;
 
-		spa.addNumber(rand() % 100);
+		spa.addNumber(rand() % 100 - 100);
 		std::cout << spa.getByIndex(3) << std::endl;
 
-		spa.addNumber(rand() % 100);
+		spa.addNumber(rand() % 100 - 100);
 		std::cout << spa.getByIndex(4) << std::endl;
 
 	}
@@ -209,7 +209,6 @@ int main(void)
 		std::cerr << e.what() << std::endl;
 	}
 	
-
 	//system("leaks Span"); // debug
 	return (0);
 }
