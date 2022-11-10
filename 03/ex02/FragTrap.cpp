@@ -41,9 +41,8 @@ FragTrap::~FragTrap()
 
 // constructor by copy
 
-FragTrap::FragTrap(const FragTrap& original)
+FragTrap::FragTrap(const FragTrap& original) : ClapTrap(original._name)
 {
-	this->_name = original._name;
 	this->_hitPts = original._hitPts;
 	this->_energyPts = original._energyPts;
 	this->_attackDmgs = original._attackDmgs;

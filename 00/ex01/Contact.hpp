@@ -23,16 +23,16 @@ class Contact
 	Contact();
 	~Contact();
 	// getters and setters
-	std::string		getContactCategory(int index);
-	std::string		getItem(int index);
-	void			setItem(std::string value, int index);
+	std::string		get_contact_category(int index);
+	std::string		get_item(int index);
+	void			set_item(std::string value, int index);
 	// utils
-	void			displayPrompt(void);
+	void			display_prompt(void);
 	
 	private:
 
-	std::string		_contactCategory[5];
-	std::string		_contactInfo[5];
+	std::string		_contact_category[5];
+	std::string		_contact_info[5];
 };
 
 #endif

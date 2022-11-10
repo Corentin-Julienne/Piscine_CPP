@@ -26,19 +26,19 @@ class PhoneBook
 	PhoneBook();
 	~PhoneBook();
 	// getters and setters
-	void		setEntryNum(int i);
-	void		setCurrentEntry(int i);
+	void		set_entry_num(int i);
+	void		set_current_entry(int i);
 	// utils
-	void		addCtctToDb(void);
-	void		askForIndex(void);
-	void		displayColumns(void);
-	void		displayCtct(int index);
-	void		displayPhonebook(void);
+	void		add_ctct_to_db(void);
+	void		ask_for_index(void);
+	void		display_columns(void);
+	void		display_ctct(int index);
+	void		display_phonebook(void);
 
 	private:
 
-	int 		_entryNum;
-	int			_currentEntry;
+	int 		_entry_num;
+	int			_current_entry;
 	Contact		_contacts[8];
 };
 

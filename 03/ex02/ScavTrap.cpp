@@ -41,9 +41,8 @@ ScavTrap::~ScavTrap()
 
 // constructor by copy
 
-ScavTrap::ScavTrap(const ScavTrap& original)
+ScavTrap::ScavTrap(const ScavTrap& original) : ClapTrap(original._name)
 {
-	this->_name = original._name;
 	this->_hitPts = original._hitPts;
 	this->_energyPts = original._energyPts;
 	this->_attackDmgs = original._attackDmgs;

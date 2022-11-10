@@ -32,9 +32,9 @@ int	main(void)
 			return (0);
 		}
 		else if (!user_input.compare("ADD"))
-			phonebook.addCtctToDb();
+			phonebook.add_ctct_to_db();
 		else if (!user_input.compare("SEARCH"))
-			phonebook.displayPhonebook();
+			phonebook.display_phonebook();
 		else
 			std::cout << "Please enter a valid command !" <<std::endl;
 	}
