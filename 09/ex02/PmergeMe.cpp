@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:24:18 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/21 17:59:21 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:55:29 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ PmergeMe::PmergeMe(char **argv)
 			if (!this->_checkIntValidity(token))
 				throw std::runtime_error("Error");
 			this->vector_ints.push_back(atoi(token.c_str())); // if int valid
+			this->list_ints.push_back(atoi(token.c_str()));
 		}
 	}
 	// debug
@@ -53,9 +54,11 @@ PmergeMe::PmergeMe(char **argv)
 	for (std::size_t i = 0; i < this->vector_ints.size(); i++)
 		std::cout << "num : " << i << " = |" << this->vector_ints[i] << "|"  << std::endl;	
 	std::cout << "----------------------------------" << std::endl;
-	// end of debug	
+	// end of debug
+	
+		
 	FJMI		with_vect(this->vector_ints);
-	FJMI		with_deque(this->deque_ints);		
+	FJMI		with_list(this->list_ints);		
 }
 
 PmergeMe::PmergeMe(const PmergeMe& other)
@@ -89,4 +92,33 @@ bool	PmergeMe::_checkIntValidity(std::string input)
 	if (limit_checker > std::numeric_limits<int>::max())
 		return (false);
 	return (true);
+}
+
+void	PmergeMe::_Timestamp(void)
+{
+	struct timeval		timestamp;
+
+	gettimeofday(&timestamp, NULL);
+	this->clock = (timestamp.tv_sec * 1000) + (timestamp.tv_usec / 1000);
+}
+
+void	PmergeMe::_EndOfTask(void)
+{
+	struct timeval		timestamp;
+	long long int		timer;
+
+	gettimeofday(&timestamp, NULL);
+	timer = (timestamp.tv_sec * 1000) + (timestamp.tv_usec / 1000);
+	this->chrono = this->clock - timer; 
+}
+
+void	PmergeMe::_displayTime(const std::string container,int size)
+{
+	struct timeval		timestamp;
+	long long int		timer;
+
+	gettimeofday(&timestamp, NULL);
+	timer = (timestamp.tv_sec * 1000) + (timestamp.tv_usec / 1000);
+	std::cout << "Time to process a range of " << size << " elements with std::" << container << " : " 
+	<< (this->clock - timer) << std::endl;
 }
