@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:24:18 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/17 11:58:45 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:59:21 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 
 PmergeMe::PmergeMe(void) {} // private, don't use it
 
+/* Constructor to use. Will convert arguments int oa string (with ' ' between args) */
 PmergeMe::PmergeMe(char **argv)
 {
 	std::string			input;
 	std::string			token;
 	
-	for (std::size_t i = 0; argv && argv[i]; i++)
+	for (std::size_t i = 1; argv && argv[i]; i++)
 	{
 		input += " ";
 		input += argv[i];
@@ -44,19 +45,18 @@ PmergeMe::PmergeMe(char **argv)
 		{
 			if (!this->_checkIntValidity(token))
 				throw std::runtime_error("Error");
-			this->unsorted_ints.push_back(atoi(token.c_str())); // if int valid
+			this->vector_ints.push_back(atoi(token.c_str())); // if int valid
 		}
 	}
 	// debug
 	std::cout << "----------------------------------" << std::endl;
-	for (std::size_t i = 0; i < this->unsorted_ints.size(); i++)
-		std::cout << "num : " << i << " = |" << this->unsorted_ints[i] << "|"  << std::endl;	
+	for (std::size_t i = 0; i < this->vector_ints.size(); i++)
+		std::cout << "num : " << i << " = |" << this->vector_ints[i] << "|"  << std::endl;	
 	std::cout << "----------------------------------" << std::endl;
 	// end of debug	
-	
-	FJMI		results(this->unsorted_ints);
+	FJMI		with_vect(this->vector_ints);
+	FJMI		with_deque(this->deque_ints);		
 }
-
 
 PmergeMe::PmergeMe(const PmergeMe& other)
 {

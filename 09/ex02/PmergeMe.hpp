@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:24:20 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/17 11:57:10 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:57:59 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <vector>
+#include <deque>
 #include <sstream>
 #include <algorithm>
 
@@ -38,7 +39,8 @@ class PmergeMe
 
 		// debug 
 		
-		std::vector<int>					unsorted_ints;
+		std::vector<int>					vector_ints;
+		std::deque<int>						deque_ints;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:31:32 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/17 17:33:43 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:34:09 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,50 @@
 
 FJMI::FJMI(void) {}
 
-FJMI::FJMI(std::vector<int> unsorted_ints) : _unsorted_ints(unsorted_ints), _last_val(-1)
+FJMI::FJMI(std::list<int> unsorted_ints) : _unsorted_list(unsorted_ints) , _last_val(-1)
 {
 	/* phase 1 */
-	if (_unsorted_ints.size() % 2 != 0)
+	if (_unsorted_list.size() & 2 != 0)
 	{
-		_last_val = _unsorted_ints.back();
-		_unsorted_ints.pop_back();
+		_last_val = _unsorted_list.back();
+		_unsorted_list.pop_back();
 	}
 	/* phase 2 */
-	for (std::size_t i = 0; i < _unsorted_ints.size(); i += 2)
-		_pairs.push_back(std::pair<int, int>(_unsorted_ints[i], _unsorted_ints[i + 1]));
+	for (std::size_t i = 0; i < _unsorted_list.size(); i += 2)
+		_pairs_list.push_back(std::pair<int, int>(_unsorted_list.front(), _unsorted_list.front())); // list does not support indexes
+}
+
+FJMI::FJMI(std::vector<int> unsorted_ints) : _unsorted_vect(unsorted_ints), _last_val(-1)
+{
+	/* phase 1 */
+	if (_unsorted_vect.size() % 2 != 0)
+	{
+		_last_val = _unsorted_vect.back();
+		_unsorted_vect.pop_back();
+	}
+	/* phase 2 */
+	for (std::size_t i = 0; i < _unsorted_vect.size(); i += 2)
+		_pairs_vect.push_back(std::pair<int, int>(_unsorted_vect[i], _unsorted_vect[i + 1]));
 	/* phase 3 */
 	this->_sortEveryPair();
 	/* phase 4 */
-	this->_recursiveInsertionSort(_pairs, _pairs.size());
-	if (!this->_checkIfWellSorted(_pairs))
+	this->_recursiveInsertionSort(_pairs_vect, _pairs_vect.size());
+	if (!this->_checkIfWellSorted(_pairs_vect))
 		std::cerr << "problem with recursive insertion sort (phase 4)" << std::endl;
 	/* phase 5 and 6 */
-	for (std::size_t i = 0; i < _pairs.size(); i++)
+	for (std::size_t i = 0; i < _pairs_vect.size(); i++)
 	{
-		_pend.push_back(_pairs[i].first);
-		_output.push_back(_pairs[i].second);
+		_pend_vect.push_back(_pairs_vect[i].first);
+		_output_vect.push_back(_pairs_vect[i].second);
 	}
 	/* phase 7 */
-	for (std::size_t i = 0; i < _pend.size(); i++)
+	for (std::size_t i = 0; i < _pend_vect.size(); i++)
 		_jacob_seq.push_back(this->_getJacobsthalNum(i));
 	
 	/* phase 9 */
 	if (_last_val != -1)
 		; // implement phase 9
-	if (!this->_checkIfWellSorted(_output)) // debug after all algo
+	if (!this->_checkIfWellSorted(_output_vect)) // debug after all algo
 		std::cerr << "final output is not well sorted" << std::endl;
 }
 

@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:31:34 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/18 10:53:19 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:21:15 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <vector>
 #include <deque>
+#include <list>
 #include <algorithm>
 
 /* the class FJMI is used to sort a vector of positive integers with a Ford-Johnson Merge Insert 
@@ -32,7 +33,8 @@ class FJMI
 {
 	public:
 	
-		FJMI(std::vector<int> unsorted_int);
+		FJMI(std::vector<int> unsorted_ints);
+		FJMI(std::list<int> unsorted_ints);
 		~FJMI();
 		FJMI(const FJMI& other);
 		FJMI&	operator=(const FJMI& other);
@@ -51,12 +53,20 @@ class FJMI
 		/* Jacobsthal numbers */
 		int					_getJacobsthalNum(int index);		
 
+		
+		/* common data */
 		int									_last_val;
-		std::vector<int>					_unsorted_ints;
-		std::vector<std::pair<int, int> >	_pairs;
-		std::deque<int>						_output;
-		std::deque<int>						_pend;
+		/* algorithm using vectors */
+		std::vector<int>					_unsorted_vect;
+		std::vector<std::pair<int, int> >	_pairs_vect;
+		std::vector<int>					_output_vect;
+		std::vector<int>					_pend_vect;
 		std::vector<int>					_jacob_seq;
+		/* algorithm using lists */
+		std::list<int>						_unsorted_list;
+		std::list<std::pair<int, int> >		_pairs_list;
+		std::list<int>						_output_list;
+		std::list<int>						_pend_list;
 };
 
 #endif
