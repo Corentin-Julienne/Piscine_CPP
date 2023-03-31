@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 20:43:03 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/31 12:42:59 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/03/31 15:50:09 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,10 @@
 
 #include "BitcoinExchange.hpp"
 
-#define DB		1
-#define INPUT	2
+class BitcoinExchange;
 
 class Date
 {
-	
 	public:
 	
 		Date(std::string date_format);
@@ -37,6 +35,13 @@ class Date
 		const int&			getIntYears(void) const;
 		const int&			getIntMonths(void) const;
 		const int&			getIntDays(void) const;
+
+		bool	operator==(const Date& other) const;
+		bool	operator!=(const Date& other) const;
+		bool	operator<(const Date& other) const;
+		bool	operator>(const Date& other) const;
+		bool	operator<=(const Date& other) const;
+		bool	operator>=(const Date& other) const;
 
 	private:
 
@@ -57,12 +62,5 @@ class Date
 };
 
 std::ostream&	operator<<(std::ostream& os, const Date& date);
-
-bool	operator==(const Date& first, const Date& second);
-bool	operator!=(const Date& first, const Date& second);
-bool	operator<(const Date& first, const Date& second);
-bool	operator>(const Date& first, const Date& second);
-bool	operator<=(const Date& first, const Date& second);
-bool	operator>=(const Date& first, const Date& second);
 
 #endif

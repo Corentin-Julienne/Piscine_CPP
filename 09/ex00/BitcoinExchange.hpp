@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:08:02 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/31 12:30:08 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/03/31 15:54:46 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ class BitcoinExchange
 		std::map<Date, std::string>			_db_values;
 
 		/* debug */
-		bool			_isInsertable(const Date& date);
 };
 
 #endif

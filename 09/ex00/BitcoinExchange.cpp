@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:08:00 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/31 12:40:38 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:13:27 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,30 +32,15 @@ void	BitcoinExchange::_displayInputFile(void)
 	
 }
 
-/* check whther we can insert the Date into the map for database */
-bool	BitcoinExchange::_isInsertable(const Date& date)
-{
-	std::map<Date, std::string>::iterator	it = this->_db_values.begin();
-
-	while (it != this->_db_values.end())
-	{
-		if (it->first == date)
-			return (false);
-		it++;
-	}
-	return (true);
-}
-
 // CoplienForm
 
 BitcoinExchange::BitcoinExchange(void) {}
 
 BitcoinExchange::BitcoinExchange(char *file_path) 
-{
+{	
 	this->_openFiles(file_path);
 	this->_extractDatabase();
 	this->_displayDatabase();
-	exit(EXIT_FAILURE); // debug
 	this->_printContent();
 }
 
@@ -85,7 +70,7 @@ BitcoinExchange::~BitcoinExchange() {}
 
 // private helper functions
 
-void	BitcoinExchange::_extractDatabase(void) // OK (check Date constructor wich is not working well)
+void	BitcoinExchange::_extractDatabase(void) // OK
 {
 	std::size_t			pos;
 	std::size_t			iter = 0;
@@ -103,17 +88,13 @@ void	BitcoinExchange::_extractDatabase(void) // OK (check Date constructor wich 
 			val = token.substr(token.find_first_of(',') + 1);
 			try
 			{				
-				Date		next_date(key); // pb there
-
-				std::cout << next_date << std::endl;
-
-				if (this->_db_values.empty())
-					this->_db_values.insert(std::pair<Date, std::string>(next_date, val));
-				else if (this->_isInsertable(next_date) == true)
-					this->_db_values.insert(std::pair<Date, std::string>(next_date, val));
-				else
-					std::cout << "insertion problem" << std::endl;
-				std::cout << "size = " << this->_db_values.size() << std::endl;
+				Date		next_date(key);
+				
+				std::pair<std::map<Date, std::string>::iterator, bool> result;
+				
+				result = this->_db_values.insert(std::make_pair<Date, std::string>(next_date, val));
+				if (!result.second)
+					std::cout << "duplicated key !" << std::endl; // help debugging
 			}
 			catch(const std::exception& e)
 			{
