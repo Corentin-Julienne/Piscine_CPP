@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:08:02 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/21 15:19:25 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:30:08 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 #define TYPE_FLOAT		1
 #define TYPE_INT		2
 
+class Date;
+
 class BitcoinExchange
 {
 	public:
@@ -37,8 +39,8 @@ class BitcoinExchange
 		const std::string&	getInputDate(void) const;
 
 		// debug functions
-		void	displayDatabase(void);
-		void	displayInputFile(void);
+		void	_displayDatabase(void);
+		void	_displayInputFile(void);
 		
 	private:
 
@@ -65,6 +67,9 @@ class BitcoinExchange
 		std::string							_csv_str;
 		std::string							_input_str;
 		std::map<Date, std::string>			_db_values;
+
+		/* debug */
+		bool			_isInsertable(const Date& date);
 };
 
 #endif

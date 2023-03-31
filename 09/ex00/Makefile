@@ -6,14 +6,15 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 12:08:06 by cjulienn          #+#    #+#              #
-#    Updated: 2023/03/15 13:54:00 by cjulienn         ###   ########.fr        #
+#    Updated: 2023/03/31 10:20:21 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = btc
 
 SRCS = ./main.cpp \
-	   ./BitcoinExchange.cpp
+	   ./BitcoinExchange.cpp \
+	   ./Date.cpp
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98

@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:31:34 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/22 11:21:15 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:54:14 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,14 @@ class FJMI
 	public:
 	
 		FJMI(std::vector<int> unsorted_ints);
-		FJMI(std::list<int> unsorted_ints);
+		FJMI(std::deque<int> unsorted_ints);
 		~FJMI();
 		FJMI(const FJMI& other);
 		FJMI&	operator=(const FJMI& other);
+
+		/* getters */
+		const std::vector<int>&	getSortedVector(void) const;
+		const std::deque<int>&	getSortedDeque(void) const;
 	
 	private:
 	
@@ -46,12 +50,17 @@ class FJMI
 		bool				_checkIfWellSorted(std::vector<int> output, std::vector<int> gold_std);
 		bool				_checkIfWellSorted(std::vector<std::pair<int, int> > output);
 		void				_makeIntPairs(void);
-		void				_sortEveryPair(void);
 		void				_recursiveInsertionSort(std::vector<int>& array, int n);
-		void				_recursiveInsertionSort(std::vector<std::pair<int, int> >& pairs, int n);
 		void				_sortPairs(std::vector<std::pair<int, int> >& pairs, std::vector<int> array);
 		/* Jacobsthal numbers */
 		int					_getJacobsthalNum(int index);		
+
+		
+		void				_recursiveInsertionSort(std::vector<std::pair<int, int> >& pairs, int n);
+		
+		
+		void				_sortEveryPairByIndex(void);
+		void				_sortEveryPairByIterator(void);
 
 		
 		/* common data */
@@ -63,10 +72,10 @@ class FJMI
 		std::vector<int>					_pend_vect;
 		std::vector<int>					_jacob_seq;
 		/* algorithm using lists */
-		std::list<int>						_unsorted_list;
-		std::list<std::pair<int, int> >		_pairs_list;
-		std::list<int>						_output_list;
-		std::list<int>						_pend_list;
+		std::deque<int>						_unsorted_deque;
+		std::deque<std::pair<int, int> >	_pairs_deque;
+		std::deque<int>						_output_deque;
+		std::deque<int>						_pend_deque;
 };
 
 #endif

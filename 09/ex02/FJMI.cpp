@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:31:32 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/22 11:34:09 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:38:35 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,41 @@
 
 FJMI::FJMI(void) {}
 
-FJMI::FJMI(std::list<int> unsorted_ints) : _unsorted_list(unsorted_ints) , _last_val(-1)
+const std::vector<int>&	FJMI::getSortedVector(void) const { return this->_output_vect; }
+const std::deque<int>&	FJMI::getSortedDeque(void) const { return this->_output_deque; }
+
+FJMI::FJMI(std::deque<int> unsorted_ints) : _unsorted_deque(unsorted_ints) , _last_val(-1)
 {
 	/* phase 1 */
-	if (_unsorted_list.size() & 2 != 0)
+	if (_unsorted_deque.size() & 2 != 0)
 	{
-		_last_val = _unsorted_list.back();
-		_unsorted_list.pop_back();
+		_last_val = _unsorted_deque.back();
+		_unsorted_deque.pop_back();
 	}
 	/* phase 2 */
-	for (std::size_t i = 0; i < _unsorted_list.size(); i += 2)
-		_pairs_list.push_back(std::pair<int, int>(_unsorted_list.front(), _unsorted_list.front())); // list does not support indexes
+	for (std::size_t i = 0; i < _unsorted_deque.size(); i += 2)
+		_pairs_deque.push_back(std::pair<int, int>(_unsorted_deque[i], _unsorted_deque[i + 1]));
+	/* phase 3 */
+	this->_sortEveryPairByIndex();
+	
+	
+	
+	/* phase 4 */
+	
+	/* phase 5 and 6 */
+	for (std::size_t i = 0; i < _pairs_deque.size(); i++)
+	{
+		_pend_deque.push_back(_pairs_deque[i].first);
+		_output_deque.push_back(_pairs_deque[i].second);
+	}
+	/* phase 6 */
+
+	
+	/* phase 7 */
+	if (_last_val == (-1))
+	{
+		// handle outlier there
+	}
 }
 
 FJMI::FJMI(std::vector<int> unsorted_ints) : _unsorted_vect(unsorted_ints), _last_val(-1)
@@ -39,7 +63,7 @@ FJMI::FJMI(std::vector<int> unsorted_ints) : _unsorted_vect(unsorted_ints), _las
 	for (std::size_t i = 0; i < _unsorted_vect.size(); i += 2)
 		_pairs_vect.push_back(std::pair<int, int>(_unsorted_vect[i], _unsorted_vect[i + 1]));
 	/* phase 3 */
-	this->_sortEveryPair();
+	this->_sortEveryPairByIndex();
 	/* phase 4 */
 	this->_recursiveInsertionSort(_pairs_vect, _pairs_vect.size());
 	if (!this->_checkIfWellSorted(_pairs_vect))
@@ -111,18 +135,37 @@ void	FJMI::_recursiveInsertionSort(std::vector<int>& array, int n)
 	array[j + 1] = last;
 }
 
-/* inside every pair, sort the two ints in ascending order */
-void	FJMI::_sortEveryPair(void) // to test
+/* inside every pair, sort the two ints in ascending order, using iterators (useful with lists) */
+void	FJMI::_sortEveryPairByIterator(void)
+{
+	int											tmp;
+	std::list<std::pair<int, int> >::iterator	it_beg = this->_pairs_list.begin();	
+	std::list<std::pair<int, int> >::iterator	it_end = this->_pairs_list.end();
+	
+	while (it_beg != it_end)
+	{
+		if (it_beg->first > it_beg->second)
+		{
+			tmp = it_beg->first;
+			it_beg->first = it_beg->second;
+			it_beg->second = tmp;
+		}
+		it_beg++;
+	}	
+}
+
+/* inside every pair, sort the two ints in ascending order, using indexes (useful with vectors) */
+void	FJMI::_sortEveryPairByIndex(void) // to test
 {
 	int			tmp;
 	
-	for (std::size_t i = 0; i < _pairs.size(); i++)
+	for (std::size_t i = 0; i < _pairs_vect.size(); i++)
 	{
-		if (_pairs[i].first > _pairs[i].second)
+		if (_pairs_vect[i].first > _pairs_vect[i].second)
 		{
-			tmp = _pairs[i].first;
-			_pairs[i].first = _pairs[i].second;
-			_pairs[i].second = tmp;
+			tmp = _pairs_vect[i].first;
+			_pairs_vect[i].first = _pairs_vect[i].second;
+			_pairs_vect[i].second = tmp;
 		}
 	}
 }
@@ -138,7 +181,7 @@ FJMI&	FJMI::operator=(const FJMI& other)
 {
 	if (this != &other)
 	{
-
+		
 	}
 	return *this;
 }

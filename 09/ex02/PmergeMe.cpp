@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:24:18 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/22 17:55:29 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:34:01 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 PmergeMe::PmergeMe(void) {} // private, don't use it
 
 /* Constructor to use. Will convert arguments int oa string (with ' ' between args) */
-PmergeMe::PmergeMe(char **argv)
+PmergeMe::PmergeMe(char **argv) : chrono(-1), clock(-1)
 {
 	std::string			input;
 	std::string			token;
@@ -46,7 +46,7 @@ PmergeMe::PmergeMe(char **argv)
 			if (!this->_checkIntValidity(token))
 				throw std::runtime_error("Error");
 			this->vector_ints.push_back(atoi(token.c_str())); // if int valid
-			this->list_ints.push_back(atoi(token.c_str()));
+			this->deque_ints.push_back(atoi(token.c_str()));
 		}
 	}
 	// debug
@@ -56,21 +56,33 @@ PmergeMe::PmergeMe(char **argv)
 	std::cout << "----------------------------------" << std::endl;
 	// end of debug
 	
-		
+	this->_Timestamp();	
 	FJMI		with_vect(this->vector_ints);
-	FJMI		with_list(this->list_ints);		
+	this->_EndOfTask();
+	this->_displayVectResults(with_vect);
+	
+	this->_Timestamp();
+	FJMI		with_list(this->deque_ints);
+	this->_EndOfTask();
+	this->_displayTime("list", this->deque_ints.size());
 }
 
 PmergeMe::PmergeMe(const PmergeMe& other)
 {
-	
+	this->vector_ints = other.vector_ints;
+	this->list_ints = other.list_ints;
+	this->clock = other.clock;
+	this->chrono = other.chrono;
 }
 
 PmergeMe&	PmergeMe::operator=(const PmergeMe& other)
 {
 	if (this != &other)
 	{
-
+		this->vector_ints = other.vector_ints;
+		this->list_ints = other.list_ints;
+		this->clock = other.clock;
+		this->chrono = other.chrono;
 	}
 	return *this;
 }
@@ -112,13 +124,35 @@ void	PmergeMe::_EndOfTask(void)
 	this->chrono = this->clock - timer; 
 }
 
-void	PmergeMe::_displayTime(const std::string container,int size)
+void	PmergeMe::_displayTime(const std::string container, int size)
 {
-	struct timeval		timestamp;
-	long long int		timer;
-
-	gettimeofday(&timestamp, NULL);
-	timer = (timestamp.tv_sec * 1000) + (timestamp.tv_usec / 1000);
 	std::cout << "Time to process a range of " << size << " elements with std::" << container << " : " 
-	<< (this->clock - timer) << std::endl;
+	<< (this->clock - this->chrono) << " ms" << std::endl;
+}
+
+/* print all the results */
+void	PmergeMe::_displayVectResults(const FJMI& vect) // to test
+{
+	std::string		unsorted_res;
+	std::string		sorted_res;
+
+	for (std::size_t i = 0; i < this->vector_ints.size(); i++)
+	{
+		unsorted_res += this->numberToStr<int>(this->vector_ints[i]);
+		if (i != this->vector_ints.size() - 1)
+			unsorted_res += " ";
+	}
+
+	const std::vector<int>	cpy = vect.getSortedVector();
+
+	for (std::size_t i = 0; i < this->vector_ints.size(); i++)
+	{
+		sorted_res += this->numberToStr<int>(cpy[i]);
+		if (i != this->vector_ints.size() - 1)
+			unsorted_res += " ";
+	}
+	
+	std::cout << "Before	" << unsorted_res << std::endl;
+	std::cout << "After		" << sorted_res << std::endl;
+	this->_displayTime("vector", this->vector_ints.size());
 }

@@ -6,11 +6,45 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:08:00 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/21 15:21:57 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:40:38 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+#include "unistd.h"
+
+/* debug functions */
+
+void	BitcoinExchange::_displayDatabase(void)
+{
+	std::map<Date, std::string>::iterator	it = this->_db_values.begin();
+	
+	while (it != this->_db_values.end())
+	{
+		std::cout << it->first << "," << it->second << std::endl;
+		it++;
+	}
+	std::cout << "size = " << this->_db_values.size() << " (should be 1612)" << std::endl;
+}
+
+void	BitcoinExchange::_displayInputFile(void)
+{
+	
+}
+
+/* check whther we can insert the Date into the map for database */
+bool	BitcoinExchange::_isInsertable(const Date& date)
+{
+	std::map<Date, std::string>::iterator	it = this->_db_values.begin();
+
+	while (it != this->_db_values.end())
+	{
+		if (it->first == date)
+			return (false);
+		it++;
+	}
+	return (true);
+}
 
 // CoplienForm
 
@@ -20,6 +54,8 @@ BitcoinExchange::BitcoinExchange(char *file_path)
 {
 	this->_openFiles(file_path);
 	this->_extractDatabase();
+	this->_displayDatabase();
+	exit(EXIT_FAILURE); // debug
 	this->_printContent();
 }
 
@@ -49,8 +85,48 @@ BitcoinExchange::~BitcoinExchange() {}
 
 // private helper functions
 
+void	BitcoinExchange::_extractDatabase(void) // OK (check Date constructor wich is not working well)
+{
+	std::size_t			pos;
+	std::size_t			iter = 0;
+	std::string			token;
+	std::string			key;
+	std::string			val;
+
+
+	while ((pos = this->_csv_str.find('\n')) != std::string::npos)
+	{
+		token = this->_csv_str.substr(0, pos);
+		if (iter)
+		{
+			key = token.substr(0, token.find_first_of(','));
+			val = token.substr(token.find_first_of(',') + 1);
+			try
+			{				
+				Date		next_date(key); // pb there
+
+				std::cout << next_date << std::endl;
+
+				if (this->_db_values.empty())
+					this->_db_values.insert(std::pair<Date, std::string>(next_date, val));
+				else if (this->_isInsertable(next_date) == true)
+					this->_db_values.insert(std::pair<Date, std::string>(next_date, val));
+				else
+					std::cout << "insertion problem" << std::endl;
+				std::cout << "size = " << this->_db_values.size() << std::endl;
+			}
+			catch(const std::exception& e)
+			{
+				std::cout << e.what() << '\n';
+			}
+		}
+		this->_csv_str.erase(0, pos + 1);
+		iter++;
+	}
+}
+
 /* open input file and database */
-void	BitcoinExchange::_openFiles(char *file_path) // to test
+void	BitcoinExchange::_openFiles(char *file_path) // OK
 {	
 	std::ifstream			input_file;
 	std::stringstream		input_buffer;
@@ -62,7 +138,7 @@ void	BitcoinExchange::_openFiles(char *file_path) // to test
 	this->_input_str = input_buffer.str();
 
 	std::ifstream			csv_file;
-	std::string				database_path = "./data.csv";
+	std::string				database_path = "./data_copy.csv"; // change this, for testing only
 	std::stringstream		db_buffer;
 	
 	csv_file.open(database_path, std::ios_base::in);
@@ -186,32 +262,6 @@ int	BitcoinExchange::_checkFloatValidity(std::string num_part)
 	if (atoi(decimal_part.c_str()) > 8388607) // limit for the mantissa in float (23 bits)
 		throw std::runtime_error("");
 	return (TYPE_FLOAT);
-}
-
-void	BitcoinExchange::_extractDatabase(void) // to test
-{
-	std::size_t			pos;
-	std::size_t			iter = 0;
-	std::string			token;
-	std::string			delimiter = "\n";
-	std::string			key;
-	std::string			val;
-
-	while ((pos = this->_csv_str.find(delimiter)) != std::string::npos)
-	{
-		token = this->_csv_str.substr(0, pos);
-		if (iter)
-		{
-			key = token.substr(0, token.find_first_of(','));
-			val = token.substr(token.find_first_of(',') + 1);
-
-			Date		next_date(key);
-
-			this->_db_values.insert(std::pair<Date, std::string>(next_date, val));
-		}
-		this->_csv_str.erase(0, pos + delimiter.length());
-		iter++;
-	}
 }
 
 /* simple function to get the exchange rate of the nearest date provided */
