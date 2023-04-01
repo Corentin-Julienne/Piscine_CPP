@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:55:51 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/16 11:57:16 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/01 12:44:38 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ class RPN
 {
 	public:
 
-		
-		RPN(char *rpn);
+		RPN(char **rpn);
 		~RPN();
 		RPN(const RPN& other);
 		RPN&	operator=(const RPN& other);
@@ -42,10 +41,11 @@ class RPN
 
 		/* utils */
 		std::string 				_trimWhitespaces(std::string str);
+		std::string					_joinStrParts(char **rpn);
 
 		std::stack<int>				_lifo;
 
-		RPN(void);
+		RPN(void); // don't use that !!!
 };
 
 #endif

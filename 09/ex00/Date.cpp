@@ -6,21 +6,11 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 20:43:01 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/31 16:12:17 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/03/31 17:47:13 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Date.hpp"
-#include <unistd.h>
-
-void	Date::_verifyConstruction(void)
-{
-	std::cout << "-----------------------" << std::endl;
-	std::cout << "years = " << this->years << ", months = " << this->months << " and days = " << this->days << std::endl;
-	std::cout << "years = " << this->int_years << ", months = " << this->int_months << " and days = " << this->int_days << std::endl;
-	std::cout << "-----------------------" << std::endl;
-	sleep(1);
-}
 
 Date::Date(void) {}
 
@@ -120,7 +110,7 @@ void	Date::_isDateFormatValid(std::string format) // to test
 
 /* overloading comparison operators */
 
-bool	Date::operator==(const Date& other) const
+bool	Date::operator==(const Date& other) const // ok
 {	
 	if (this->int_years != other.getIntYears())
 		return (false);
@@ -131,41 +121,49 @@ bool	Date::operator==(const Date& other) const
 	return (true);
 }
 
-bool	Date::operator!=(const Date& other) const
+bool	Date::operator!=(const Date& other) const // ok
 {
 	return (!(*this == other));
 }
 
-bool	Date::operator<(const Date& other) const
+bool	Date::operator<(const Date& other) const // ok
 {
 	if (this->int_years < other.getIntYears())
 		return (true);
+	if (this->int_years > other.getIntYears())
+		return (false);
 	if (this->int_months < other.getIntMonths())
 		return (true);
+	if (this->int_months > other.getIntMonths())
+		return (false);
 	if (this->int_days < other.getIntDays())
 		return (true);
 	return (false);
 }
 
-bool	Date::operator>(const Date& other) const
+bool	Date::operator>(const Date& other) const // ok
 {
 	if (this->int_years > other.getIntYears())
 		return (true);
+	if (this->int_years < other.getIntYears())
+		return (false);
 	if (this->int_months > other.getIntMonths())
 		return (true);
+	if (this->int_months < other.getIntMonths())
+		return (false);
 	if (this->int_days > other.getIntDays())
 		return (true);
 	return (false);
 }
 
-bool	Date::operator<=(const Date& other) const
+bool	Date::operator<=(const Date& other) const // ok
 {
 	if (*this == other || *this < other)
 		return (true);
 	return (false);
 }
 
-bool	Date::operator>=(const Date& other) const
+bool	Date::operator>=(const Date& other) const // ok
 {
 	if (*this == other || *this > other)
 		return (true);
@@ -176,4 +174,12 @@ std::ostream&	operator<<(std::ostream& os, const Date& date) // OK
 {
 	os << date.getYears() << "-" << date.getMonths() << "-" << date.getDays();
 	return (os);
+}
+
+void	Date::_verifyConstruction(void)
+{
+	std::cout << "-----------------------" << std::endl;
+	std::cout << "years = " << this->years << ", months = " << this->months << " and days = " << this->days << std::endl;
+	std::cout << "years = " << this->int_years << ", months = " << this->int_months << " and days = " << this->int_days << std::endl;
+	std::cout << "-----------------------" << std::endl;
 }

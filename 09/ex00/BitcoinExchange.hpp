@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:08:02 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/31 15:54:46 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/01 12:10:54 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,7 @@ class BitcoinExchange
 		BitcoinExchange&	operator=(const BitcoinExchange& other);
 
 		const std::string&	getDatabaseDate(void) const;
-		const std::string&	getInputDate(void) const;
-
-		// debug functions
-		void	_displayDatabase(void);
-		void	_displayInputFile(void);
+		const std::string&	getInputDate(void) const;		
 		
 	private:
 
@@ -69,6 +65,7 @@ class BitcoinExchange
 		std::map<Date, std::string>			_db_values;
 
 		/* debug */
+		void	_displayDatabase(void);
 };
 
 #endif

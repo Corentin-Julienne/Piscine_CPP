@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 16:48:13 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/31 12:13:20 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:22:37 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <vector>
 #include <cstdlib>
 #include <deque>
+#include <map>
 
 // #include "Timer.hpp"
 
@@ -221,8 +222,19 @@
 
 int main(void)
 {
-	std::string test = "08";
+	std::map<int, int>		test;
+
+	test.insert(std::make_pair(2, 2));
+	test.insert(std::make_pair(8, 8));
+	test.insert(std::make_pair(1, 1));
+	test.insert(std::make_pair(666, 666));
+
+	std::map<int, int>::reverse_iterator	it = test.rbegin();
+	while (it != test.rend())
+	{
+		std::cout << it->first << std::endl;
+		it++;
+	}
 	
-	std::cout << atoi(test.c_str());
 	return 0;
 }

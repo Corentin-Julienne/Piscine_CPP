@@ -6,33 +6,12 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:08:00 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/31 16:13:27 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/01 12:14:07 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 #include "unistd.h"
-
-/* debug functions */
-
-void	BitcoinExchange::_displayDatabase(void)
-{
-	std::map<Date, std::string>::iterator	it = this->_db_values.begin();
-	
-	while (it != this->_db_values.end())
-	{
-		std::cout << it->first << "," << it->second << std::endl;
-		it++;
-	}
-	std::cout << "size = " << this->_db_values.size() << " (should be 1612)" << std::endl;
-}
-
-void	BitcoinExchange::_displayInputFile(void)
-{
-	
-}
-
-// CoplienForm
 
 BitcoinExchange::BitcoinExchange(void) {}
 
@@ -46,29 +25,72 @@ BitcoinExchange::BitcoinExchange(char *file_path)
 
 BitcoinExchange::~BitcoinExchange() {}
 
-// BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
-// {
-// 	// this->_csv_str = other._csv_str;
-// 	// this->_input_str = other._input_str;
-// 	// this->_db_values = other._db_values;
-// 	// this->_input_values = other._input_values;
-// }
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
+{
+	this->_csv_str = other._csv_str;
+	this->_input_str = other._input_str;
+	this->_db_values = other._db_values;
+}
 
-// BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& other)
-// {
-// 	if (this != &other)
-// 	{
-// 		// this->_csv_str = other._csv_str;
-// 		// this->_input_str = other._input_str;
-// 		// this->_db_values = other._db_values;
-// 		// this->_input_values = other._input_values;
-// 	}
-// 	return *this;
-// }
+BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& other)
+{
+	if (this != &other)
+	{
+		this->_csv_str = other._csv_str;
+		this->_input_str = other._input_str;
+		this->_db_values = other._db_values;
+	}
+	return *this;
+}
 
 /* GETTERS AND SETTERS */
 
 // private helper functions
+
+/* try to display */
+void	BitcoinExchange::_printContent(void) // to test
+{
+	std::size_t		pos;
+	std::size_t		iter = 0;
+	std::string		token;
+	std::string		date_part;
+	std::string		num_part;
+
+	while (!this->_input_str.empty())
+	{
+		pos = this->_input_str.find('\n');
+		token = this->_input_str.substr(0, pos);
+		if (token.find("|") == std::string::npos)
+			throw std::runtime_error("input file is not written in the good format. Stopping parsing there");
+		date_part = this->_trimWhitespaces(token.substr(0, token.find("|")));
+		num_part = this->_trimWhitespaces(token.substr(token.find("|") + 1));
+		if (iter)
+		{
+			try
+			{
+				Date		date(date_part);
+				Date		db_date = this->_getNearestDate(date);
+				int			type;
+
+				type = this->_checkNumericFormatValidity(num_part);
+				if (type == TYPE_FLOAT)
+					std::cout << date << " => " << num_part << " = " << _computeConversion(_strToFloat(num_part), db_date);
+				else
+					std::cout << date << " => " << num_part << " = " << _computeConversion(atoi(num_part.c_str()), db_date);
+				std::cout << std::endl;
+			}
+			catch(const std::exception& e)
+			{
+				std::cout << e.what() << std::endl;
+			}
+		}
+		if (this->_input_str.find('\n') == std::string::npos)
+			this->_input_str.clear();
+		else
+			this->_input_str.erase(0, pos + 1);
+		iter++;
+	}
+}
 
 void	BitcoinExchange::_extractDatabase(void) // OK
 {
@@ -128,7 +150,6 @@ void	BitcoinExchange::_openFiles(char *file_path) // OK
 	db_buffer << csv_file.rdbuf();
 	this->_csv_str = db_buffer.str();
 
-	// close files
 	input_file.close();
 	csv_file.close();
 }
@@ -152,62 +173,23 @@ std::string	BitcoinExchange::_computeConversion(int num, const Date date)
 	return (ss.str());
 }
 
-/* try to display */
-void	BitcoinExchange::_printContent(void) // to test
-{
-	std::size_t		pos;
-	std::string		token;
-	std::string		delimiter = "\n";
-	std::string		input_cpy = this->_input_str;
-	std::string		date_part;
-	std::string		num_part;
-
-	while ((pos = input_cpy.find(delimiter)) != std::string::npos)
-	{
-		token = input_cpy.substr(0, pos);
-		if (token.find("|") == std::string::npos)
-			throw std::runtime_error("input file is not written in the good format. Stopping parsing there");
-		std::cout << "token = |" << token << "|" << std::endl; // debug
-		date_part = this->_trimWhitespaces(token.substr(0, token.find("|")));
-		num_part = this->_trimWhitespaces(token.substr(token.find("|") + 1));
-		try
-		{
-			Date		date(date_part); // trigger exception if not in good format
-			Date		db_date = this->_getNearestDate(date);
-			int			type;
-
-			type = this->_checkNumericFormatValidity(num_part); // trigger exception if not in good format
-			if (type == TYPE_FLOAT)
-				std::cout << date << " => " << num_part << " = " << _computeConversion(_strToFloat(num_part), db_date);
-			else
-				std::cout << date << " => " << num_part << " = " << _computeConversion(atoi(num_part.c_str()), db_date);
-			std::cout << std::endl;
-		}
-		catch(const std::exception& e)
-		{
-			std::cout << e.what() << '\n';
-		}
-		input_cpy.erase(0, pos + delimiter.length());
-	}
-}
-
 /* input : trimmed str than contains a float or an integer with positive value
 Check this, returns true if it is the case, false otherwise */
 int	BitcoinExchange::_checkNumericFormatValidity(std::string num_part) // to test
 {	
 	if (num_part.size() < 1)
-		throw std::runtime_error("");
-	if (num_part.find_first_of('.') == std::string::npos) // case probably an int
+		throw std::runtime_error("Error: not a number.");
+	if (num_part.find_first_of('.') == std::string::npos) // case int
 	{		
 		if (num_part.size() > 4)
-			throw std::runtime_error("");
+			throw std::runtime_error("Error: too large a number.");
 		for (std::size_t i = 0; i < num_part.size(); i++)
 		{
 			if (!std::isdigit(num_part[i]))
-				throw std::runtime_error("");
+				throw std::runtime_error("Error: not a number.");
 		}
 		if (atoi(num_part.c_str()) > 1000)
-			throw std::runtime_error("");
+			throw std::runtime_error("Error: too large a number.");
 	}
 	else
 		return (this->_checkFloatValidity(num_part));
@@ -219,29 +201,28 @@ int	BitcoinExchange::_checkFloatValidity(std::string num_part)
 	std::string		decimal_part;
 	std::string		int_part;
 
-	// for the int part of the float
-	int_part = num_part.find_first_of('.');
+	/* for the int part of the float */
+	int_part = num_part.substr(0, num_part.find_first_of('.'));
 	if (int_part.size() > 4 || int_part.size() == 0)
-		throw std::runtime_error("");
+		throw std::runtime_error("Error: too large a number.");
 	for (std::size_t i = 0; i < int_part.size(); i++)
 	{
 		if (!std::isdigit(int_part[i]))
-			throw std::runtime_error("");
+			throw std::runtime_error("Error: not a number.");
 	}
 	if (atoi(int_part.c_str()) > 1000)
-		throw std::runtime_error("");
-	// for the decimal part of the float
+		throw std::runtime_error("Error: too large a number.");
+	/* for the decimal part of the float */
 	decimal_part = num_part.substr(num_part.find_first_of('.') + 1);
-	std::cout << "decimal part = |" << decimal_part << "|" << std::endl;
 	if (decimal_part.size() > 7 && decimal_part.size() == 0)
-		throw std::runtime_error("");
+		throw std::runtime_error("Error: not a number.");
 	for (std::size_t i = 0; i < decimal_part.size(); i++)
 	{
 		if (!std::isdigit(decimal_part[i]))
-			throw std::runtime_error("");
+			throw std::runtime_error("Error: not a number.");
 	}
 	if (atoi(decimal_part.c_str()) > 8388607) // limit for the mantissa in float (23 bits)
-		throw std::runtime_error("");
+		throw std::runtime_error("Error: mantissa float of the number is too large (superior to 23 bits).");
 	return (TYPE_FLOAT);
 }
 
@@ -264,8 +245,7 @@ float	BitcoinExchange::_getConversionRate(const Date date)
 	return (this->_strToFloat(float_str));
 }
 
-/* UTILS */
-
+/* trim whitespaces */
 std::string	BitcoinExchange::_trimWhitespaces(std::string str)
 {
 	std::string		trimmed_str = str;
@@ -289,27 +269,30 @@ float	BitcoinExchange::_strToFloat(std::string float_str)
 }
 
 /* should return the nearest date to then apply conversion */
-const Date	BitcoinExchange::_getNearestDate(const Date date) // to test
+const Date	BitcoinExchange::_getNearestDate(const Date date) // OK, but to test more
 {
-	std::map<Date, std::string>::iterator	it_beg = this->_db_values.begin();
-	std::map<Date, std::string>::iterator	it_end = this->_db_values.end();
+	std::map<Date, std::string>::reverse_iterator	it = this->_db_values.rbegin();
 
-	while (it_beg != it_end)
+	while (it != this->_db_values.rend())
 	{
-		if (it_beg->first == date)
-			return (it_beg->first);
-		it_beg++;
+		/* case the date is the exact date */
+		if (date >= it->first)
+			return (it->first);
+		it++;
 	}
-	it_beg = this->_db_values.begin();
+	return ((--it)->first); // case date is the more recent than every entry in DB
+}
+
+/* debug functions */
+void	BitcoinExchange::_displayDatabase(void)
+{
+	std::map<Date, std::string>::iterator	it = this->_db_values.begin();
 	
-	Date	prev(it_beg->first);
-	
-	while (it_beg != it_end)
+	while (it != this->_db_values.end())
 	{
-		if (it_beg != this->_db_values.begin() || prev < it_beg->first) // pb there
-			return ((--it_beg)->first);
-		prev = it_beg->first;
-		it_beg++;
+		std::cout << it->first << "," << it->second << std::endl;
+		it++;
 	}
-	return ((--it_end)->first);// case this is the end
+	std::cout << "size = " << this->_db_values.size() << " (should be 1612)" << std::endl;
+	std::cout << "-----------------------------" << std::endl;
 }
