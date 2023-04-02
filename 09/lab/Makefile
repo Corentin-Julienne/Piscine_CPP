@@ -6,13 +6,14 @@
 #    By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/17 16:48:11 by cjulienn          #+#    #+#              #
-#    Updated: 2023/03/31 12:11:40 by cjulienn         ###   ########.fr        #
+#    Updated: 2023/04/01 17:15:55 by cjulienn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Lab
 
-SRCS = ./main.cpp
+SRCS = ./main.cpp \
+	   ./Test.cpp
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98

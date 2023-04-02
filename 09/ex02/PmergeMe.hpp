@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:24:20 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/23 15:33:37 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/02 16:40:09 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 #include <sstream>
 
 #include "FJMI.hpp"
+#include "Timer.hpp"
+
+class FJMI;
+class Timer;
 
 class PmergeMe
 {
@@ -34,15 +38,11 @@ class PmergeMe
 		
 	private:
 
-		PmergeMe(void);
+		PmergeMe(void); // don't use that !!!
 
 		bool	_checkIntValidity(std::string input);
 		void	_displayVectResults(const FJMI& vect);
-		
-		void	_Timestamp(void);
-		void	_EndOfTask(void);
-		void	_displayTime(const std::string container, int size);
-
+	
 		/* utils */
 		template <typename T>
 		std::string	numberToStr(T num)
@@ -52,16 +52,15 @@ class PmergeMe
 			ss << num;
 			return (ss.str());
 		}
-
-		/* debugging */
-		bool	_checkIfDequeIsSorted(void);
-		bool	_checkIfVectIsSorted(void);
 		
 		/* data */
 		std::vector<int>					vector_ints;
 		std::deque<int>						deque_ints;
-		long long int						clock;
-		long long int						chrono;
+
+		/* debugging */
+		bool	_checkIfDequeIsSorted(void);
+		bool	_checkIfVectIsSorted(void);
+		void	_displayUnsortedDataStructs(void);
 };
 
 #endif
