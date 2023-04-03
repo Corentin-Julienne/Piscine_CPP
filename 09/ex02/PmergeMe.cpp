@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:24:18 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/04/03 15:40:13 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/03 21:15:30 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,16 @@ PmergeMe::PmergeMe(char **argv)
 		if (std::isspace(input[i]) && input[i] != ' ')
 			input[i] = ' ';
 	}
+
+	std::size_t spaces = 0;
+	
+	for (std::size_t i = 0; i < input.size(); i++)
+	{
+		if (input[i] == ' ')
+			spaces++;		
+	}
+	if (spaces == input.size())
+		throw std::runtime_error("Error");
 
 	std::stringstream	ss(input);
 
@@ -131,8 +141,8 @@ void	PmergeMe::_displayVectResults(const FJMI& vect)
 			sorted_res += " ";
 	}
 	
-	std::cout << "Before	" << unsorted_res << std::endl;
-	std::cout << "After		" << sorted_res << std::endl;
+	std::cout << "Before: " << unsorted_res << std::endl;
+	std::cout << "After:  " << sorted_res << std::endl;
 }
 
 /* POST HOC VALIDITY ANALYSES */
