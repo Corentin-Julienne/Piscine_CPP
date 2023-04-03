@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 20:43:01 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/31 17:47:13 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/03 17:44:06 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,15 @@ Date::Date(void) {}
 Date::~Date() {}
 
 Date::Date(std::string date_format)
-{
-	//std::cout << "|" << date_format << "| = size : " << date_format.size() << std::endl;
-	
-	this->_isDateFormatValid(date_format); // pb there
+{	
+	this->_isDateFormatValid(date_format);
 	/* data relative to date format */
 	this->int_years = atoi(this->years.c_str());
 	this->int_months = atoi(this->months.c_str());
 	this->int_days = atoi(this->days.c_str());
-	// debug
-	//this->_verifyConstruction();
 }
 
-Date::Date(const Date& other) // OK
+Date::Date(const Date& other)
 {
 	this->years = other.years;
 	this->months = other.months;
@@ -39,7 +35,7 @@ Date::Date(const Date& other) // OK
 	this->int_days = other.int_days;
 }
 
-Date&	Date::operator=(const Date& other) // OK
+Date&	Date::operator=(const Date& other)
 {
 	if (this != &other)
 	{
@@ -54,12 +50,12 @@ Date&	Date::operator=(const Date& other) // OK
 }
 
 /* getters army */
-const std::string&	Date::getYears(void) const { return this->years; } // OK
-const std::string&	Date::getMonths(void) const { return this->months; } // OK
-const std::string&	Date::getDays(void) const { return this->days; } // OK
-const int&			Date::getIntYears(void) const { return this->int_years; } // OK
-const int&			Date::getIntMonths(void) const { return this->int_months; } // OK
-const int&			Date::getIntDays(void) const { return this->int_days; } // OK
+const std::string&	Date::getYears(void) const { return this->years; }
+const std::string&	Date::getMonths(void) const { return this->months; }
+const std::string&	Date::getDays(void) const { return this->days; }
+const int&			Date::getIntYears(void) const { return this->int_years; }
+const int&			Date::getIntMonths(void) const { return this->int_months; }
+const int&			Date::getIntDays(void) const { return this->int_days; }
 
 std::string	Date::_rtnErrMsg(std::string format)
 {
@@ -69,48 +65,69 @@ std::string	Date::_rtnErrMsg(std::string format)
 }
 
 /* triggers an exception if format date format is not valid */
-void	Date::_isDateFormatValid(std::string format) // to test
+void	Date::_isDateFormatValid(std::string format)
 {
 	/* verifying that general date format */
 	if (format.size() != 10 || format[4] != '-' || format[7] != '-')
-		std::cout << "problem case 1" << std::endl;
-	//	throw std::runtime_error(this->_rtnErrMsg(format)); // add err msg
+		throw std::runtime_error(this->_rtnErrMsg(format));
 	/* verifying that year is in good format/within adequate int range */
 	this->years = format.substr(0, 4);
 	for (std::size_t i = 0; i < this->years.size(); i++)
 	{
 		if (!std::isdigit(this->years[i]))
-			std::cout << "problem case 2" << std::endl;
-			//throw std::runtime_error(this->_rtnErrMsg(format)); // add err msg
+			throw std::runtime_error(this->_rtnErrMsg(format));
 	}
-	if (atoi(this->years.c_str()) < 2009)
-		throw std::runtime_error("problem case 3"); // add err msg
-	/* verifying that month is in good/ format/within adequate int range */
+	/* verifying that month is in good format/within adequate int range */
 	this->months = format.substr(5, 2);
 	for (std::size_t i = 0; i < this->months.size(); i++)
 	{
 		if (!std::isdigit(this->months[i]))
-			std::cout << "problem case 4" << std::endl;
-			//throw std::runtime_error(this->_rtnErrMsg(format)); // add err msg
+			throw std::runtime_error(this->_rtnErrMsg(format));
 	}
 	if (this->months[0] != '0' && atoi(this->months.c_str()) > 12)
-		throw std::runtime_error("problem case 5"); // add err msg
+		throw std::runtime_error(this->_rtnErrMsg(format));
 	/* verifying that day is in good format/within adequate int range */
 	this->days = format.substr(8);
 	for (std::size_t i = 0; i < this->days.size(); i++)
 	{
 		if (!std::isdigit(this->days[i]))
-			std::cout << "problem case 6" << std::endl;
-			//throw std::runtime_error(this->_rtnErrMsg(format)); // add err msg
+			throw std::runtime_error(this->_rtnErrMsg(format));
 	}
-	if (this->days[0] != '0' && atoi(this->days.c_str()) > 31)
-		std::cout << "problem case 7" << std::endl;
-		//throw std::runtime_error(this->_rtnErrMsg(format)); // add err msg
+	if (this->days[0] != '0' 
+		&& !this->_isDayWithinRange(atoi(this->years.c_str()), atoi(this->months.c_str()), atoi(this->days.c_str())))
+		throw std::runtime_error(this->_rtnErrMsg(format));
+}
+
+bool	Date::_isLeapYear(int year)
+{
+	 return (((year % 4) == 0 && (year % 100) != 0) || ((year % 400) == 0));
+}
+
+bool	Date::_isDayWithinRange(int year, int month, int day)
+{	
+	if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+	{	
+		if (day > 31)
+			return (false);
+	}
+	else if (month == 2)
+	{
+		if (this->_isLeapYear(year) && day > 29)
+			return (false);
+		if (!this->_isLeapYear(year) && day > 28)
+			return (false);
+	}
+	else // month with 30 days
+	{
+		if (day > 30)
+			return (false);
+	}
+	return (true);
 }
 
 /* overloading comparison operators */
 
-bool	Date::operator==(const Date& other) const // ok
+bool	Date::operator==(const Date& other) const
 {	
 	if (this->int_years != other.getIntYears())
 		return (false);
@@ -121,12 +138,12 @@ bool	Date::operator==(const Date& other) const // ok
 	return (true);
 }
 
-bool	Date::operator!=(const Date& other) const // ok
+bool	Date::operator!=(const Date& other) const
 {
 	return (!(*this == other));
 }
 
-bool	Date::operator<(const Date& other) const // ok
+bool	Date::operator<(const Date& other) const
 {
 	if (this->int_years < other.getIntYears())
 		return (true);
@@ -141,7 +158,7 @@ bool	Date::operator<(const Date& other) const // ok
 	return (false);
 }
 
-bool	Date::operator>(const Date& other) const // ok
+bool	Date::operator>(const Date& other) const
 {
 	if (this->int_years > other.getIntYears())
 		return (true);
@@ -156,21 +173,21 @@ bool	Date::operator>(const Date& other) const // ok
 	return (false);
 }
 
-bool	Date::operator<=(const Date& other) const // ok
+bool	Date::operator<=(const Date& other) const
 {
 	if (*this == other || *this < other)
 		return (true);
 	return (false);
 }
 
-bool	Date::operator>=(const Date& other) const // ok
+bool	Date::operator>=(const Date& other) const
 {
 	if (*this == other || *this > other)
 		return (true);
 	return (false);
 }
 
-std::ostream&	operator<<(std::ostream& os, const Date& date) // OK
+std::ostream&	operator<<(std::ostream& os, const Date& date)
 {
 	os << date.getYears() << "-" << date.getMonths() << "-" << date.getDays();
 	return (os);

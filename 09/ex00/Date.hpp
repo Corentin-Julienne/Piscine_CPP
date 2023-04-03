@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 20:43:03 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/03/31 15:50:09 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/03 17:25:10 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ class Date
 		Date(void);
 
 		void					_isDateFormatValid(std::string format);
+		bool					_isDayWithinRange(int year, int month, int day);
+		bool					_isLeapYear(int year);
 		std::string				_rtnErrMsg(std::string format);
 	
 		std::string				years;

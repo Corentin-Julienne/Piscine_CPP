@@ -6,12 +6,11 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:08:00 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/04/01 12:14:07 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/03 17:07:42 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-#include "unistd.h"
 
 BitcoinExchange::BitcoinExchange(void) {}
 
@@ -19,7 +18,7 @@ BitcoinExchange::BitcoinExchange(char *file_path)
 {	
 	this->_openFiles(file_path);
 	this->_extractDatabase();
-	this->_displayDatabase();
+	//this->_displayDatabase();
 	this->_printContent();
 }
 
@@ -60,8 +59,16 @@ void	BitcoinExchange::_printContent(void) // to test
 	{
 		pos = this->_input_str.find('\n');
 		token = this->_input_str.substr(0, pos);
+		if (this->_input_str.find('\n') == std::string::npos)
+			this->_input_str.clear();
+		else
+			this->_input_str.erase(0, pos + 1);
 		if (token.find("|") == std::string::npos)
-			throw std::runtime_error("input file is not written in the good format. Stopping parsing there");
+		{
+			std::cout << "Error: bad input => " << token << std::endl;
+			iter++;
+			continue ;
+		}
 		date_part = this->_trimWhitespaces(token.substr(0, token.find("|")));
 		num_part = this->_trimWhitespaces(token.substr(token.find("|") + 1));
 		if (iter)
@@ -84,10 +91,6 @@ void	BitcoinExchange::_printContent(void) // to test
 				std::cout << e.what() << std::endl;
 			}
 		}
-		if (this->_input_str.find('\n') == std::string::npos)
-			this->_input_str.clear();
-		else
-			this->_input_str.erase(0, pos + 1);
 		iter++;
 	}
 }
@@ -141,7 +144,7 @@ void	BitcoinExchange::_openFiles(char *file_path) // OK
 	this->_input_str = input_buffer.str();
 
 	std::ifstream			csv_file;
-	std::string				database_path = "./data_copy.csv"; // change this, for testing only
+	std::string				database_path = "./data.csv"; // change this, for testing only
 	std::stringstream		db_buffer;
 	
 	csv_file.open(database_path, std::ios_base::in);
@@ -154,23 +157,25 @@ void	BitcoinExchange::_openFiles(char *file_path) // OK
 	csv_file.close();
 }
 
-std::string	BitcoinExchange::_computeConversion(float num, const Date date)
+float	BitcoinExchange::_computeConversion(float num, const Date date)
 {
-	std::stringstream	ss;
 	float				exchange_rate = this->_getConversionRate(date);
+	float				res = num * exchange_rate;
 
-	ss << (num * exchange_rate);
-	return (ss.str());
+	std::cout.precision(2);
+	std::cout << std::fixed;
+	return (res);
 }
 
-std::string	BitcoinExchange::_computeConversion(int num, const Date date)
+float	BitcoinExchange::_computeConversion(int num, const Date date)
 {
-	std::stringstream	ss;
 	float				float_num = static_cast<float>(num);
 	float				exchange_rate = this->_getConversionRate(date);
+	float				res = float_num * exchange_rate;
 
-	ss << (float_num * exchange_rate);
-	return (ss.str());
+	std::cout.precision(2);
+	std::cout << std::fixed;
+	return (res);
 }
 
 /* input : trimmed str than contains a float or an integer with positive value
@@ -221,8 +226,6 @@ int	BitcoinExchange::_checkFloatValidity(std::string num_part)
 		if (!std::isdigit(decimal_part[i]))
 			throw std::runtime_error("Error: not a number.");
 	}
-	if (atoi(decimal_part.c_str()) > 8388607) // limit for the mantissa in float (23 bits)
-		throw std::runtime_error("Error: mantissa float of the number is too large (superior to 23 bits).");
 	return (TYPE_FLOAT);
 }
 
@@ -258,11 +261,11 @@ std::string	BitcoinExchange::_trimWhitespaces(std::string str)
 }
 
 /* float_str should be available for conversion (i.e. no numeric values or out-of-limits or else) */
-float	BitcoinExchange::_strToFloat(std::string float_str)
+float	BitcoinExchange::_strToFloat(std::string float_str) // ok
 {
 	float			res;
 	double			process_conv;
-
+	
 	process_conv = strtod(float_str.c_str(), NULL);
 	res = static_cast<float>(process_conv);
 	return (res);

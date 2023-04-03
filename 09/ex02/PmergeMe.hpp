@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:24:20 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/04/03 15:08:17 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:31:05 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ class PmergeMe
 		std::deque<int>						deque_ints;
 
 		/* debugging */
-		bool	_areResultsValid(const FJMI& vect, const FJMI& deq);
+		void	_areResultsValid(const FJMI& vect, const FJMI& deq);
 };
 
 #endif

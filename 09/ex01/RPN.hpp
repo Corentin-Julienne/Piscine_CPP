@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:55:51 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/04/01 12:44:38 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/03 12:10:15 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,6 @@ class RPN
 		bool	_isNumber(std::string input);
 		int		_identifyType(std::string input);
 		void	_performOps(char token);
-
-		/* utils */
-		std::string 				_trimWhitespaces(std::string str);
-		std::string					_joinStrParts(char **rpn);
 
 		std::stack<int>				_lifo;
 

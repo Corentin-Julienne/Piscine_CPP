@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:24:18 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/04/03 15:14:54 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:40:13 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,15 +137,16 @@ void	PmergeMe::_displayVectResults(const FJMI& vect)
 
 /* POST HOC VALIDITY ANALYSES */
 
-void	FJMI::_areResultsValid(const FJMI& vect, const FJMI& deq)
+void	PmergeMe::_areResultsValid(const FJMI& vect, const FJMI& deq)
 {
-	std::vector<int>	sorted_vect = this->_vector_ints;
-	std::deque<int>		sorted_deq = this->_deque_ints;
+	std::vector<int>	sorted_vect = this->vector_ints;
+	std::deque<int>		sorted_deq = this->deque_ints;
 
-	
+	std::sort<std::vector<int>::iterator>(sorted_vect.begin(), sorted_vect.end());
+	std::sort<std::deque<int>::iterator>(sorted_deq.begin(), sorted_deq.end());
 
 	std::vector<int>	vector = vect.getSortedVector();
-	std::deque>int>		deque = deq.getSortedDeque();
+	std::deque<int>		deque = deq.getSortedDeque();
 	
 	if (sorted_vect.size() != vector.size())
 	{
@@ -160,11 +161,17 @@ void	FJMI::_areResultsValid(const FJMI& vect, const FJMI& deq)
 	for (std::size_t i = 0; i < sorted_vect.size(); i++)
 	{
 		if (sorted_vect[i] != vector[i])
+		{
 			std::cout << "Vector has not been sorted correctly with FJMI" << std::endl;
-	}
+			break ; 
+		}
+	}		
 	for (std::size_t i = 0; i < sorted_deq.size(); i++)
 	{
 		if (sorted_deq[i] != deque[i])
+		{
 			std::cout << "Deque has not been sorted correctly with FJMI" << std::endl;
+			break ;
+		}
 	}
 }

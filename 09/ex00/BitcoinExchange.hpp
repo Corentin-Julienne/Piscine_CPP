@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:08:02 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/04/01 12:10:54 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/03 16:57:25 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ class BitcoinExchange
 		int				_checkNumericFormatValidity(std::string num_part);
 		int				_checkFloatValidity(std::string num_part);
 
-		std::string		_computeConversion(float num, const Date date);
-		std::string		_computeConversion(int num, const Date date);
+		float			_computeConversion(float num, const Date date);
+		float			_computeConversion(int num, const Date date);
 
 		const Date		_getNearestDate(const Date date);
 		float			_getConversionRate(const Date date);
