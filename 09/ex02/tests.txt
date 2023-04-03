@@ -1,0 +1,11 @@
+// tests for FJMI
+
+// exception tests
+- with one value only
+- with a negative number
+- with an already sorted array
+
+// stress tests
+with 3000 integers
+
+./PmergeMe `jot -r 3000 1 100000 | tr '\n' ' '`

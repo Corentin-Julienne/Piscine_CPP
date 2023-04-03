@@ -6,11 +6,11 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:24:18 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/04/02 18:23:26 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:14:54 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* PmergeMe implement a Ford-Johnson Merge Insert algorithm */
+/* PmergeMe implements a Ford-Johnson Merge Insert algorithm */
 
 #include "PmergeMe.hpp"
 
@@ -63,9 +63,13 @@ PmergeMe::PmergeMe(char **argv)
 	Timer		deqClock;
 	deqClock.clockStart();
 	FJMI		with_deq(this->deque_ints);
+	
 	deqClock.clockStopper();
-	std::cout << "Time to proceed a range of " << with_deq.getSortedDeque().size() << " with std::deque ";
+	std::cout << "Time to proceed a range of " << with_deq.getSortedDeque().size() << " with std::deque  ";
 	deqClock.printTaskDuration();
+
+	/*  check everything is well sorted, triggers warning otherwise */
+	this->_areResultsValid(with_vect, with_deq);
 }
 
 PmergeMe::~PmergeMe() {}
@@ -106,7 +110,7 @@ bool	PmergeMe::_checkIntValidity(std::string input)
 }
 
 /* print all the results */
-void	PmergeMe::_displayVectResults(const FJMI& vect) // to test
+void	PmergeMe::_displayVectResults(const FJMI& vect)
 {
 	std::string		unsorted_res;
 	std::string		sorted_res;
@@ -131,20 +135,36 @@ void	PmergeMe::_displayVectResults(const FJMI& vect) // to test
 	std::cout << "After		" << sorted_res << std::endl;
 }
 
-/* DEBUG */
+/* POST HOC VALIDITY ANALYSES */
 
-/* check if the parsing has been successful */
-void	PmergeMe::_displayUnsortedDataStructs(void)
+void	FJMI::_areResultsValid(const FJMI& vect, const FJMI& deq)
 {
-	std::cout << "Displaying vector with " << this->vector_ints.size() << " elements" << std::endl;
-	std::cout << "----------------------------------" << std::endl;
-	for (std::size_t i = 0; i < this->vector_ints.size(); i++)
-		std::cout << "num : " << i << " = |" << this->vector_ints[i] << "|"  << std::endl;	
-	std::cout << "----------------------------------" << std::endl;
+	std::vector<int>	sorted_vect = this->_vector_ints;
+	std::deque<int>		sorted_deq = this->_deque_ints;
 
-	std::cout << "Displaying deque with " << this->deque_ints.size() << " elements" << std::endl;
-	std::cout << "----------------------------------" << std::endl;
-	for (std::size_t i = 0; i < this->deque_ints.size(); i++)
-		std::cout << "num : " << i << " = |" << this->deque_ints[i] << "|"  << std::endl;	
-	std::cout << "----------------------------------" << std::endl;
+	
+
+	std::vector<int>	vector = vect.getSortedVector();
+	std::deque>int>		deque = deq.getSortedDeque();
+	
+	if (sorted_vect.size() != vector.size())
+	{
+		std::cout << "Error: size of sorted vector and FJMI differ in size" << std::endl;
+		return ;
+	}
+	if (sorted_deq.size() != deque.size())
+	{
+		std::cout << "Error: size of sorted deque and FJMI differ in size" << std::endl;
+		return ;
+	}
+	for (std::size_t i = 0; i < sorted_vect.size(); i++)
+	{
+		if (sorted_vect[i] != vector[i])
+			std::cout << "Vector has not been sorted correctly with FJMI" << std::endl;
+	}
+	for (std::size_t i = 0; i < sorted_deq.size(); i++)
+	{
+		if (sorted_deq[i] != deque[i])
+			std::cout << "Deque has not been sorted correctly with FJMI" << std::endl;
+	}
 }

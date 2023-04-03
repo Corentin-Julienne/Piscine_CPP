@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:31:34 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/04/02 18:06:18 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/03 14:24:37 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,15 @@ class FJMI
 		/* DEBUG */
 
 		void		_displayUnsortedVect(void);
-		void		_displayPairs(void);
-		void		_displayPend(void);
-		void		_displayOutput(void);
+		void		_displayVectPairs(void);
+		void		_displayVectPend(void);
+		void		_displayVectOutput(void);
+
+		void		_displayUnsortedDeq(void);
+		void		_displayDeqPairs(void);
+		void		_displayDeqPend(void);
+		void		_displayDeqOutput(void);
+		
 		void		_displayInsertionSeq(void);
 };
 

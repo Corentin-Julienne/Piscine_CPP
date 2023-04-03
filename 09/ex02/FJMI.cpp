@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:31:32 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/04/02 18:14:22 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/03 14:59:10 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ FJMI::FJMI(std::deque<int> unsorted_ints) :  _last_val(-1), _unsorted_deque(unso
 	}
 	/* phase 2 */
 	for (std::size_t i = 0; i < _unsorted_deque.size(); i += 2)
-		_pairs_deque.push_back(std::pair<int, int>(_unsorted_deque[i], _unsorted_deque[i + 1]));
+		_pairs_deque.push_back(std::pair<int, int>(_unsorted_deque[i], _unsorted_deque[i + 1]));	
 	/* phase 3 */
-	this->_swapPairs<std::deque<std::pair<int, int> >::iterator>(this->_pairs_deque.begin(), this->_pairs_deque.end());
+	this->_swapPairs<std::deque<std::pair<int, int> >::iterator>(this->_pairs_deque.begin(), this->_pairs_deque.end());	
 	/* phase 4 */
 	this->_recursiveInsertionSort(_pairs_deque, _pairs_deque.size());
 	/* phase 5 and 6 */
@@ -35,16 +35,17 @@ FJMI::FJMI(std::deque<int> unsorted_ints) :  _last_val(-1), _unsorted_deque(unso
 		_output_deque.push_back(_pairs_deque[i].second);
 	}
 	/* phase 7 */
-	this->_jacob_insert_seq = this->_buildOptimalInsertionSeq(_pend_deque.size());
+	this->_jacob_insert_seq = this->_buildOptimalInsertionSeq(_pend_deque.size() + 1);
 	/* phase 8 */
 	int								val_to_insert;
-	std::deque<int>:: iterator		it;
+	std::deque<int>::iterator		it;
 	
-	for (std::size_t i = 0; i < _pairs_deque.size(); i++)
+	for (std::size_t i = 0; i < _pend_deque.size(); i++)
 	{
 		val_to_insert = this->_pend_deque[this->_jacob_insert_seq[i] - 1];
 		it = this->_whereToInsertVal<std::deque<int>::iterator>(_output_deque.begin(), _output_deque.end(), val_to_insert);
-		_output_deque.insert(it, val_to_insert);
+		if (it != _output_deque.end())
+			_output_deque.insert(it, val_to_insert);
 	}
 	/* phase 9 */
 	std::deque<int>::iterator	it_last;
@@ -81,10 +82,10 @@ FJMI::FJMI(std::vector<int> unsorted_ints) : _last_val(-1), _unsorted_vect(unsor
 		_output_vect.push_back(_pairs_vect[i].second);
 	}
 	/* phase 7 */
-	this->_jacob_insert_seq = this->_buildOptimalInsertionSeq(_pend_vect.size());
+	this->_jacob_insert_seq = this->_buildOptimalInsertionSeq(_pend_vect.size() + 1);
 	/* phase 8 */
 	int								val_to_insert;
-	std::vector<int>:: iterator		it;
+	std::vector<int>::iterator		it;
 	
 	for (std::size_t i = 0; i < _pend_vect.size(); i++)
 	{
@@ -328,7 +329,16 @@ void	FJMI::_displayUnsortedVect(void)
 	}
 }
 
-void	FJMI::_displayPairs(void)
+void	FJMI::_displayUnsortedDeq(void)
+{
+	std::cout << "Displaying unsorted deque..." << std::endl;
+	for (std::size_t i = 0; i < this->_unsorted_deque.size(); i++)
+	{
+		std::cout << "index [" << i << "] = |" << _unsorted_deque[i] << "|" << std::endl;
+	}
+}
+
+void	FJMI::_displayVectPairs(void)
 {
 	std::cout << "Displaying pairs..." << std::endl;
 	for (std::size_t i = 0; i < this->_pairs_vect.size(); i++)
@@ -338,7 +348,17 @@ void	FJMI::_displayPairs(void)
 	}	
 }
 
-void	FJMI::_displayPend(void)
+void	FJMI::_displayDeqPairs(void)
+{
+	std::cout << "Displaying pairs..." << std::endl;
+	for (std::size_t i = 0; i < this->_pairs_deque.size(); i++)
+	{
+		std::cout << "pair num " << i << " = [" << _pairs_deque[i].first << ", "
+		<< _pairs_deque[i].second << "]" << std::endl;
+	}	
+}
+
+void	FJMI::_displayVectPend(void)
 {
 	std::cout << "Displaying pend..." << std::endl;
 	for (std::size_t i = 0; i < this->_pend_vect.size(); i++)
@@ -347,12 +367,30 @@ void	FJMI::_displayPend(void)
 	}	
 }
 
-void	FJMI::_displayOutput(void)
+void	FJMI::_displayDeqPend(void)
+{
+	std::cout << "Displaying pend..." << std::endl;
+	for (std::size_t i = 0; i < this->_pend_deque.size(); i++)
+	{
+		std::cout << "index [" << i << "] = |" << _pend_deque[i] << "|" << std::endl;
+	}	
+}
+
+void	FJMI::_displayVectOutput(void)
 {
 	std::cout << "Displaying output..." << std::endl;
 	for (std::size_t i = 0; i < this->_output_vect.size(); i++)
 	{
 		std::cout << "index [" << i << "] = |" << _output_vect[i] << "|" << std::endl;
+	}	
+}
+
+void	FJMI::_displayDeqOutput(void)
+{
+	std::cout << "Displaying output..." << std::endl;
+	for (std::size_t i = 0; i < this->_output_deque.size(); i++)
+	{
+		std::cout << "index [" << i << "] = |" << _output_deque[i] << "|" << std::endl;
 	}	
 }
 

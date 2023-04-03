@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 11:38:53 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/04/01 13:38:47 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/03 12:31:29 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	Timer::printTaskDuration(void)
 {
 	long long		duration = _stop - _start;
 	
-	std::cout << " : " << duration << " ms" << std::endl;
+	std::cout << " : " << duration << " microseconds" << std::endl;
 }
 
 /* get the current time in milliseconds (0 = Linux Epoch) */
@@ -63,5 +63,5 @@ long long	Timer::_getTimeNow(void)
 	struct timeval		timestamp;
 
 	gettimeofday(&timestamp, NULL);
-	return ((timestamp.tv_sec * 1000) + (timestamp.tv_usec / 1000));
+	return ((timestamp.tv_sec * 1000000) + (timestamp.tv_usec));
 }
