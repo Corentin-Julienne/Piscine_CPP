@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:31:32 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/04/03 14:59:10 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/03 19:35:32 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ FJMI::FJMI(std::deque<int> unsorted_ints) :  _last_val(-1), _unsorted_deque(unso
 	int								val_to_insert;
 	std::deque<int>::iterator		it;
 	
-	for (std::size_t i = 0; i < _pend_deque.size(); i++)
+	for (std::size_t i = 0; i < _jacob_insert_seq.size(); i++)
 	{
-		val_to_insert = this->_pend_deque[this->_jacob_insert_seq[i] - 1];
-		it = this->_whereToInsertVal<std::deque<int>::iterator>(_output_deque.begin(), _output_deque.end(), val_to_insert);
-		if (it != _output_deque.end())
+		if ((std::size_t)(this->_jacob_insert_seq[i] - 1) < _pend_deque.size())
+		{
+			val_to_insert = this->_pend_deque[this->_jacob_insert_seq[i] - 1];
+			it = this->_whereToInsertVal<std::deque<int>::iterator>(_output_deque.begin(), _output_deque.end(), val_to_insert);
 			_output_deque.insert(it, val_to_insert);
+		}
 	}
 	/* phase 9 */
 	std::deque<int>::iterator	it_last;
@@ -82,16 +84,19 @@ FJMI::FJMI(std::vector<int> unsorted_ints) : _last_val(-1), _unsorted_vect(unsor
 		_output_vect.push_back(_pairs_vect[i].second);
 	}
 	/* phase 7 */
-	this->_jacob_insert_seq = this->_buildOptimalInsertionSeq(_pend_vect.size() + 1);
+	this->_jacob_insert_seq = this->_buildOptimalInsertionSeq(_pend_vect.size() + 1);	
 	/* phase 8 */
 	int								val_to_insert;
 	std::vector<int>::iterator		it;
 	
-	for (std::size_t i = 0; i < _pend_vect.size(); i++)
+	for (std::size_t i = 0; i < _jacob_insert_seq.size(); i++)
 	{
-		val_to_insert =  this->_pend_vect[this->_jacob_insert_seq[i] - 1];
-		it = this->_whereToInsertVal<std::vector<int>::iterator>(_output_vect.begin(), _output_vect.end(), val_to_insert);
-		_output_vect.insert(it, val_to_insert);
+		if ((std::size_t)(this->_jacob_insert_seq[i] - 1) < _pend_vect.size())
+		{
+			val_to_insert =  this->_pend_vect[this->_jacob_insert_seq[i] - 1];
+			it = this->_whereToInsertVal<std::vector<int>::iterator>(_output_vect.begin(), _output_vect.end(), val_to_insert);
+			_output_vect.insert(it, val_to_insert);
+		}
 	}
 	/* phase 9 */
 	std::vector<int>::iterator	it_last;
@@ -212,11 +217,11 @@ std::deque<int>	FJMI::_buildOptimalInsertionSeq(std::size_t pend_size)
 	int						res;
 
 	// retrieve a Jacobsthal sequence limited to the number of ints in pend
-	for (std::size_t i = 0; i <= pend_size; i++)
+	for (std::size_t i = 0; ; i++)
 	{
 		res = this->_getJacobsthalNum(i);
 		if ((std::size_t)res <= pend_size)
-			jacob_seq.push_back(res);
+			jacob_seq.push_back(res); // modif
 		else
 			break;
 	}
