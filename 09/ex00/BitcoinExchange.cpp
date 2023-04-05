@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:08:00 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/04/03 21:52:40 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/05 10:56:36 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,14 +207,24 @@ float	BitcoinExchange::_computeConversion(int num, const Date date)
 Check this, returns true if it is the case, false otherwise */
 int	BitcoinExchange::_checkNumericFormatValidity(std::string num_part) // to test
 {	
+	bool			minus_sign = false;
+	std::size_t		is_dig = 0;
+	
 	if (num_part.size() < 1)
 		throw std::runtime_error("Error: not a number.");
 	if (num_part.find_first_of('.') == std::string::npos) // case int
 	{		
 		if (num_part.size() > 4)
-			throw std::runtime_error("Error: too large a number.");
-		if (num_part[0] == '-' && std::isdigit(num_part[1]) && std::isdigit(num_part[2]) && std::isdigit(num_part[3]))
-			throw std::runtime_error("Error: not a positive number.");	
+			throw std::runtime_error("Error: too large a number.");			
+		for (std::size_t i = 0; i < num_part.size(); i++)
+		{
+			if (i == 0 && num_part[i] == '-')
+				minus_sign = true;
+			else if (std::isdigit(num_part[i]))
+				is_dig++;
+		}
+		if (minus_sign && is_dig == num_part.size() - 1)
+			throw std::runtime_error("Error: not a positive number.");
 		for (std::size_t i = 0; i < num_part.size(); i++)
 		{
 			if (!std::isdigit(num_part[i]))
@@ -232,13 +242,22 @@ int	BitcoinExchange::_checkFloatValidity(std::string num_part)
 {
 	std::string		decimal_part;
 	std::string		int_part;
+	bool			minus_sign = false;
+	std::size_t		is_dig = 0;
 
 	/* for the int part of the float */
 	int_part = num_part.substr(0, num_part.find_first_of('.'));
 	if (int_part.size() > 4 || int_part.size() == 0)
 		throw std::runtime_error("Error: too large a number.");
-	if (int_part[0] == '-' && std::isdigit(int_part[1]) && std::isdigit(int_part[2]) && std::isdigit(int_part[3]))
-			throw std::runtime_error("Error: not a positive number.");	
+	for (std::size_t i = 0; i < int_part.size(); i++)
+	{
+		if (i == 0 && int_part[i] == '-')
+			minus_sign = true;
+		else if (std::isdigit(int_part[i]))
+			is_dig++;
+	}
+	if (minus_sign && is_dig == int_part.size() - 1)
+		throw std::runtime_error("Error: not a positive number.");
 	for (std::size_t i = 0; i < int_part.size(); i++)
 	{
 		if (!std::isdigit(int_part[i]))
