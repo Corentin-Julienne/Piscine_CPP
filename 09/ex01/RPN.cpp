@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:55:49 by cjulienn          #+#    #+#             */
-/*   Updated: 2023/04/03 12:12:29 by cjulienn         ###   ########.fr       */
+/*   Updated: 2023/04/05 09:23:20 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	RPN::_identifyType(std::string elem)
 	return (INVAL);
 }
 
-/*  */
+/* perform all ops, trigger exception if division per 0 */
 void	RPN::_performOps(char token)
 {
 	int			first;
@@ -90,6 +90,8 @@ void	RPN::_performOps(char token)
 			result = first * second;
 			break;
 		case '/':
+			if (second == 0)
+				throw std::runtime_error("Error");
 			result = first / second;
 			break;
 		default:
